@@ -78,14 +78,15 @@ def _ijara_facts(nt, text):
         pos=r"يملك الموجر العين .{0,24}قبل الاجاره|الموجر .{0,16}قبل الاجاره|owns the asset .{0,24}before .{0,10}leas|acquires the asset before leasing")
 
     # I4 — the headline test
+    _risk_shift_rx = (r"المستاجر .{0,28}الصيانه الاساسيه|lessee .{0,24}(basic|major|structural) maintenance|"
+                      r"المستاجر .{0,24}(التكافل|التامين)|lessee .{0,24}(insurance|takaful)|"
+                      r"المستاجر .{0,28}(الهلاك|التلف) الكلي|lessee .{0,24}total[- ]loss|"
+                      r"تستمر الاجره .{0,20}الهلاك|rent .{0,16}continues? .{0,16}destr")
     risk_shifted = None
     rs_q = ""
-    if re.search(r"المستاجر .{0,28}الصيانه الاساسيه|lessee .{0,24}(basic|major|structural) maintenance|"
-                 r"المستاجر .{0,24}(التكافل|التامين)|lessee .{0,24}(insurance|takaful)|"
-                 r"المستاجر .{0,28}(الهلاك|التلف) الكلي|lessee .{0,24}total[- ]loss|"
-                 r"تستمر الاجره .{0,20}الهلاك|rent .{0,16}continues? .{0,16}destr", nt):
+    if re.search(_risk_shift_rx, nt):
         risk_shifted = True
-        rs_q = _quote(text, r"المستاجر|lessee")
+        rs_q = _quote(text, _risk_shift_rx)   # the operative clause, not a header annotation
     lessor_bears_risk, lbr_q = _decide(nt, text, neg=None,
         pos=r"الموجر .{0,24}الصيانه الاساسيه|lessor bears .{0,24}(basic|major|structural) maintenance|"
             r"التكافل .{0,12}على الموجر|takaful at the lessor|الموجر .{0,16}تبعه (الهلاك|التلف)")
