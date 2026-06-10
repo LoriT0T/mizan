@@ -24,11 +24,11 @@ def w(name, text):
     return path
 
 
-def render_registry(rules):
+def render_registry(rules, source_name="rules.json"):
     L = rules["source_layers"]
     out = []
     out.append(f"# {rules['registry']} — Rendered View\n")
-    out.append(f"_Version {rules['version']} · scope: {rules['scope']} · DERIVED from `registry/rules.json` — do not hand-edit._\n")
+    out.append(f"_Version {rules['version']} · scope: {rules['scope']} · DERIVED from `registry/{source_name}` — do not hand-edit._\n")
     out.append("> **Mizan is a copilot, never a mufti.** It researches, drafts, and documents for a qualified human scholar (SSB); it never issues a ruling. Contested matters are surfaced, never adjudicated.\n")
     out.append("## Source layers\n")
     for key, desc in L.items():
@@ -143,7 +143,7 @@ def main():
     ]
     import os
     if os.path.exists(os.path.join(ROOT, "registry", "rules_ijara.json")):
-        paths.append(w("REGISTRY_IJARA.md", render_registry(load("rules_ijara.json"))))
+        paths.append(w("REGISTRY_IJARA.md", render_registry(load("rules_ijara.json"), "rules_ijara.json")))
         paths.append(w("DEFER_REGISTER_IJARA.md", render_defer(load("defer_register_ijara.json"))))
         paths.append(w("SCOPE.md", render_scope(load("scope_registry.json"))))
     for p in paths:

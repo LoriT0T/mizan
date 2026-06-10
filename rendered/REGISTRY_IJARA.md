@@ -1,5 +1,5 @@
 # Mizan Ijara Rule Registry — Rendered View
-_Version 1.0.0-stage2 · scope: ijara · DERIVED from `registry/rules.json` — do not hand-edit._
+_Version 1.0.0-stage2 · scope: ijara · DERIVED from `registry/rules_ijara.json` — do not hand-edit._
 > **Mizan is a copilot, never a mufti.** It researches, drafts, and documents for a qualified human scholar (SSB); it never issues a ruling. Contested matters are surfaced, never adjudicated.
 ## Source layers
 - **L1** — CBK instructions / Higher Committee of Shari'ah Supervision — binding in Kuwait, and L1 contains ONLY these (governance frame: the bank is bound by its SSB's fatwas; external Sharia audit tests each transaction type).

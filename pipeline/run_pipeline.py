@@ -81,7 +81,9 @@ def run_all():
     rules, defer, glossary = orchestrator.load_registry()
     for path in _corpus_paths():
         res = orchestrator.run_contract(path, rules, defer, glossary)
-        print(f"\n### {os.path.basename(path)}  [{res['seam_mode']}] · type={res.get('primary_type')} covered={res.get('covered_types')}")
+        cls = res.get("classification", {})
+        print(f"\n### {os.path.basename(path)}  [{res['seam_mode']}] · classified={cls.get('types')} "
+              f"unrecognized={cls.get('unrecognized_components')} · covered(checked)={res.get('covered_types')}")
         _print_structure(res["structure"])
         print(f"    findings (guard {res['guard']}):")
         _print_findings(res["findings"])
