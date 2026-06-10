@@ -114,7 +114,24 @@ python3 pipeline/run_generate.py            # memo + matrix for every contract
 ./run_tests.sh                              # full suite: 1a + 1b + 1c + 2
 ```
 
+## Stage 3 — local web frontend + GCC/Kuwait test corpus
+A **local-only** web UI (`web/`, stdlib `http.server` — zero external deps) wraps the engine behind a hard architectural wall: `web/` holds **zero rule logic, zero registry reads, zero checker code** — it calls `orchestrator.run_text` / `generate_for_text` and renders. The engine runs and tests fully with `web/` absent (proven in the suite).
+
+**Running locally**
+```bash
+python3 web/server.py                 # binds 127.0.0.1:8765 (loopback only; refuses 0.0.0.0)
+# open http://127.0.0.1:8765  → paste or upload a .txt contract → Run review
+```
+- **NO-KEY mode is first-class:** with no `OPENROUTER_API_KEY` the UI runs the full deterministic pipeline and shows a *"NO-KEY mode — deterministic extraction only"* badge. With a key set in the **server env only**, the model seam is used; the key never appears in any served byte (scanned on every response), log, or error.
+- **Untrusted uploads:** size-capped (256 KB), `.txt`/paste only, run through the injection-inert input rail, held in RAM for the session only (never persisted to disk), no telemetry, no external calls except the seam.
+- **The UI never rules:** the not-a-fatwa watermark sits at the top of every page (both languages); status labels come from the engine's vocabulary only; the never-rules guard runs over the UI chrome at serve time and fails closed; deferral and out-of-scope items are shown prominently **not graded**; a calibration badge reads `arabic_review_status` from the engine and shows *"Arabic pending expert calibration"* for the Stage-2 Ijara/glossary Arabic.
+- A `/scope` page renders exactly what Mizan covers and to what depth.
+
+**GCC/Kuwait test corpus** (`corpus/stage3/`, researched then authored — see `corpus/stage3/PROVENANCE.md`): T1 clean Kuwaiti vehicle Murabaha · T2 Murabaha with a *subtle* buried R1 defect · T3 home IMB with the I4 ownership-risk-shift *dressed* in an "obligations of the customer" schedule · T4 commodity tawarruq (recognized, no rule, D3) · T5 Murabaha + investment-wakala (covered checked, uncovered out-of-scope). Result bundles (findings · memo · matrix · rendered HTML) in `rendered/stage3/`.
+
+> **This is a local demonstration — not deployed, not certified.** No public hosting, no tunnel, no remote.
+
 ## Status
-**Stage 1a — locked.** **Stage 1b — self-verified.** **Stage 1c — self-verified.** **Stage 2 — self-verified.** No web app, no site, no remote, no push. Stages beyond 2 are authorized only after the principal reviews this checkpoint. Generated memos are **drafts for a qualified scholar**; the opinion is the scholar's alone; Mizan **does not and cannot determine Sharia compliance**, and is honest about the contract types it does not cover; the corpus is synthetic; this is a demonstration, not certified. The Murabaha registry (rules + defer) is byte-identical to Stage 1; the glossary grew only via the documented growth protocol.
+**Stage 1a — locked.** **1b / 1c / 2 — self-verified.** **Stage 3 — self-verified (local frontend + GCC corpus).** No remote, no push, no public hosting. Generated memos are **drafts for a qualified scholar**; the opinion is the scholar's alone; Mizan **does not and cannot determine Sharia compliance** and is honest about the types it does not cover; the corpus is synthetic; not certified. The Murabaha **and Ijara** registries are unmodified by Stage 3 (the frontend reads the engine, not the registry); the glossary grew only via the documented growth protocol.
 
 _This project inherits the Foundry foundation (read-only at `/Users/musaed/v0/foundry-v0/`). It is local-only; nothing was written outside `/Users/musaed/mizan/`._

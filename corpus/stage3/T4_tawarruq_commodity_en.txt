@@ -1,0 +1,19 @@
+### SYNTHETIC CONTRACT — Mizan Stage 3 test corpus — NOT A REAL AGREEMENT, not attributed to any bank ###
+Commodity Tawarruq (personal cash financing) Agreement
+Language: English · Register: realistic GCC commodity-tawarruq structure (composed for testing)
+Expected: RECOGNIZED as tawarruq; NO rule applied; D3 positions surfaced; routed to the SSB.
+
+Recitals:
+The Customer requires personal cash financing. The parties have agreed a commodity tawarruq (monetization) arrangement as follows:
+
+Parties:
+- First Party (the Bank): a demonstration Islamic bank.
+- Second Party (the Customer / mustawriq).
+
+Clause 1 (Commodity purchase on deferred terms): The Bank sells to the Customer a specified quantity of a base metal commodity, held on an approved commodity platform, on deferred payment at a price equal to cost plus a disclosed profit (the Deferred Price), payable in instalments.
+
+Clause 2 (Agency to on-sell for cash): The Customer appoints the Bank as agent to sell the same commodity to a third party for immediate spot cash, and the spot proceeds are credited to the Customer's account.
+
+Clause 3 (Obligation): The Customer owes the Bank the Deferred Price over the financing term. The commodity is incidental; the economic result is cash now against a larger deferred obligation.
+
+Clause 4 (Acknowledgement): This is an organized tawarruq facility arranged end-to-end by the Bank.

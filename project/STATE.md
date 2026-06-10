@@ -124,5 +124,19 @@ I1 asset eligibility (non-consumable/identified/permissible use) · I2 rent+term
 - Mistakes → F-005 (negation-matched-affirmative), F-006 (tawarruq mis-class), F-007 (verdict-in-note recurrence); lessons L-012 (grow one type, scope honesty), L-013 (negation-first / precedence).
 - New canonical Arabic → `rendered/ARABIC_REVIEW_LIST_2.md`.
 
+## Stage 2 — COMPLETE (see above).
+
+---
+
+# STAGE 3 — local frontend + GCC/Kuwait corpus (COMPLETE, self-verified 2026-06-10)
+- Branch-trigger: web surface (guardrails) + live seam (cost-routing) + deployment (local-hosting hygiene only). Loaded deployment; nothing public.
+- **PART A — frontend** (`web/`, stdlib `http.server`, zero deps): wall-enforced (zero rule logic/registry/checker; engine runs with web/ absent — proven in suite). 127.0.0.1 only (refuses 0.0.0.0). Key from server env only, scanned out of every served byte. NO-KEY first-class badge. Untrusted uploads: 256KB cap, .txt/paste, injection-inert input rail, RAM-only (not persisted). Bilingual RTL UI; watermark top; status labels = engine vocabulary only; serve-time never-rules guard over UI chrome; calibration badge from `arabic_review_status`; `/scope` page. Additive engine interface: `run_text`, `generate_for_text`, `scope_info`, `calibration_status`.
+- **PART B — corpus** (`corpus/stage3/`, researched → `PROVENANCE.md`): T1 clean Murabaha (AR) · T2 subtle R1 (AR) · T3 dressed I4 (AR) · T4 tawarruq (EN, recognized/no-rule/D3) · T5 mixed Murabaha+investment-wakala (AR). All five behave per spec under REALISTIC drafting. Bundles (findings·memo·matrix·result.html) in `rendered/stage3/`.
+- Extractor BROADENED for realistic phrasing (defect-specific agency/I4 qualifiers, asset-by-noun, article-tolerant cost/markup/imb, ليس/ليست negation). All prior suites stay green untouched.
+- Full suite GREEN (1a+1b+1c+2+3): `./run_tests.sh` incl. WALL step + web tests.
+- Registries (Murabaha + Ijara + glossary + scope) UNMODIFIED by Stage 3; Foundry byte-untouched; only ~/mizan written.
+- Mistakes/lessons → L-014 (benign-vs-defective by qualifier), L-015 (frontend-behind-wall).
+- UI canon Arabic → `rendered/ARABIC_REVIEW_LIST_3.md`.
+
 ## Next action
-CHECKPOINT — STOP after Stage 2. Independent verifier + zip for the principal. No frontend, no remote, no push.
+CHECKPOINT — STOP after Stage 3. Independent verifier (incl. key-extraction + verdict-injection attempts) + zip. Principal tests the frontend BY HAND with T1–T5 before anything further. No remote, no push, no public hosting.

@@ -1,5 +1,5 @@
 # مذكّرة المراجعة الشرعية — Sharia-Review Memo
-_ملف العقد / contract: contract_tawarruq_en.txt · اللغة المعتمدة / authoritative language: ar (Arabic-first)_
+_ملف العقد / contract: T4_tawarruq_commodity_en.txt · اللغة المعتمدة / authoritative language: ar (Arabic-first)_
 > **أداة بحث وصياغة — ليست فتوى. للعرض على عالم شرعي مؤهّل.**
 > **Research and drafting aid — not a fatwa. For review by a qualified Sharia scholar.**
 
@@ -11,13 +11,13 @@ _ملف العقد / contract: contract_tawarruq_en.txt · اللغة المعت
 
 هذه مراجعةٌ لعقد مرابحةٍ للآمر بالشراء بين المؤسسة المالية والعميل ومورّدٍ طرفٍ ثالث؛ محلُّ العقد مبيَّنٌ نصّاً أدناه.
 
-محلُّ العقد (نصّاً): «Contract type: Tawarruq (commodity monetization for cash)»
+محلُّ العقد (نصّاً): «Commodity Tawarruq (personal cash financing) Agreement»
 
 **[EN]**
 
 This is a review of a Murabaha-to-the-Purchase-Orderer contract between the institution, the customer, and a third-party supplier; the subject of the contract is quoted verbatim below.
 
-Subject of the contract (verbatim): «Contract type: Tawarruq (commodity monetization for cash)»
+Subject of the contract (verbatim): «Commodity Tawarruq (personal cash financing) Agreement»
 
 > **أداة بحث وصياغة — ليست فتوى. للعرض على عالم شرعي مؤهّل.**
 > **Research and drafting aid — not a fatwa. For review by a qualified Sharia scholar.**
@@ -28,9 +28,13 @@ Subject of the contract (verbatim): «Contract type: Tawarruq (commodity monetiz
 
 العقدُ مرابحةٌ للآمر بالشراء؛ وفيما يلي تسلسلُ الوقائع المُستخلَصةُ من العقد نصّاً (تملّكٌ وقبضٌ، وكالةٌ، ثمنٌ وإفصاح).
 
+- الثمنُ والإفصاح: «Clause 1 (Commodity purchase on deferred terms): The Bank sells to the Customer a specified quantity of a base metal commodity, held on an approved commodity platform, on deferred payment at a price equal to cost plus a disclosed profit (the Deferred Price), payable in instalments.»
+
 **[EN]**
 
 The aqd is a Murabaha to the Purchase Orderer; below is the sequence extracted verbatim from the contract (ownership/possession, agency, price and disclosure).
+
+- Price/disclosure: «Clause 1 (Commodity purchase on deferred terms): The Bank sells to the Customer a specified quantity of a base metal commodity, held on an approved commodity platform, on deferred payment at a price equal to cost plus a disclosed profit (the Deferred Price), payable in instalments.»
 
 > **أداة بحث وصياغة — ليست فتوى. للعرض على عالم شرعي مؤهّل.**
 > **Research and drafting aid — not a fatwa. For review by a qualified Sharia scholar.**

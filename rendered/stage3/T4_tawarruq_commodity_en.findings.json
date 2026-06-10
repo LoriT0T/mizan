@@ -1,0 +1,64 @@
+{
+  "file": "T4_tawarruq_commodity_en.txt",
+  "classification": {
+    "types": [
+      "tawarruq"
+    ],
+    "unrecognized_components": [],
+    "method": "deterministic",
+    "cues": {
+      "murabaha": [
+        "cost[- ]plus"
+      ],
+      "tawarruq": [
+        "\\btawarruq\\b",
+        "moneti[sz]ation"
+      ]
+    }
+  },
+  "covered_types": [],
+  "seam_mode": "NO-KEY (deterministic)",
+  "findings": [
+    {
+      "rule_id": null,
+      "status": "out_of_scope",
+      "contract_element": "tawarruq component",
+      "component": "tawarruq",
+      "quote": "",
+      "violation_pattern": null,
+      "positions": [
+        {
+          "authority": "OIC International Islamic Fiqh Academy",
+          "position_ar": "حكَم بعدم جواز التورّق المنظَّم والعكسي؛ لأنّ المعاملات المتزامنة بين المموّل والمستورِق في مقابل التزامٍ مالي تُعدّ حيلةً تنطوي على الربا.",
+          "position_en": "Ruled both organized and reverse tawarruq impermissible; the simultaneous, pre-arranged transactions between financier and mustawriq against a financial obligation are a deception containing riba.",
+          "citation": "OIC Fiqh Academy Resolution 179 (19/5), 19th session, Sharjah, UAE, 26–30 April 2009"
+        },
+        {
+          "authority": "AAOIFI",
+          "position_ar": "يجيز التورّقَ بشروطٍ مشدَّدة: البيعُ لطرفٍ ثالثٍ لا للبائع الأصلي، وتقييدُ دور المصرف وكيلاً.",
+          "position_en": "Permits tawarruq subject to strict conditions: sale to a third party (not back to the original seller), and restriction of the bank's agency role.",
+          "citation": "AAOIFI Sharia Standard No. 30 (Monetization / Tawarruq); related SS 20, SS 18"
+        },
+        {
+          "authority": "Malaysia — Bank Negara Shariah Advisory Council (SAC)",
+          "position_ar": "يجيز التورّقَ المنظَّم على نطاقٍ واسع، بل يجيز ترتيباتِ الوكالة التي يقيّدها معيارُ AAOIFI — وهو افتراقٌ واضح بين الخليج وماليزيا.",
+          "position_en": "Broadly permits organized tawarruq, even allowing agency (wakalah) arrangements that AAOIFI restricts — a clear GCC vs. Malaysia divergence.",
+          "citation": "Input #2, Part 2 (Tawarruq — Scholarly disagreement)"
+        },
+        {
+          "authority": "Indonesia — DSN-MUI",
+          "position_ar": "يَعدّ التورّقَ المنظَّم (المنزّم) مشكلاً.",
+          "position_en": "Treats organized tawarruq (tawarruq munazzam) as problematic.",
+          "citation": "DSN-MUI Fatwa 82/2011 (per Input #2, Part 2)"
+        }
+      ],
+      "routing_ar": "خارج نطاق المرابحة في المرحلة 1أ؛ مُسجَّلٌ للبتّ من الهيئة الشرعية في مرحلةٍ لاحقة عند تناول التورّق.",
+      "routing_en": "Out of Murabaha scope in Stage 1a; recorded for scholarly determination by the SSB in a later stage when tawarruq is addressed.",
+      "missing_fact": null,
+      "note_ar": "يحتوي هذا المستندُ على مكوِّن tawarruq؛ ولا يملك ميزانُ مجموعةَ قواعدَ معايَرةً لـtawarruq فلا يُقيِّمه، ويحيله إلى عالمٍ شرعيٍّ مؤهّل.",
+      "note_en": "This document contains a component of type tawarruq; Mizan has no calibrated rule-set for tawarruq, does not assess it, and routes it to a qualified Sharia scholar.",
+      "note": "This document contains a component of type tawarruq; Mizan has no calibrated rule-set for tawarruq, does not assess it, and routes it to a qualified Sharia scholar.",
+      "citations": []
+    }
+  ]
+}

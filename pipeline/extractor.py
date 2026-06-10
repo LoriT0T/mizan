@@ -75,18 +75,20 @@ def _ijara_facts(nt, text):
     lease_before_acq, lba_q = _decide(nt, text, neg=None,
         pos=r"الاجاره قبل .{0,12}تملك|leased before .{0,12}acqui|lease .{0,16}before the bank acquires")
     lessor_owns_before, low_q = _decide(nt, text, neg=None,
-        pos=r"يملك الموجر العين .{0,24}قبل الاجاره|الموجر .{0,16}قبل الاجاره|owns the asset .{0,24}before .{0,10}leas|acquires the asset before leasing")
+        pos=r"يملك (الموجر|المصرف|المؤجر) .{0,20}قبل (عقد )?الاجاره|(الموجر|المصرف|المؤجر) .{0,16}قبل الاجاره|"
+            r"owns the asset .{0,24}before .{0,10}leas|acquires the asset before leasing")
 
-    # I4 — the headline test
-    _risk_shift_rx = (r"المستاجر .{0,28}الصيانه الاساسيه|lessee .{0,24}(basic|major|structural) maintenance|"
-                      r"المستاجر .{0,24}(التكافل|التامين)|lessee .{0,24}(insurance|takaful)|"
-                      r"المستاجر .{0,28}(الهلاك|التلف) الكلي|lessee .{0,24}total[- ]loss|"
-                      r"تستمر الاجره .{0,20}الهلاك|rent .{0,16}continues? .{0,16}destr")
-    risk_shifted = None
-    rs_q = ""
-    if re.search(_risk_shift_rx, nt):
-        risk_shifted = True
-        rs_q = _quote(text, _risk_shift_rx)   # the operative clause, not a header annotation
+    # I4 — the headline test. An owner-liability borne by the lessee is the defect
+    # ONLY if its cost is not reimbursed by / kept on the lessor (the compliant
+    # agency-for-maintenance pattern delegates the act but keeps the cost on the lessor).
+    _lessee_owner_liab = (r"(المستاجر|lessee).{0,48}(الصيانه الاساسيه|الصيانه الهيكليه|basic .{0,8}maintenance|"
+                          r"major .{0,8}maintenance|structural maintenance|التكافل|التامين|takaful|insurance|"
+                          r"الهلاك الكلي|التلف الكلي|total[- ]loss|destruction)|"
+                          r"تستمر الاجره .{0,20}الهلاك|rent .{0,16}continues? .{0,16}(destr|loss)")
+    _reimbursed = re.search(r"على ان (يتحمل|تبقى|تكون) .{0,24}(المصرف|المؤجر)|كلفتها على (المصرف|المؤجر)|"
+                            r"at the lessor'?s (cost|expense)|reimburs|borne by the lessor|cost .{0,12}(lessor|the bank)", nt)
+    risk_shifted = True if (re.search(_lessee_owner_liab, nt) and not _reimbursed) else None
+    rs_q = _quote(text, _lessee_owner_liab) if risk_shifted else ""
     lessor_bears_risk, lbr_q = _decide(nt, text, neg=None,
         pos=r"الموجر .{0,24}الصيانه الاساسيه|lessor bears .{0,24}(basic|major|structural) maintenance|"
             r"التكافل .{0,12}على الموجر|takaful at the lessor|الموجر .{0,16}تبعه (الهلاك|التلف)")
@@ -98,7 +100,7 @@ def _ijara_facts(nt, text):
         pos=r"الاجره .{0,28}قبل .{0,4}تسليم|تستحق الاجره من تاريخ (توقيع|العقد|دفع)|rent .{0,24}before delivery|rent accrues from the .{0,16}(contract|signing|payment) date")
 
     is_imb, _ = _decide(nt, text, neg=None,
-        pos=r"المنتهيه بالتمليك|lease-to-own|ijara muntahia|نقل الملكيه|ينتقل الملك|ownership transfer|transfer of ownership")
+        pos=r"منتهيه بالتمليك|lease-to-own|ijara muntahia|نقل .{0,4}ملك|ينتقل .{0,4}ملك|ownership transfer|transfer of ownership")
     # Fusion (the violation) is checked FIRST so a phrase like "no separate
     # transfer instrument" reads as fusion, not as separation.
     _fuse_pos = (r"دمج البيع والاجاره|انتقال تلقائي للملكيه|"
@@ -142,14 +144,18 @@ def extract(text, rail, seam, glossary_terms=(), watchlist=()):
     language = _detect_language(text)
     nt = _norm(text)
 
-    asset_quote = _quote(text, r"^\s*asset:", r"^\s*الاصل:", r"^\s*العين", r"^\s*leased asset:")
+    asset_quote = _quote(text, r"^\s*asset:", r"^\s*الاصل:", r"^\s*العين", r"^\s*leased asset:",
+                         r"محل العقد", r"محل الاجاره", r"العين الموجره")
+    if not asset_quote:   # realistic drafting names the asset inside a clause, not a header
+        asset_quote = _quote(text, r"سياره|عقار|معدات|بضاعه معينه|اله معينه|اصل .{0,6}متقوم|اصل غير مستهلك|"
+                                   r"vehicle|property|machine|commodity|equipment|specified goods")
     asset_present = bool(asset_quote)
 
     # R3 — permissibility / existence
     permissible, perm_q = _decide(
         nt, text,
         neg=r"alcohol|wine|liquor|pork|brewery|interest-based|خمر|خنزير|مسكر|ربوي",
-        pos=r"permissible asset|اصل مباح|مباح شرع")
+        pos=r"permissible asset|اصل مباح|مباح شرع|مال مباح|مباح متقوم|مباح الاستعمال|اصل غير مستهلك|\bمباح")
     exists_neg = re.search(r"no underlying asset|general liquidity|for cash needs|salaries|utility bills|does not exist|لا يوجد اصل|سيوله|حاجه نقديه|رواتب|فواتير", nt)
     if exists_neg:
         exists, exists_q = False, _quote(text, r"no underlying asset|general liquidity|for cash needs|salaries|utility bills|does not exist|لا يوجد اصل|سيوله|حاجه نقديه|رواتب|فواتير")
@@ -165,9 +171,13 @@ def extract(text, rail, seam, glossary_terms=(), watchlist=()):
         nt, text,
         neg=r"لا يتحمل المصرف مخاطر|never bears ownership risk|does not bear",
         pos=r"يتحمل مخاطر الملكيه|تبعه الهلاك|bearing all risks of ownership")
+    # DEFECT-specific: a benign "agent on the BANK's behalf" is normal Murabaha and
+    # must NOT trip this — only agency FOR THE CUSTOMER / bank-merely-finances does.
     customer_is_buying_agent, agent_q = _decide(
         nt, text, neg=None,
-        pos=r"نيابه عن العميل|وكيلا? بالشراء|buying agent|on the customer's behalf|pays the supplier on behalf")
+        pos=r"نيابه عن العميل|العميل يشتري .{0,16}لنفسه|يكتفي المصرف بتمويل|يقتصر دور المصرف على التمويل|"
+            r"on (the )?customer'?s behalf|pays the supplier on behalf of the customer|"
+            r"bank (merely |only )?finances|merely financ")
     sale_before_possession, sbp_q = _decide(
         nt, text, neg=None,
         pos=r"بيع قبل القبض|before taking possession|before the bank takes title")
@@ -176,11 +186,11 @@ def extract(text, rail, seam, glossary_terms=(), watchlist=()):
     cost_disclosed, cost_q = _decide(
         nt, text,
         neg=r"cost .{0,12}not disclosed|not disclosed to the customer|only the total price|دون الافصاح عن التكلفه",
-        pos=r"تكلفه مفصح|تكلفه عنها قدرها|disclosed cost|cost of kwd")
+        pos=r"تكلفه .{0,14}مفصح|تكلفه عنها قدرها|تكلفه .{0,8}قدرها|disclosed cost|cost of kwd|cost .{0,14}disclosed")
     markup_disclosed, mk_q = _decide(
         nt, text,
         neg=r"markup .{0,12}not disclosed|profit .{0,12}not disclosed|not disclosed to the customer|دون الافصاح عن .{0,6}الربح",
-        pos=r"هامش ربح مفصح|هامش ربح .{0,6}قدره|disclosed profit markup|profit markup of")
+        pos=r"هامش .{0,4}ربح .{0,14}مفصح|هامش .{0,4}ربح .{0,8}قدره|disclosed profit markup|profit markup of")
     price_fixed, pf_q = _decide(
         nt, text,
         neg=r"re-?priced|markup increases after|اعاده تسعير",
@@ -192,7 +202,7 @@ def extract(text, rail, seam, glossary_terms=(), watchlist=()):
         pos=r"وجوه الخير|donated to charity|to charity|جهه خيريه|صدقه")
     penalty_to_income, inc_q = _decide(
         nt, text,
-        neg=r"لا تعد ايراد|shall not be taken as income|not be taken as income",
+        neg=r"لا (ي|ت)عد ايراد|shall not be taken as income|not be taken as income|not .{0,6}income of the bank",
         pos=r"retained as income|taken as income|as income of the bank|ايرادا? للمصرف|ايراد المصرف|دخل المصرف")
     markup_increase_on_late, mkl_q = _decide(
         nt, text,
@@ -221,11 +231,11 @@ def extract(text, rail, seam, glossary_terms=(), watchlist=()):
     # R4 — prior customer ownership / bai' al-inah
     asset_already_customers, own_q = _decide(
         nt, text,
-        neg=r"not owned by the customer|ليس مملوك للعميل|ليس مملوكا للعميل",
+        neg=r"not owned by the customer|ليست? مملوك",
         pos=r"owned by the customer prior|was owned by the customer|كان مملوك للعميل|كان مملوكا للعميل")
     inah_buyback, inah_q = _decide(
         nt, text,
-        neg=r"not bought back|is not bought back|لا يعاد شراوه",
+        neg=r"not bought back|is not bought back|لا (ي|ت)عاد .{0,12}(شرا|من العميل|منه)|لا يعاد شراوه",
         pos=r"buys the asset from the customer|bought back from the customer|يشتري المصرف.{0,8}الاصل.{0,8}من العميل|اشتراه المصرف.{0,8}من العميل|اعاده? بيعه|بيع العينه|العينه")
     inah_boundary_ambiguous = False  # set True only for genuinely borderline structures (none in this corpus)
 

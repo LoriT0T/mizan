@@ -40,6 +40,34 @@ def load_registry():
     return _load("registry", "rules.json"), _load("registry", "defer_register.json"), _load("registry", "glossary.json")
 
 
+def scope_info():
+    """The scope registry dict (engine-provided so the web layer reads no registry files)."""
+    return _load("registry", "scope_registry.json")
+
+
+def calibration_status():
+    """Summarize Arabic calibration state from the registries (engine-provided).
+    The web reads this — never the registry files — to show an honest badge."""
+    mur = _load("registry", "rules.json")["rules"]
+    ija = _load("registry", "rules_ijara.json")["rules"]
+    gloss = _load("registry", "glossary.json")["entries"]
+    mur_locked = all(r.get("arabic_review_status") == "locked" for r in mur)
+    ija_pending = [r["id"] for r in ija if r.get("arabic_review_status") != "locked"]
+    gloss_prov = [g["term_id"] for g in gloss if g.get("status") == "provisional"]
+    return {
+        "murabaha_locked": mur_locked,
+        "ijara_pending": ija_pending,
+        "glossary_provisional": gloss_prov,
+        "summary_en": ("Murabaha Arabic: calibrated (locked). "
+                       + (f"Ijara Arabic ({', '.join(ija_pending)}) + glossary "
+                          f"({len(gloss_prov)} provisional terms): Arabic pending expert calibration."
+                          if ija_pending or gloss_prov else "All Arabic calibrated.")),
+        "summary_ar": ("عربية المرابحة: مُعايَرة (مُثبَّتة). "
+                       + ("عربية الإجارة والمصطلحات المضافة: بانتظار معايرة الخبير."
+                          if ija_pending or gloss_prov else "كل العربية مُعايَرة.")),
+    }
+
+
 def load_stage2():
     """Ijara registry + scope registry (Stage 2). Murabaha files are untouched."""
     ijara_rules = _load("registry", "rules_ijara.json")
@@ -57,6 +85,14 @@ def glossary_terms(glossary):
 
 
 def run_contract(path, rules=None, defer=None, glossary=None, seam=None):
+    text = corpus_loader.load(path)   # corpus files must carry the SYNTHETIC label (fail closed)
+    return run_text(text, os.path.basename(path), rules, defer, glossary, seam)
+
+
+def run_text(text, source_label="(input)", rules=None, defer=None, glossary=None, seam=None):
+    """Run the pipeline on raw contract TEXT (e.g. a web upload/paste). Same engine
+    as run_contract, minus the corpus SYNTHETIC-label requirement. Content still
+    passes the input rail (injection-inert). Public, additive interface."""
     if rules is None:
         rules, defer, glossary = load_registry()
     ijara_rules, ijara_defer, scope_reg = load_stage2()
@@ -66,7 +102,6 @@ def run_contract(path, rules=None, defer=None, glossary=None, seam=None):
     if seam is None:
         seam = model_seam.make_seam()
 
-    text = corpus_loader.load(path)
     structure = extractor.extract(text, input_rail, seam, glossary_terms(glossary), WATCHLIST)
     classification = contract_type_classifier.classify(text, seam)
     covered, oos_findings = scope.assess(classification, scope_reg, defer_lookup)
@@ -85,7 +120,7 @@ def run_contract(path, rules=None, defer=None, glossary=None, seam=None):
     if guard_errors:
         raise RuntimeError("never-rules guard tripped (fail closed): " + "; ".join(guard_errors))
     return {
-        "file": os.path.basename(path),
+        "file": source_label,
         "seam_mode": "model-available" if seam.available() else "NO-KEY (deterministic)",
         "structure": structure,
         "classification": classification,
@@ -105,13 +140,21 @@ def generate_for_contract(path, rules=None, defer=None, glossary=None, seam=None
     """
     if rules is None:
         rules, defer, glossary = load_registry()
+    text = corpus_loader.load(path)
+    return generate_for_text(text, os.path.basename(path), rules, defer, glossary, seam, authoritative_lang)
+
+
+def generate_for_text(text, source_label="(input)", rules=None, defer=None, glossary=None, seam=None, authoritative_lang="ar"):
+    """Stage 3: run + generate memo/matrix from raw TEXT (web). Additive interface."""
+    if rules is None:
+        rules, defer, glossary = load_registry()
     if seam is None:
         seam = model_seam.make_seam()
-    res = run_contract(path, rules, defer, glossary, seam)
+    res = run_text(text, source_label, rules, defer, glossary, seam)
     findings, structure = res["findings"], res["structure"]
 
     memo = memo_generator.generate(structure, findings, rules, defer, glossary, seam,
-                                   authoritative_lang, os.path.basename(path),
+                                   authoritative_lang, source_label,
                                    contract_type=res["primary_type"])
     matrix = matrix_generator.generate(findings, authoritative_lang)
 
@@ -124,5 +167,7 @@ def generate_for_contract(path, rules=None, defer=None, glossary=None, seam=None
         if wm["ar"] not in render_md or wm["en"] not in render_md:
             raise RuntimeError(f"watermark missing from {doc_name} render — generation fails closed")
 
-    return {"file": os.path.basename(path), "seam_mode": res["seam_mode"],
+    return {"file": source_label, "seam_mode": res["seam_mode"],
+            "classification": res["classification"], "covered_types": res["covered_types"],
+            "primary_type": res["primary_type"],
             "structure": structure, "findings": findings, "memo": memo, "matrix": matrix}

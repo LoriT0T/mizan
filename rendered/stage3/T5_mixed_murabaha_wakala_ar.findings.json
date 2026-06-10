@@ -1,0 +1,231 @@
+{
+  "file": "T5_mixed_murabaha_wakala_ar.txt",
+  "classification": {
+    "types": [
+      "murabaha"
+    ],
+    "unrecognized_components": [
+      "wakala_investment"
+    ],
+    "method": "deterministic",
+    "cues": {
+      "murabaha": [
+        "مرابحه",
+        "للامر بالشراء"
+      ]
+    }
+  },
+  "covered_types": [
+    "murabaha"
+  ],
+  "seam_mode": "NO-KEY (deterministic)",
+  "findings": [
+    {
+      "rule_id": "R1",
+      "rule_title_ar": "التملّك والقبض قبل إعادة البيع",
+      "rule_title_en": "Ownership and possession before resale",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "ownership sequence",
+      "quote": "البند أ-2 (التملّك والقبض): يشتري المصرفُ المعدّاتِ من المورّد ويتملّكها ويقبضها ويتحمّل تبعتَها قبل بيعها للعميل.",
+      "note": "The bank takes ownership and possession (bearing risk) before resale. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "LJ",
+          "ref": "Kuwaiti judicial practice — reported in Chambers Islamic Finance 2025 (Kuwait), a secondary publisher"
+        },
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 8 (Murabaha); No. 18 (Possession / Qabd)"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-001"
+        }
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "rule_title_ar": "الإفصاح عن التكلفة والربح وتثبيت الثمن",
+      "rule_title_en": "Disclosure of cost and markup; price fixed",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "price terms",
+      "quote": "البند أ-3 (البيع والثمن): يبيع المصرفُ المعدّاتِ للعميل بتكلفةٍ مُفصَحٍ عنها قدرها 30,000 دينار مضافاً إليها هامشُ ربحٍ مُفصَحٍ عنه قدره 3,000 دينار، والثمنُ مثبَّتٌ لا يتغيّر.",
+      "note": "Cost and markup disclosed; price fixed at contract. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 8 (Murabaha) — conditions of the contract and the price"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-002"
+        }
+      ]
+    },
+    {
+      "rule_id": "R3",
+      "rule_title_ar": "وجود الأصل وإباحته",
+      "rule_title_en": "The asset exists and is permissible",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "asset",
+      "quote": "حزمةُ تمويلٍ مركّبة: مرابحةٌ لشراء معدّات + وكالةٌ بالاستثمار",
+      "note": "Asset is specified and existing; no prohibited-category cue (e.g. alcohol/pork/riba) was found. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 8 (Murabaha)"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-003"
+        }
+      ]
+    },
+    {
+      "rule_id": "R4",
+      "rule_title_ar": "ألّا يكون الأصلُ مملوكاً للعميل أصلاً (منع بيع العِينة)",
+      "rule_title_en": "The asset is not already the customer's (bar on bai' al-inah)",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "prior ownership",
+      "quote": "البند أ-5 (الوعد والإقرار): يَعِد العميلُ وعداً أحادياً بالشراء؛ والمعدّاتُ ليست مملوكةً للعميل قبل المعاملة ولا تُعاد منه.",
+      "note": "Asset sourced from a third party, not the customer; no buy-back. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "GCC prohibition of bai' al-inah; CBK Circular 2/IBS/369/2016 governance frame"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 8 (Murabaha)"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-004"
+        }
+      ]
+    },
+    {
+      "rule_id": "R5",
+      "rule_title_ar": "غرامةُ التأخّر للخير لا للإيراد، ومنعُ زيادة الربح",
+      "rule_title_en": "Late-payment charge to charity, never income; no markup increase",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "late-payment clause",
+      "quote": "البند أ-4 (الأقساط والتأخّر): يُسدَّد على 36 قسطاً ثابتاً؛ وتُصرَف غرامةُ التأخّر في وجوه الخير ولا تُعَدّ إيراداً للمصرف.",
+      "note": "Late-payment charge directed to charity; markup not increased. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 8 (Murabaha) — default / late-payment treatment"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-005"
+        }
+      ]
+    },
+    {
+      "rule_id": "R6",
+      "rule_title_ar": "بنيةُ الوعد (الوعد بالشراء) في المرابحة للآمر بالشراء — مسألة خلافية",
+      "rule_title_en": "The promise (wa'd) structure in MPO — contested",
+      "violation_pattern": null,
+      "positions": [
+        {
+          "authority": "AAOIFI (Accounting and Auditing Organization for Islamic Financial Institutions)",
+          "position_ar": "لا يجوز أن يتضمّن الترتيبُ التمهيدي وعداً ثنائياً مُلزِماً للطرفين (إذ يؤول إلى عقدٍ مؤجَّلِ العوضين)؛ ويجوز جعلُ الوعد الأحادي مُلزِماً.",
+          "position_en": "The preliminary arrangement must not include a mutually binding bilateral promise (it amounts to a contract with both counter-values deferred); a unilateral promise may be made binding.",
+          "citation": "AAOIFI Sharia Standard No. 8 (Murabaha) — procedures preceding the contract"
+        },
+        {
+          "authority": "OIC International Islamic Fiqh Academy (Majma' al-Fiqh al-Islami al-Dawli)",
+          "position_ar": "الوعدُ مُلزِمٌ ديانةً، ويكون مُلزِماً قضاءً إذا كان معلّقاً ودخل الموعودُ له في كلفةٍ بناءً عليه.",
+          "position_en": "The promise is morally binding, and becomes legally binding where it is conditional and the promisee has incurred expense in reliance on it.",
+          "citation": "OIC Fiqh Academy — resolutions on wa'd in Murabaha to the Purchase Orderer"
+        },
+        {
+          "authority": "A minority / Maliki-influenced view (and some banks)",
+          "position_ar": "يُعامَل الوعدُ بوصفه جزءاً لازماً من الترتيب؛ ومنع بعضُ المتقدّمين المرابحةَ للآمر بالشراء إذا تضمّنت وعداً بالربح.",
+          "position_en": "The promise is treated as an integral, binding part of the arrangement; some early scholars prohibited MPO where it includes a promise of profit.",
+          "citation": "Input #2, Part 2 (Murabaha — Scholarly disagreement)"
+        }
+      ],
+      "routing_en": "Requires scholarly determination by the SSB (bindingness is a configurable parameter the SSB sets).",
+      "routing_ar": "يتطلّب بتّاً من الهيئة الشرعية (الوعد بوصفه معياراً قابلاً للضبط تحدّده الهيئة).",
+      "missing_fact": null,
+      "status": "deferral",
+      "contract_element": "promise (wa'd) structure",
+      "quote": "البند أ-5 (الوعد والإقرار): يَعِد العميلُ وعداً أحادياً بالشراء؛ والمعدّاتُ ليست مملوكةً للعميل قبل المعاملة ولا تُعاد منه.",
+      "note": "Promise structure found: a unilateral promise. The bindingness of the wa'd in MPO is a contested matter; the divergent authoritative positions are surfaced and the determination is routed to the SSB. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 8 (Murabaha) — procedures preceding the contract (the promise and its bindingness)"
+        },
+        {
+          "layer": "L3",
+          "ref": "OIC International Islamic Fiqh Academy — resolutions on the promise (wa'd) in Murabaha to the Purchase Orderer"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-006"
+        }
+      ]
+    },
+    {
+      "rule_id": null,
+      "status": "out_of_scope",
+      "contract_element": "wakala_investment component",
+      "component": "wakala_investment",
+      "quote": "",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_ar": "يُحال إلى عالمٍ شرعيٍّ مؤهّل.",
+      "routing_en": "Routed to a qualified Sharia scholar.",
+      "missing_fact": null,
+      "note_ar": "يحتوي هذا المستندُ على مكوِّن wakala_investment؛ ولا يملك ميزانُ مجموعةَ قواعدَ معايَرةً لـwakala_investment فلا يُقيِّمه، ويحيله إلى عالمٍ شرعيٍّ مؤهّل.",
+      "note_en": "This document contains a component of type wakala_investment; Mizan has no calibrated rule-set for wakala_investment, does not assess it, and routes it to a qualified Sharia scholar.",
+      "note": "This document contains a component of type wakala_investment; Mizan has no calibrated rule-set for wakala_investment, does not assess it, and routes it to a qualified Sharia scholar.",
+      "citations": []
+    }
+  ]
+}

@@ -27,9 +27,9 @@ def _norm(s):
 CUES = {
     "murabaha": [r"مرابحه", r"للامر بالشراء", r"هامش الربح", r"\bmurabaha\b", r"cost[- ]plus",
                  r"purchase orderer", r"\bmarkup\b", r"cost and .{0,8}markup"],
-    "ijara": [r"الاجاره", r"اجاره", r"\bتاجير\b", r"الموجر", r"المستاجر", r"\bاجره\b", r"\bمنفعه\b",
-              r"المنتهيه بالتمليك", r"العين الموجره", r"\bijara\b", r"\blease\b", r"\blessor\b",
-              r"\blessee\b", r"\brent\b", r"usufruct", r"leaseback"],
+    "ijara": [r"الاجاره", r"عقد اجاره", r"اجاره منتهيه", r"\bتاجير\b", r"الموجر", r"المستاجر",
+              r"العين الموجره", r"المنتهيه بالتمليك", r"\bijara\b", r"\blease\b", r"\blessor\b",
+              r"\blessee\b", r"usufruct", r"leaseback"],
     "tawarruq": [r"تورق", r"تسييل", r"\btawarruq\b", r"moneti[sz]ation", r"commodity murabaha"],
 }
 
@@ -41,7 +41,7 @@ OTHER_STRUCTURES = {
     "salam": [r"\bسلم\b", r"\bsalam\b"],
     "istisna": [r"استصناع", r"\bistisna\b", r"istisna'a"],
     "sukuk": [r"صكوك", r"\bsukuk\b"],
-    "wakala_investment": [r"وكاله استثمار", r"investment wakala", r"\bwakalah? bil-?istithmar\b"],
+    "wakala_investment": [r"وكاله بالاستثمار", r"وكاله الاستثمار", r"investment wakala", r"\bwakalah? bil-?istithmar\b"],
 }
 
 COVERED = ("murabaha", "ijara")

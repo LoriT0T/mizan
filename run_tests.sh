@@ -44,8 +44,20 @@ for t in contract_type_classifier_test scope_test extractor_ijara_test checker_i
 done
 
 echo
+echo "================= STAGE 3 — local frontend + GCC corpus ================="
+echo "--- WALL: the engine suite passes with web/ ABSENT ---"
+mv "$ROOT/web" "$ROOT/web_OFF" 2>/dev/null
+( cd "$ROOT/pipeline" && python3 -m unittest checker_test orchestrator_test checker_ijara_test stage2_structural_test ) 2>&1 | tail -1 || fail=1
+mv "$ROOT/web_OFF" "$ROOT/web" 2>/dev/null
+echo "  (web/ restored)"
+echo "--- web-layer tests (routes · wall · key-never-served · serve-time guard) ---"
+( cd "$ROOT/web" && python3 -m unittest web_test ) 2>&1 | tail -1 || fail=1
+echo "--- GCC corpus T1–T5 end-to-end (NO-KEY) ---"
+( cd "$ROOT" && python3 run_stage3.py >/dev/null && echo "T1–T5 bundles written" ) || fail=1
+
+echo
 if [ "$fail" -eq 0 ]; then
-  echo "ALL GREEN (Stage 1a + Stage 1b + Stage 1c + Stage 2)."
+  echo "ALL GREEN (Stage 1a + Stage 1b + Stage 1c + Stage 2 + Stage 3)."
 else
   echo "SUITE RED — see above."
 fi

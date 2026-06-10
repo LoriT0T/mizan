@@ -1,0 +1,272 @@
+{
+  "file": "T3_ijara_imb_dressed_i4_ar.txt",
+  "classification": {
+    "types": [
+      "ijara"
+    ],
+    "unrecognized_components": [],
+    "method": "deterministic",
+    "cues": {
+      "ijara": [
+        "الاجاره",
+        "عقد اجاره",
+        "اجاره منتهيه",
+        "الموجر",
+        "المستاجر",
+        "العين الموجره"
+      ]
+    }
+  },
+  "covered_types": [
+    "ijara"
+  ],
+  "seam_mode": "NO-KEY (deterministic)",
+  "findings": [
+    {
+      "rule_id": "I1",
+      "rule_title_ar": "أهليّةُ العين المؤجَّرة (منفعةٌ، عدمُ استهلاك، تعيينٌ، إباحةُ الاستعمال)",
+      "rule_title_en": "Asset eligibility (usufruct-yielding, non-consumable, identified, permissible use)",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "leased asset",
+      "quote": "البند 1 (العين المؤجَّرة): عقارٌ سكنيٌّ معيَّن (أصلٌ غيرُ مستهلَك) مباحُ الاستعمال، يُعرَف بالوثيقة DEED-3003.",
+      "note": "Identified non-consumable asset; no prohibited-use cue found. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 9 (Ijarah) — subject matter; impermissible-use example"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-IJR-001"
+        }
+      ]
+    },
+    {
+      "rule_id": "I2",
+      "rule_title_ar": "تحديدُ الأجرة والمدّة، ومنعُ الزيادة المنفردة",
+      "rule_title_en": "Rent and term defined at contract; no unilateral increase",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "rent terms",
+      "quote": "البند 3 (الأجرة والمدّة): الأجرةُ محدَّدةٌ قدرها 700 دينار شهرياً ومدّةُ الإجارة محدَّدةٌ بخمس عشرة سنة؛ ولا يجوز للمؤجِّر زيادةُ الأجرة انفراداً.",
+      "note": "Rent and term defined at contract; no unilateral-increase right. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 9 (Ijarah) — concluding the Ijara contract and the rentals"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-IJR-002"
+        }
+      ]
+    },
+    {
+      "rule_id": "I3",
+      "rule_title_ar": "تملّكُ المؤجِّر للعين وتقدُّمُه على الإجارة",
+      "rule_title_en": "Lessor owns the asset; lease preceded by acquisition",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "ownership before lease",
+      "quote": "البند 2 (التملّك): يملك المصرفُ العقارَ ويقبضه قبل الإجارة، ثمّ يسلّمه إلى المستأجر صالحاً للسكنى.",
+      "note": "Lessor owns/possesses the asset before leasing. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 9 (Ijarah) — acquisition of the asset to be leased"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-IJR-003"
+        }
+      ]
+    },
+    {
+      "rule_id": "I4",
+      "rule_title_ar": "بقاءُ تبعة الملكية على المؤجِّر (الاختبارُ المركزي)",
+      "rule_title_en": "Ownership risk stays with the lessor (the central test)",
+      "violation_pattern": {
+        "ar": "تحميلُ المستأجر الصيانةَ الأساسية أو الهيكلية.",
+        "en": "Pushing basic/structural maintenance onto the lessee."
+      },
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "violated",
+      "contract_element": "ownership-risk allocation",
+      "quote": "البند 5 (التزامات المستأجر): يلتزم المستأجرُ طوال مدّة الإجارة بما يلي: (أ) إجراءُ الصيانة الأساسية والهيكلية للعقار على نفقته الخاصة؛ (ب) إبرامُ وثيقة التأمين التكافلي على العقار وسدادُ أقساطها من ماله الخاص دون رجوعٍ على المصرف؛ (ج) تحمّلُ تبعة الهلاك أو التلف الكلّي للعقار ولو وقع بغير تعدٍّ منه، مع استمرار التزامه بالأجرة.",
+      "note": "Ownership risk (maintenance/takaful/total-loss) shifted to the lessee. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 9 (Ijarah) — the parties' respective liabilities; insurance as takaful at the lessor's expense"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-IJR-004"
+        }
+      ]
+    },
+    {
+      "rule_id": "I5",
+      "rule_title_ar": "استحقاقُ الأجرة بعد التسليم وما دامت المنفعةُ قائمة",
+      "rule_title_en": "Rent accrues only after delivery and only while the asset is usable",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "rent timing",
+      "quote": "البند 4 (التسليم واستحقاق الأجرة): لا تستحقّ الأجرةُ إلا بعد تسليم العقار وما دام منتفَعاً به.",
+      "note": "Rent accrues only after delivery and while usable. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 9 (Ijarah) — rentals; no rent if not delivered"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-IJR-005"
+        }
+      ]
+    },
+    {
+      "rule_id": "I6",
+      "rule_title_ar": "الإجارة المنتهية بالتمليك: فصلُ أداة نقل الملكية عن عقد الإجارة",
+      "rule_title_en": "IMB: the ownership-transfer mechanism must be SEPARATE from the lease",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": null,
+      "status": "satisfied",
+      "contract_element": "IMB transfer separation",
+      "quote": "البند 6 (التمليك): ينتقل ملكُ العقار إلى المستأجر في نهاية المدّة بموجب وعدٍ مستقلٍّ بالبيع منفصلٍ عن عقد الإجارة.",
+      "note": "Ownership transfer is by a separate instrument; the lease stays a genuine lease. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 9 (Ijarah Muntahia Bittamleek) — modalities of ownership transfer"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-IJR-006"
+        }
+      ]
+    },
+    {
+      "rule_id": "I7",
+      "rule_title_ar": "البيع ثم الاستئجار: اشتراطُ فاصلٍ زمنيٍّ معتبر (منعُ العِينة)",
+      "rule_title_en": "Sale-and-leaseback: a genuine interval is required (anti-inah)",
+      "violation_pattern": null,
+      "positions": null,
+      "routing_en": null,
+      "routing_ar": null,
+      "missing_fact": "no sale-and-leaseback present; I7 engages only for sale-and-leaseback",
+      "status": "indeterminate",
+      "contract_element": "sale-and-leaseback",
+      "quote": "",
+      "note": "No sale-and-leaseback detected; the interval requirement is not engaged. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "GCC stricter reading of the inah interval; CBK Circular 2/IBS/369/2016 governance frame"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 9 (Ijarah) — sale-and-leaseback interval (clause 8/5 per SBP transposition; 9/5 in some editions)"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-IJR-007"
+        }
+      ]
+    },
+    {
+      "rule_id": "I6",
+      "rule_title_ar": "الإجارة المنتهية بالتمليك: فصلُ أداة نقل الملكية عن عقد الإجارة",
+      "rule_title_en": "IMB: the ownership-transfer mechanism must be SEPARATE from the lease",
+      "violation_pattern": null,
+      "positions": [
+        {
+          "authority": "AAOIFI (Accounting and Auditing Organization for Islamic Financial Institutions)",
+          "position_ar": "لا يجوز أن يتضمّن الترتيبُ التمهيدي وعداً ثنائياً مُلزِماً للطرفين (إذ يؤول إلى عقدٍ مؤجَّلِ العوضين)؛ ويجوز جعلُ الوعد الأحادي مُلزِماً.",
+          "position_en": "The preliminary arrangement must not include a mutually binding bilateral promise (it amounts to a contract with both counter-values deferred); a unilateral promise may be made binding.",
+          "citation": "AAOIFI Sharia Standard No. 8 (Murabaha) — procedures preceding the contract"
+        },
+        {
+          "authority": "OIC International Islamic Fiqh Academy (Majma' al-Fiqh al-Islami al-Dawli)",
+          "position_ar": "الوعدُ مُلزِمٌ ديانةً، ويكون مُلزِماً قضاءً إذا كان معلّقاً ودخل الموعودُ له في كلفةٍ بناءً عليه.",
+          "position_en": "The promise is morally binding, and becomes legally binding where it is conditional and the promisee has incurred expense in reliance on it.",
+          "citation": "OIC Fiqh Academy — resolutions on wa'd in Murabaha to the Purchase Orderer"
+        },
+        {
+          "authority": "A minority / Maliki-influenced view (and some banks)",
+          "position_ar": "يُعامَل الوعدُ بوصفه جزءاً لازماً من الترتيب؛ ومنع بعضُ المتقدّمين المرابحةَ للآمر بالشراء إذا تضمّنت وعداً بالربح.",
+          "position_en": "The promise is treated as an integral, binding part of the arrangement; some early scholars prohibited MPO where it includes a promise of profit.",
+          "citation": "Input #2, Part 2 (Murabaha — Scholarly disagreement)"
+        }
+      ],
+      "routing_en": "Requires scholarly determination by the SSB (bindingness is a configurable parameter the SSB sets).",
+      "routing_ar": "يتطلّب بتّاً من الهيئة الشرعية (الوعد بوصفه معياراً قابلاً للضبط تحدّده الهيئة).",
+      "missing_fact": null,
+      "status": "deferral",
+      "contract_element": "IMB ownership-transfer promise (wa'd) bindingness",
+      "quote": "البند 6 (التمليك): ينتقل ملكُ العقار إلى المستأجر في نهاية المدّة بموجب وعدٍ مستقلٍّ بالبيع منفصلٍ عن عقد الإجارة.",
+      "note": "The bindingness of the IMB ownership-transfer promise is contested; positions surfaced, routed to the SSB. Flagged for the qualified scholar (SSB); this is an identification, not a ruling.",
+      "citations": [
+        {
+          "layer": "L1",
+          "ref": "CBK Circular 2/IBS/369/2016"
+        },
+        {
+          "layer": "L3",
+          "ref": "AAOIFI Sharia Standard No. 9 (Ijarah Muntahia Bittamleek) — modalities of ownership transfer"
+        },
+        {
+          "layer": "L2",
+          "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-IJR-006"
+        }
+      ]
+    }
+  ]
+}
