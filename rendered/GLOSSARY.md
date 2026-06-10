@@ -1,5 +1,5 @@
 # Mizan Terminology Glossary — Rendered View
-_Version 1.2.0-stage1a · DERIVED from `registry/glossary.json` — do not hand-edit._
+_Version 1.3.0-stage2 · DERIVED from `registry/glossary.json` — do not hand-edit._
 
 > **Discipline.** Exactly ONE canonical Arabic form (the canonical side) and ONE canonical English rendering per term. The glossary must never silently contain two renderings of one term. A term is never invented from recall without a fetched, cited grounding. Append-only in history. Two independent axes (never conflated): lifecycle 'status' (locked-pending-calibration -> provisional -> locked) tracks human calibration; provenance 'grounding_basis' (grounded | unverified) tracks sourcing strength.
 
@@ -38,6 +38,15 @@ _The documented procedure every future component invokes on encountering an Isla
 | ID | Arabic (canonical) | English (canonical) | Status | Grounding basis | Sources |
 |---|---|---|---|---|---|
 | G-013 | بيع التولية | tawliyah (sale at cost) | locked | unverified | Fincyclopedia, 'Tawliyah' (fincyclopedia.net/islamic-finance/t/tawliyah) — par-value/at-cost sale, full cost disclosure, no markup; Ijara CDC glossary, 'Bayu al-amanah' (ijaracdc.com) — three trust sales: murabaha, tawliyah, wadiah; Wikipedia, 'Murabaha' — murabaha as one of three buyu' al-amanah requiring honest cost declaration |
+| G-014 | الإجارة | Ijara (leasing) | provisional | grounded | Input #3, Part 1 + TL;DR |
+| G-015 | المنفعة | usufruct (manfa'ah) | provisional | grounded | Input #3, Part 1 |
+| G-016 | الإجارة المنتهية بالتمليك | Ijara Muntahia Bittamleek (lease-to-own) | provisional | grounded | Input #3, Part 1 + Key Findings 1/4 |
+| G-017 | العين المؤجَّرة | the leased asset | provisional | grounded | Input #3, Part 2 (I1) |
+| G-018 | الأجرة | rent (ujrah) | provisional | grounded | Input #3, Part 2 (I2) |
+| G-019 | الصيانة الأساسية | basic (structural) maintenance | provisional | grounded | Input #3, Part 2 (I4) |
+| G-020 | الصيانة التشغيلية | operational maintenance | provisional | grounded | Input #3, Part 2 (I4) |
+| G-021 | التكافل | takaful (Islamic cooperative insurance) | provisional | grounded | Input #3, Part 2 (I4) |
+| G-022 | البيع مع الاستئجار | sale-and-leaseback | provisional | grounded | Input #3, Part 2 (I7) |
 
 ### Definitions
 
@@ -93,3 +102,48 @@ _The documented procedure every future component invokes on encountering an Isla
   - AR: بيعٌ بثمنٍ يساوي تكلفةَ الاقتناء دون زيادةٍ ولا ربح، مع الإفصاح التامّ عن التكلفة؛ أحدُ بيوع الأمانة الثلاثة إلى جانب المرابحة (تكلفة + ربح) والوضيعة (بيعٌ بخسارة).
   - EN: A sale at a price equal to the acquisition cost with no markup or profit, with full cost disclosure; one of the three trust sales (buyu' al-amanah) alongside Murabaha (cost + profit) and wadiah (sale at a loss).
   - ↪ _Routed: Was routed to the consolidated Arabic review list (rendered/ARABIC_REVIEW_LIST.md); the principal accepted it on 2026-06-10, flipping status provisional -> locked. grounding_basis remains 'unverified' (tertiary web glossaries; confirm against primary sources before production)._
+
+- **G-014 · الإجارة — Ijara (leasing)**
+  - AR: عقدٌ على منفعةٍ مقصودةٍ من عينٍ مع بقاء ملكِها للمؤجِّر، بأجرةٍ ومدّةٍ معلومتين.
+  - EN: A contract over the usufruct of an asset for a known rent and term, the lessor retaining ownership.
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional; awaiting the principal's calibration to lock._
+
+- **G-015 · المنفعة — usufruct (manfa'ah)**
+  - AR: حقُّ الانتفاع بالعين مع بقاء عينها، وهو محلُّ عقد الإجارة.
+  - EN: The right to use an asset while its corpus survives; the subject of an Ijara.
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional._
+
+- **G-016 · الإجارة المنتهية بالتمليك — Ijara Muntahia Bittamleek (lease-to-own)**
+  - AR: إجارةٌ تقترن بترتيبٍ مستقلٍّ ينقل الملكيةَ للمستأجر في نهايتها (وعدٌ، هبةٌ، أو بيع).
+  - EN: A lease coupled with a separate arrangement transferring ownership to the lessee at its end (promise, gift, or sale).
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional._
+
+- **G-017 · العين المؤجَّرة — the leased asset**
+  - AR: العينُ غيرُ المستهلَكةِ محلُّ الإجارة، يجب تعيينُها وإباحةُ استعمالها.
+  - EN: The non-consumable asset that is the subject of the lease; it must be identified and of permissible use.
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional._
+
+- **G-018 · الأجرة — rent (ujrah)**
+  - AR: العوضُ المعلومُ في عقد الإجارة مقابلَ المنفعة، يُحدَّد عند العقد.
+  - EN: The known consideration in an Ijara for the usufruct, determined at contract.
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional._
+
+- **G-019 · الصيانة الأساسية — basic (structural) maintenance**
+  - AR: الصيانةُ المتعلّقةُ بأصل العين وبقائها، وتبعتُها على المؤجِّر بوصفه مالكاً.
+  - EN: Maintenance relating to the corpus and survival of the asset; its liability rests on the lessor as owner.
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional._
+
+- **G-020 · الصيانة التشغيلية — operational maintenance**
+  - AR: الصيانةُ المتعلّقةُ بالاستعمال المعتاد، وتبعتُها على المستأجر.
+  - EN: Maintenance relating to ordinary use; its liability rests on the lessee.
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional._
+
+- **G-021 · التكافل — takaful (Islamic cooperative insurance)**
+  - AR: التأمينُ التعاونيُّ القائمُ على التبرّع؛ وفي الإجارة تكون كلفتُه على المؤجِّر بوصفه مالكاً.
+  - EN: Cooperative, donation-based insurance; in Ijara its cost rests on the lessor as owner.
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional._
+
+- **G-022 · البيع مع الاستئجار — sale-and-leaseback**
+  - AR: أن يبيعَ العميلُ عيناً للمصرف ثم يستأجرَها؛ ويُشترَط فاصلٌ زمنيٌّ معتبرٌ منعاً من العِينة.
+  - EN: The customer sells an asset to the bank then leases it back; a genuine interval is required to avoid bai' al-inah.
+  - ↪ _Routed: Consolidated Arabic review list (Stage 2) — provisional._

@@ -58,12 +58,90 @@ def _decide(norm_text, raw_text, neg, pos):
     return None, ""
 
 
+def _ijara_facts(nt, text):
+    """Ijara-specific facts (I1–I7), negation-aware; quotes verbatim from raw text."""
+    asset_consumable, _ = _decide(nt, text, neg=r"غير قابل للاستهلاك|non-consumable",
+                                  pos=r"قابل للاستهلاك|يستهلك بالاستعمال|\bconsumable\b")
+    permissible_use, pu_q = _decide(nt, text,
+        neg=r"مباح الاستعمال|permissible use|استعمال مباح",
+        pos=r"لمنفعه محرمه|impermissible use|riba-based|ربويه|لتخزين .{0,12}محرم")  # pos here = the VIOLATION
+    rent_defined, rent_q = _decide(nt, text, neg=r"اجره غير محدده|undefined rent",
+        pos=r"الاجره .{0,14}محدده|اجره .{0,8}قدرها|اجره سنويه قدرها|rent .{0,14}defined|annual rent of|rent of kwd")
+    term_defined, term_q = _decide(nt, text, neg=r"مده غير محدده|undefined term",
+        pos=r"مده الاجاره .{0,14}محدده|لمده .{0,10}سنه|lease term .{0,14}defined|term of .{0,8}years|for a term of")
+    unilateral_increase, ui_q = _decide(nt, text,
+        neg=r"لا .{0,12}زياده الاجره انفرادا|may not .{0,12}unilaterally|لا يجوز .{0,16}زياده الاجره انفرادا",
+        pos=r"زياده الاجره انفرادا|رفع الاجره انفرادا|unilaterally .{0,12}(raise|increase) the rent|raise the rent unilaterally")
+    lease_before_acq, lba_q = _decide(nt, text, neg=None,
+        pos=r"الاجاره قبل .{0,12}تملك|leased before .{0,12}acqui|lease .{0,16}before the bank acquires")
+    lessor_owns_before, low_q = _decide(nt, text, neg=None,
+        pos=r"يملك الموجر العين .{0,24}قبل الاجاره|الموجر .{0,16}قبل الاجاره|owns the asset .{0,24}before .{0,10}leas|acquires the asset before leasing")
+
+    # I4 — the headline test
+    risk_shifted = None
+    rs_q = ""
+    if re.search(r"المستاجر .{0,28}الصيانه الاساسيه|lessee .{0,24}(basic|major|structural) maintenance|"
+                 r"المستاجر .{0,24}(التكافل|التامين)|lessee .{0,24}(insurance|takaful)|"
+                 r"المستاجر .{0,28}(الهلاك|التلف) الكلي|lessee .{0,24}total[- ]loss|"
+                 r"تستمر الاجره .{0,20}الهلاك|rent .{0,16}continues? .{0,16}destr", nt):
+        risk_shifted = True
+        rs_q = _quote(text, r"المستاجر|lessee")
+    lessor_bears_risk, lbr_q = _decide(nt, text, neg=None,
+        pos=r"الموجر .{0,24}الصيانه الاساسيه|lessor bears .{0,24}(basic|major|structural) maintenance|"
+            r"التكافل .{0,12}على الموجر|takaful at the lessor|الموجر .{0,16}تبعه (الهلاك|التلف)")
+    if risk_shifted:
+        lessor_bears_risk = False if lessor_bears_risk is None else lessor_bears_risk
+
+    rent_before_delivery, rbd_q = _decide(nt, text,
+        neg=r"الاجره .{0,20}بعد .{0,4}تسليم|rent .{0,16}after .{0,10}deliver|accrues from .{0,12}delivery|only after delivery",
+        pos=r"الاجره .{0,28}قبل .{0,4}تسليم|تستحق الاجره من تاريخ (توقيع|العقد|دفع)|rent .{0,24}before delivery|rent accrues from the .{0,16}(contract|signing|payment) date")
+
+    is_imb, _ = _decide(nt, text, neg=None,
+        pos=r"المنتهيه بالتمليك|lease-to-own|ijara muntahia|نقل الملكيه|ينتقل الملك|ownership transfer|transfer of ownership")
+    # Fusion (the violation) is checked FIRST so a phrase like "no separate
+    # transfer instrument" reads as fusion, not as separation.
+    _fuse_pos = (r"دمج البيع والاجاره|انتقال تلقائي للملكيه|"
+                 r"sale and lease are bound into (one|a single|the same) contract|"
+                 r"sale and lease .{0,16}(bound|fused|combined)|automatic .{0,14}(title|ownership) transfer|"
+                 r"fused into the lease|no separate transfer")
+    _sep_pos = (r"وعد مستقل|اداه مستقله|باداه مستقله|بيع منفصل|"
+                r"separate (promise|instrument|sale)|separate from the lease|independent instrument")
+    if re.search(_fuse_pos, nt):
+        transfer_fused, tf_q = True, _quote(text, _fuse_pos)
+    elif re.search(_sep_pos, nt):
+        transfer_fused, tf_q = False, _quote(text, _sep_pos)
+    else:
+        transfer_fused, tf_q = None, ""
+
+    sale_leaseback, _ = _decide(nt, text, neg=None,
+        pos=r"بيع .{0,12}ثم .{0,12}استئجار|البيع مع الاستئجار|sale-?and-?leaseback|sells .{0,16}then leases? .{0,6}back")
+    sl_interval, sli_q = _decide(nt, text,
+        neg=r"في ان واحد|دون فاصل|simultaneous|instantly|no interval|same time",
+        pos=r"فاصل زمني|مده معتبره|بعد مده|reasonable interval")
+
+    return {
+        "asset_consumable": asset_consumable,
+        "permissible_use_violation": permissible_use, "use_quote": pu_q,
+        "rent_defined": rent_defined, "rent_quote": rent_q,
+        "term_defined": term_defined, "term_quote": term_q,
+        "unilateral_increase": unilateral_increase, "increase_quote": ui_q,
+        "lessor_owns_before_lease": lessor_owns_before, "owns_quote": low_q,
+        "lease_before_acquisition": lease_before_acq, "lba_quote": lba_q,
+        "risk_shifted_to_lessee": risk_shifted, "risk_shift_quote": rs_q,
+        "lessor_bears_ownership_risk": lessor_bears_risk, "lessor_risk_quote": lbr_q,
+        "rent_before_delivery": rent_before_delivery, "rent_timing_quote": rbd_q,
+        "is_imb": is_imb,
+        "transfer_fused": transfer_fused, "transfer_quote": tf_q,
+        "sale_leaseback": sale_leaseback, "sale_leaseback_interval": sl_interval, "sl_quote": sli_q,
+    }
+
+
 def extract(text, rail, seam, glossary_terms=(), watchlist=()):
     injection_spans = rail.scan_injection(text)   # recorded, non-blocking (inert)
     language = _detect_language(text)
     nt = _norm(text)
 
-    asset_quote = _quote(text, r"^\s*asset:", r"^\s*الاصل:")
+    asset_quote = _quote(text, r"^\s*asset:", r"^\s*الاصل:", r"^\s*العين", r"^\s*leased asset:")
     asset_present = bool(asset_quote)
 
     # R3 — permissibility / existence
@@ -178,12 +256,13 @@ def extract(text, rail, seam, glossary_terms=(), watchlist=()):
         "prior_ownership": {"asset_already_customers": asset_already_customers, "owned_quote": own_q,
                             "inah_buyback": inah_buyback, "inah_quote": inah_q,
                             "inah_boundary_ambiguous": inah_boundary_ambiguous},
+        "ijara": _ijara_facts(nt, text),
         "unknown_terms": unknown_terms,
         "injection_spans": injection_spans,
         "extraction_method": "deterministic",
     }
 
-    # Completeness (fail-closed): asset + >= 4 resolved rule-groups.
+    # Completeness (fail-closed): asset + >= 4 resolved groups of EITHER type.
     groups = {
         "R1": any(v is not None for v in (bank_acquires_before_sale, customer_is_buying_agent, sale_before_possession)),
         "R2": any(v is not None for v in (cost_disclosed, markup_disclosed, price_fixed)),
@@ -192,7 +271,19 @@ def extract(text, rail, seam, glossary_terms=(), watchlist=()):
         "R5": any(v is not None for v in (penalty_to_charity, penalty_to_income, markup_increase_on_late)),
         "R6": wad_present is not False,
     }
-    resolved = sum(1 for v in groups.values() if v)
+    ij = structure["ijara"]
+    ijara_groups = {
+        "I1": any(v is not None for v in (ij["asset_consumable"], ij["permissible_use_violation"])) or asset_present,
+        "I2": any(v is not None for v in (ij["rent_defined"], ij["term_defined"], ij["unilateral_increase"])),
+        "I3": any(v is not None for v in (ij["lessor_owns_before_lease"], ij["lease_before_acquisition"])),
+        "I4": any(v is not None for v in (ij["risk_shifted_to_lessee"], ij["lessor_bears_ownership_risk"])),
+        "I5": ij["rent_before_delivery"] is not None,
+        "I6": any(v is not None for v in (ij["is_imb"], ij["transfer_fused"])),
+        "I7": any(v is not None for v in (ij["sale_leaseback"], ij["sale_leaseback_interval"])),
+    }
+    murabaha_resolved = sum(1 for v in groups.values() if v)
+    ijara_resolved = sum(1 for v in ijara_groups.values() if v)
+    resolved = max(murabaha_resolved, ijara_resolved)
     complete = asset_present and resolved >= 4
 
     # Model seam reserved for messy input: only if incomplete AND a key is present.

@@ -1,0 +1,14 @@
+### SYNTHETIC CONTRACT — Mizan Stage 2 test corpus — NOT A REAL AGREEMENT ###
+Contract type: Tawarruq (commodity monetization for cash)
+Language: English
+Expected: recognized but NOT covered — routed to the defer register (D3), NO rule applied.
+
+Parties:
+- Institution: Demo Islamic Bank K.S.C.
+- Customer: Demo Customer
+
+Clause 1: The bank sells the customer a metal commodity on deferred payment at cost plus a markup, for tawarruq (monetization) to obtain cash.
+
+Clause 2: The bank, acting as the customer's agent, immediately sells the same commodity to a third party for spot cash, which is paid to the customer.
+
+Clause 3: The customer owes the deferred higher price to the bank in instalments.

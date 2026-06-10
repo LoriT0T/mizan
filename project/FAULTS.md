@@ -36,4 +36,26 @@ Mistakes tracked until each has a live guardrail (`MISTAKE_ENGINE.md`: `F-NNN`, 
 - **OWNING UNIT:** `pipeline/memo_generator.py` (connective vs attributed separation) + `pipeline/matrix_generator.py`.
 - **GUARDRAIL:** memo/matrix sections now carry separate `connective_*` (gated) and `attributed_*` (exempt) fields; only connective prose enters `generated_prose`. The gate (not my care) is what caught it. Tested by `memo_generator_test.test_verbatim_quote_not_in_generated_prose` + `structural_tests.test_generation_gate_catches_model_verdict`.
 
-_Full suite green (Stage 1a + 1b + 1c): `./run_tests.sh`. 1a 36 unit tests + 1b 41 unit tests pass; registry validation green; both 1a fail-closed guards demonstrated; pipeline runs end-to-end in NO-KEY mode; the never-rules guard fails closed on smuggled verdict language._
+**F-005 — A negation phrase matched the affirmative cue (fusion read as separation).**
+- **First seen:** 2026-06-10 (Stage 2, first Ijara run) · **Recurrences:** 0 · **Status:** ENFORCED
+- **INSTANCE:** The I6 extractor read "there is **no** separate transfer instrument" as *separation present* (transfer_fused=False), because the `separate …` cue is checked before the fusion cue and matched the negated phrase. The fusion defect went undetected.
+- **CLASS:** any extractor fact where a negation phrase ("no X") contains the affirmative cue "X" — checking the affirmative first yields a false negative.
+- **INVARIANT:** for a fact where the VIOLATION is the salient signal, detect the violation (fusion) FIRST; and treat "no <affirmative>" as the violation, not the affirmative.
+- **OWNING UNIT:** `pipeline/extractor.py` (`_ijara_facts` transfer detection).
+- **GUARDRAIL:** fusion checked before separation; "no separate transfer" added to the fusion pattern. Tested by `extractor_ijara_test.test_fusion_detected_even_with_no_separate_phrase`.
+
+**F-006 — Tawarruq mis-classified as also-Murabaha (its cost-plus leg).**
+- **First seen:** 2026-06-10 (Stage 2 run) · **Recurrences:** 0 · **Status:** ENFORCED
+- **INSTANCE:** A pure tawarruq contract was typed `[murabaha, tawarruq]` because organized tawarruq is structured as a commodity-murabaha (cost + markup) — so the murabaha cues fired, and Murabaha rules nearly ran on it.
+- **CLASS:** a covered type whose cues are a structural subset of a recognized-not-covered type → false classification → wrong rules applied (a scope-honesty failure).
+- **INVARIANT:** an explicit tawarruq cue means the cost-plus leg belongs to the tawarruq; suppress the murabaha classification when tawarruq is present.
+- **OWNING UNIT:** `pipeline/contract_type_classifier.py`.
+- **GUARDRAIL:** tawarruq-precedence rule drops murabaha when tawarruq is detected; `run_contract` only runs covered-type rules. Tested by `contract_type_classifier_test.test_tawarruq_takes_precedence_over_murabaha_leg` + `stage2_structural_test.test_tawarruq_recognized_not_covered_no_rule_applied`.
+
+**F-007 — Checker/generator authored notes carried verdict tokens again (Ijara).**
+- **First seen:** 2026-06-10 (Stage 2) · **Recurrences:** (extends F-003's class) · **Status:** ENFORCED
+- **INSTANCE:** The I1 note used "impermissible-use" and the I1 matrix remediation used "permissible use"; the never-rules guard / generation gate caught both.
+- **CLASS:** same invariant as F-003 (verdict tokens in authored prose), recurring in new code → confirms the guard, not vigilance, is the boundary. Reworded to "prohibited use" / "lawful use".
+- **GUARDRAIL:** `never_rules_guard` N2 + `check_prose` N3 (already live; caught it). No new guardrail needed — the recurrence validated the existing one.
+
+_Full suite green (Stage 1a + 1b + 1c + Stage 2): `./run_tests.sh`. 1a 36 unit tests + 1b 41 unit tests pass; registry validation green; both 1a fail-closed guards demonstrated; pipeline runs end-to-end in NO-KEY mode; the never-rules guard fails closed on smuggled verdict language._

@@ -189,7 +189,167 @@ def _r6(s, rule, defer_data):
     return _deferral(rule, defer_data, "promise (wa'd) structure", w["quote"], note)
 
 
-_EVALUATORS = {"R1": _r1, "R2": _r2, "R3": _r3, "R4": _r4, "R5": _r5, "R6": _r6}
+def _i1(s, rule, _d):
+    ij = s["ijara"]
+    f = _base(rule)
+    if ij["permissible_use_violation"] is True:
+        f.update({"status": "violated", "contract_element": "leased asset / use",
+                  "quote": ij["use_quote"], "violation_pattern": rule["violated_by"][2],
+                  "note": "Asset leased to a prohibited use. " + NOT_A_RULING})
+    elif ij["asset_consumable"] is True:
+        f.update({"status": "violated", "contract_element": "leased asset / consumability",
+                  "quote": "", "violation_pattern": rule["violated_by"][0],
+                  "note": "Leased asset is a consumable. " + NOT_A_RULING})
+    elif s["asset"]["present"]:
+        f.update({"status": "satisfied", "contract_element": "leased asset",
+                  "quote": s["asset"]["quote"],
+                  "note": "Identified non-consumable asset; no prohibited-use cue found. " + NOT_A_RULING})
+    else:
+        f.update({"status": "indeterminate", "contract_element": "leased asset", "quote": "",
+                  "missing_fact": "asset eligibility (non-consumable, identified, lawful use)",
+                  "note": "Could not establish asset eligibility. " + NOT_A_RULING})
+    return f
+
+
+def _i2(s, rule, _d):
+    ij = s["ijara"]
+    f = _base(rule)
+    if ij["unilateral_increase"] is True:
+        f.update({"status": "violated", "contract_element": "rent terms",
+                  "quote": ij["increase_quote"], "violation_pattern": rule["violated_by"][1],
+                  "note": "Lessor's unilateral post-contract rent increase. " + NOT_A_RULING})
+    elif ij["rent_defined"] is False or ij["term_defined"] is False:
+        f.update({"status": "violated", "contract_element": "rent/term definition",
+                  "quote": ij["rent_quote"] or ij["term_quote"], "violation_pattern": rule["violated_by"][0],
+                  "note": "Rent or term not defined at contract. " + NOT_A_RULING})
+    elif ij["rent_defined"] is True and ij["term_defined"] is True:
+        f.update({"status": "satisfied", "contract_element": "rent terms",
+                  "quote": ij["rent_quote"] or ij["term_quote"],
+                  "note": "Rent and term defined at contract; no unilateral-increase right. " + NOT_A_RULING})
+    else:
+        f.update({"status": "indeterminate", "contract_element": "rent terms", "quote": "",
+                  "missing_fact": "rent and term definition", "note": "Could not establish rent/term. " + NOT_A_RULING})
+    return f
+
+
+def _i3(s, rule, _d):
+    ij = s["ijara"]
+    f = _base(rule)
+    if ij["lease_before_acquisition"] is True:
+        f.update({"status": "violated", "contract_element": "acquisition vs lease timing",
+                  "quote": ij["lba_quote"], "violation_pattern": rule["violated_by"][0],
+                  "note": "Lease executed before the lessor acquired the asset. " + NOT_A_RULING})
+    elif ij["lessor_owns_before_lease"] is True:
+        f.update({"status": "satisfied", "contract_element": "ownership before lease",
+                  "quote": ij["owns_quote"],
+                  "note": "Lessor owns/possesses the asset before leasing. " + NOT_A_RULING})
+    else:
+        f.update({"status": "indeterminate", "contract_element": "ownership before lease", "quote": "",
+                  "missing_fact": "whether the lessor acquired the asset before the lease",
+                  "note": "Could not establish acquisition-before-lease. " + NOT_A_RULING})
+    return f
+
+
+def _i4(s, rule, _d):
+    ij = s["ijara"]
+    f = _base(rule)
+    if ij["risk_shifted_to_lessee"] is True:
+        f.update({"status": "violated", "contract_element": "ownership-risk allocation",
+                  "quote": ij["risk_shift_quote"], "violation_pattern": rule["violated_by"][0],
+                  "note": "Ownership risk (maintenance/takaful/total-loss) shifted to the lessee. " + NOT_A_RULING})
+    elif ij["lessor_bears_ownership_risk"] is True:
+        f.update({"status": "satisfied", "contract_element": "ownership-risk allocation",
+                  "quote": ij["lessor_risk_quote"],
+                  "note": "Lessor bears basic maintenance, takaful and total-loss risk. " + NOT_A_RULING})
+    else:
+        f.update({"status": "indeterminate", "contract_element": "ownership-risk allocation", "quote": "",
+                  "missing_fact": "allocation of major maintenance / takaful / total-loss risk",
+                  "note": "Could not establish ownership-risk allocation. " + NOT_A_RULING})
+    return f
+
+
+def _i5(s, rule, _d):
+    ij = s["ijara"]
+    f = _base(rule)
+    if ij["rent_before_delivery"] is True:
+        f.update({"status": "violated", "contract_element": "rent timing",
+                  "quote": ij["rent_timing_quote"], "violation_pattern": rule["violated_by"][0],
+                  "note": "Rent accrues before delivery (rent on money). " + NOT_A_RULING})
+    elif ij["rent_before_delivery"] is False:
+        f.update({"status": "satisfied", "contract_element": "rent timing",
+                  "quote": ij["rent_timing_quote"],
+                  "note": "Rent accrues only after delivery and while usable. " + NOT_A_RULING})
+    else:
+        f.update({"status": "indeterminate", "contract_element": "rent timing", "quote": "",
+                  "missing_fact": "when rent begins to accrue (delivery vs contract date)",
+                  "note": "Could not establish rent timing. " + NOT_A_RULING})
+    return f
+
+
+def _i6(s, rule, _d):
+    ij = s["ijara"]
+    f = _base(rule)
+    if ij["transfer_fused"] is True:
+        f.update({"status": "violated", "contract_element": "IMB transfer separation",
+                  "quote": ij["transfer_quote"], "violation_pattern": rule["violated_by"][0],
+                  "note": "Sale/transfer fused into the lease; lessor ownership liability evaporates. " + NOT_A_RULING})
+    elif ij["is_imb"] is True and ij["transfer_fused"] is False:
+        f.update({"status": "satisfied", "contract_element": "IMB transfer separation",
+                  "quote": ij["transfer_quote"],
+                  "note": "Ownership transfer is by a separate instrument; the lease stays a genuine lease. " + NOT_A_RULING})
+    elif ij["is_imb"] is True:
+        f.update({"status": "indeterminate", "contract_element": "IMB transfer separation", "quote": "",
+                  "missing_fact": "whether the transfer instrument is separate from the lease",
+                  "note": "IMB detected but separation of the transfer instrument not established. " + NOT_A_RULING})
+    else:
+        f.update({"status": "indeterminate", "contract_element": "IMB transfer separation", "quote": "",
+                  "missing_fact": "contract is not identified as lease-to-own (IMB); I6 engages only for IMB",
+                  "note": "Not identified as IMB; the separation requirement is not engaged. " + NOT_A_RULING})
+    return f
+
+
+def _i7(s, rule, defer_data):
+    ij = s["ijara"]
+    if ij["sale_leaseback"] is not True:
+        f = _base(rule)
+        f.update({"status": "indeterminate", "contract_element": "sale-and-leaseback", "quote": "",
+                  "missing_fact": "no sale-and-leaseback present; I7 engages only for sale-and-leaseback",
+                  "note": "No sale-and-leaseback detected; the interval requirement is not engaged. " + NOT_A_RULING})
+        return f
+    if ij["sale_leaseback_interval"] is False:
+        f = _base(rule)
+        f.update({"status": "violated", "contract_element": "sale-and-leaseback interval",
+                  "quote": ij["sl_quote"], "violation_pattern": rule["violated_by"][0],
+                  "note": "Simultaneous sale-and-leaseback with no interval (inah pattern). " + NOT_A_RULING})
+        return f
+    if ij["sale_leaseback_interval"] is True:
+        f = _base(rule)
+        f.update({"status": "satisfied", "contract_element": "sale-and-leaseback interval",
+                  "quote": ij["sl_quote"], "note": "A genuine interval separates sale and leaseback. " + NOT_A_RULING})
+        return f
+    # interval present-but-unquantified -> the sufficiency is contested -> defer to D2
+    return _deferral(rule, defer_data, "sale-and-leaseback interval (sufficiency)", ij["sl_quote"],
+                     "Sale-and-leaseback present; the sufficiency of the interval is contested. " + NOT_A_RULING)
+
+
+_EVALUATORS = {"R1": _r1, "R2": _r2, "R3": _r3, "R4": _r4, "R5": _r5, "R6": _r6,
+               "I1": _i1, "I2": _i2, "I3": _i3, "I4": _i4, "I5": _i5, "I6": _i6, "I7": _i7}
+
+
+def _imb_wad_deferral(rule_i6, defer_data, quote):
+    """Append a D1 deferral for the IMB ownership-transfer promise's bindingness."""
+    f = _base(rule_i6)
+    e = _defer(defer_data, "D1")
+    f.update({
+        "status": "deferral",
+        "contract_element": "IMB ownership-transfer promise (wa'd) bindingness",
+        "quote": quote,
+        "positions": [{"authority": p["authority"], "position_ar": p["position_ar"],
+                       "position_en": p["position_en"], "citation": p["citation"]} for p in e["positions"]],
+        "routing_en": e["routing_en"], "routing_ar": e["routing_ar"],
+        "note": "The bindingness of the IMB ownership-transfer promise is contested; positions surfaced, routed to the SSB. " + NOT_A_RULING,
+    })
+    return f
 
 
 def check(structure, rules_data, defer_data):
@@ -204,11 +364,18 @@ def check(structure, rules_data, defer_data):
             "note": structure.get("status", "extraction incomplete — requires human review") + ". " + NOT_A_RULING,
         }]
     findings = []
+    i6_rule = None
     for r in rules_data["rules"]:
         rid = r["id"]
+        if rid == "I6":
+            i6_rule = r
         if r.get("status") == "contested":      # never satisfied/violated
             findings.append(_r6(structure, r, defer_data) if rid == "R6" else
                             _deferral(r, defer_data, "contested matter", "", NOT_A_RULING))
         else:
             findings.append(_EVALUATORS[rid](structure, r, defer_data))
+
+    # Ijara IMB → surface the contested wa'd bindingness as a D1 deferral (never adjudicated).
+    if i6_rule is not None and structure.get("ijara", {}).get("is_imb") is True:
+        findings.append(_imb_wad_deferral(i6_rule, defer_data, structure["ijara"].get("transfer_quote", "")))
     return findings

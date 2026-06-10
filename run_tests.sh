@@ -37,8 +37,15 @@ echo "--- 1c generation smoke (NO-KEY, full corpus -> rendered/memos) ---"
 ( cd "$ROOT/pipeline" && python3 run_generate.py >/dev/null && echo "memo+matrix generation ran end-to-end OK" ) || fail=1
 
 echo
+echo "================= STAGE 2 — scope-awareness + Ijara ================="
+echo "--- 2 isolated + structural tests ---"
+for t in contract_type_classifier_test scope_test extractor_ijara_test checker_ijara_test stage2_structural_test; do
+  ( cd "$ROOT/pipeline" && python3 -m unittest "$t" ) 2>&1 | tail -1 || fail=1
+done
+
+echo
 if [ "$fail" -eq 0 ]; then
-  echo "ALL GREEN (Stage 1a + Stage 1b + Stage 1c)."
+  echo "ALL GREEN (Stage 1a + Stage 1b + Stage 1c + Stage 2)."
 else
   echo "SUITE RED — see above."
 fi

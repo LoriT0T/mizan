@@ -1,0 +1,46 @@
+{
+  "scope_registry": "Mizan Scope Registry",
+  "version": "1.0.0-stage2",
+  "purpose": "The single source of truth for WHAT Mizan covers and to what depth. The README and the generated memos read from this artifact so Mizan's stated limits never drift from its actual ones. Breadth grows one grounded, calibrated contract type at a time; ungrounded rules are forbidden.",
+  "statement_ar": "يغطّي ميزانُ نوعَين من العقود تغطيةً مؤصَّلةً ومعايَرة: المرابحة والإجارة. ويتعرّف على التورّق لكنّه لا يملك له مجموعةَ قواعدَ معايَرة، فيحيله إلى الهيئة مع عرض المواقف. وما عدا ذلك غيرُ مُتعرَّفٍ عليه ويُحال إلى الهيئة. ميزانُ لا يبتّ ولا يفتي في أيِّ حال.",
+  "statement_en": "Mizan covers two contract types with grounded, calibrated rule-sets: Murabaha and Ijara. It recognizes Tawarruq but has no calibrated rule-set for it, so it routes it to the scholar with positions surfaced. Everything else is unrecognized and routed to the scholar. Mizan never rules or issues a fatwa.",
+  "coverage": [
+    {
+      "type": "murabaha",
+      "status": "covered-and-calibrated",
+      "rule_set": "registry/rules.json (R1–R6)",
+      "depth": "Six rules; R6 (wa'd bindingness) contested → defer D1.",
+      "label_ar": "مُغطّى ومعايَر",
+      "label_en": "covered and calibrated"
+    },
+    {
+      "type": "ijara",
+      "status": "covered-and-calibrated",
+      "rule_set": "registry/rules_ijara.json (I1–I7)",
+      "depth": "Seven rules; I4 (lessor bears ownership risk) is the headline test. IMB transfer promise → defer D1; sale-and-leaseback interval → defer D2; rate-benchmarking → defer D4; AITAB maintenance/takaful → defer D5.",
+      "label_ar": "مُغطّى ومعايَر",
+      "label_en": "covered and calibrated"
+    },
+    {
+      "type": "tawarruq",
+      "status": "recognized-not-covered",
+      "rule_set": null,
+      "defer_ref": "D3",
+      "depth": "Recognized by the classifier; NO calibrated rule-set. Routed to the defer register (D3: OIC Resolution 179 vs AAOIFI SS 30 vs Malaysia) and to the scholar. Mizan does not assess it.",
+      "label_ar": "مُتعرَّفٌ عليه وغيرُ مُغطّى",
+      "label_en": "recognized but not covered"
+    },
+    {
+      "type": "unrecognized",
+      "status": "unrecognized",
+      "rule_set": null,
+      "depth": "Any contract type Mizan cannot confidently classify. Flagged out-of-scope and routed to the scholar; no rule is fabricated or applied.",
+      "label_ar": "غيرُ مُتعرَّفٍ عليه",
+      "label_en": "unrecognized"
+    }
+  ],
+  "out_of_scope_finding_text": {
+    "ar": "يحتوي هذا المستندُ على مكوِّن [X]؛ ولا يملك ميزانُ مجموعةَ قواعدَ معايَرةً لـ[X] فلا يُقيِّمه، ويحيله إلى عالمٍ شرعيٍّ مؤهّل.",
+    "en": "This document contains a component of type [X]; Mizan has no calibrated rule-set for [X], does not assess it, and routes it to a qualified Sharia scholar."
+  }
+}

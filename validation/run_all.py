@@ -35,27 +35,36 @@ def main():
     defer_schema = _load("schemas", "defer.schema.json")
     gloss_schema = _load("schemas", "glossary.schema.json")
 
+    # Stage 2: the Ijara registry (separate files; Murabaha rules stay byte-identical).
+    ijara_rules = _load("registry", "rules_ijara.json") if os.path.exists(os.path.join(ROOT, "registry", "rules_ijara.json")) else {"rules": []}
+    ijara_defer = _load("registry", "defer_register_ijara.json") if os.path.exists(os.path.join(ROOT, "registry", "defer_register_ijara.json")) else {"entries": []}
+    # Merged defer view (so a contested rule's defer_ref to D1/D2 OR D4/D5 resolves).
+    merged_defer = {"entries": defer["entries"] + ijara_defer["entries"]}
+
     results = []  # (check_name, [errors])
 
     schema_errs = []
-    for r in rules["rules"]:
+    for r in rules["rules"] + ijara_rules["rules"]:
         schema_errs += schema_validator.validate(r, rule_schema, f"rule:{r.get('id')}")
-    for e in defer["entries"]:
+    for e in defer["entries"] + ijara_defer["entries"]:
         schema_errs += schema_validator.validate(e, defer_schema, f"defer:{e.get('id')}")
     for g in glossary["entries"]:
         schema_errs += schema_validator.validate(g, gloss_schema, f"gloss:{g.get('term_id')}")
     results.append(("schema_validator", schema_errs))
 
-    results.append(("integrity_checks", integrity_checks.check(rules, defer, glossary)))
-    results.append(("citation_guard", citation_guard.check(rules, defer, glossary)))
+    # Integrity: Murabaha rules vs main defer; Ijara rules vs merged defer (D1/D2 reuse + D4/D5).
+    integ = integrity_checks.check(rules, defer, glossary) + integrity_checks.check(ijara_rules, merged_defer, glossary)
+    results.append(("integrity_checks", integ))
+    results.append(("citation_guard", citation_guard.check(rules, merged_defer, glossary) + citation_guard.check(ijara_rules, ijara_defer, {"entries": []})))
     results.append(("glossary_checks", glossary_checks.check(glossary, history)))
-    results.append(("synthetic_corpus_guard", synthetic_corpus_guard.check(rules)))
+    results.append(("synthetic_corpus_guard", synthetic_corpus_guard.check(rules) + synthetic_corpus_guard.check(ijara_rules)))
 
     total = 0
     print("=" * 64)
     print("Mizan Stage 1a — Registry validation suite")
     print("=" * 64)
-    print(f"Loaded: {len(rules['rules'])} rules · {len(defer['entries'])} defer entries · "
+    print(f"Loaded: {len(rules['rules'])} Murabaha + {len(ijara_rules['rules'])} Ijara rules · "
+          f"{len(defer['entries']) + len(ijara_defer['entries'])} defer entries · "
           f"{len(glossary['entries'])} glossary terms")
     print("-" * 64)
     for name, errs in results:

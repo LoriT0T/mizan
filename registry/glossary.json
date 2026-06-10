@@ -1,6 +1,6 @@
 {
   "glossary": "Mizan Terminology Glossary",
-  "version": "1.2.0-stage1a",
+  "version": "1.3.0-stage2",
   "discipline": "Exactly ONE canonical Arabic form (the canonical side) and ONE canonical English rendering per term. The glossary must never silently contain two renderings of one term. A term is never invented from recall without a fetched, cited grounding. Append-only in history. Two independent axes (never conflated): lifecycle 'status' (locked-pending-calibration -> provisional -> locked) tracks human calibration; provenance 'grounding_basis' (grounded | unverified) tracks sourcing strength.",
   "growth_protocol": {
     "summary": "The documented procedure every future component invokes on encountering an Islamic-finance term of art NOT in the glossary.",
@@ -112,6 +112,78 @@
         ],
         "grounding_basis": "unverified"
       }
+    },
+    {
+      "term_id": "G-014", "canonical_ar": "الإجارة", "canonical_en": "Ijara (leasing)",
+      "definition_ar": "عقدٌ على منفعةٍ مقصودةٍ من عينٍ مع بقاء ملكِها للمؤجِّر، بأجرةٍ ومدّةٍ معلومتين.",
+      "definition_en": "A contract over the usufruct of an asset for a known rent and term, the lessor retaining ownership.",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional; awaiting the principal's calibration to lock.",
+      "provenance": { "sources": ["Input #3, Part 1 + TL;DR"], "grounding_basis": "grounded" }
+    },
+    {
+      "term_id": "G-015", "canonical_ar": "المنفعة", "canonical_en": "usufruct (manfa'ah)",
+      "definition_ar": "حقُّ الانتفاع بالعين مع بقاء عينها، وهو محلُّ عقد الإجارة.",
+      "definition_en": "The right to use an asset while its corpus survives; the subject of an Ijara.",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional.",
+      "provenance": { "sources": ["Input #3, Part 1"], "grounding_basis": "grounded" }
+    },
+    {
+      "term_id": "G-016", "canonical_ar": "الإجارة المنتهية بالتمليك", "canonical_en": "Ijara Muntahia Bittamleek (lease-to-own)",
+      "definition_ar": "إجارةٌ تقترن بترتيبٍ مستقلٍّ ينقل الملكيةَ للمستأجر في نهايتها (وعدٌ، هبةٌ، أو بيع).",
+      "definition_en": "A lease coupled with a separate arrangement transferring ownership to the lessee at its end (promise, gift, or sale).",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional.",
+      "provenance": { "sources": ["Input #3, Part 1 + Key Findings 1/4"], "grounding_basis": "grounded" }
+    },
+    {
+      "term_id": "G-017", "canonical_ar": "العين المؤجَّرة", "canonical_en": "the leased asset",
+      "definition_ar": "العينُ غيرُ المستهلَكةِ محلُّ الإجارة، يجب تعيينُها وإباحةُ استعمالها.",
+      "definition_en": "The non-consumable asset that is the subject of the lease; it must be identified and of permissible use.",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional.",
+      "provenance": { "sources": ["Input #3, Part 2 (I1)"], "grounding_basis": "grounded" }
+    },
+    {
+      "term_id": "G-018", "canonical_ar": "الأجرة", "canonical_en": "rent (ujrah)",
+      "definition_ar": "العوضُ المعلومُ في عقد الإجارة مقابلَ المنفعة، يُحدَّد عند العقد.",
+      "definition_en": "The known consideration in an Ijara for the usufruct, determined at contract.",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional.",
+      "provenance": { "sources": ["Input #3, Part 2 (I2)"], "grounding_basis": "grounded" }
+    },
+    {
+      "term_id": "G-019", "canonical_ar": "الصيانة الأساسية", "canonical_en": "basic (structural) maintenance",
+      "definition_ar": "الصيانةُ المتعلّقةُ بأصل العين وبقائها، وتبعتُها على المؤجِّر بوصفه مالكاً.",
+      "definition_en": "Maintenance relating to the corpus and survival of the asset; its liability rests on the lessor as owner.",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional.",
+      "provenance": { "sources": ["Input #3, Part 2 (I4)"], "grounding_basis": "grounded" }
+    },
+    {
+      "term_id": "G-020", "canonical_ar": "الصيانة التشغيلية", "canonical_en": "operational maintenance",
+      "definition_ar": "الصيانةُ المتعلّقةُ بالاستعمال المعتاد، وتبعتُها على المستأجر.",
+      "definition_en": "Maintenance relating to ordinary use; its liability rests on the lessee.",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional.",
+      "provenance": { "sources": ["Input #3, Part 2 (I4)"], "grounding_basis": "grounded" }
+    },
+    {
+      "term_id": "G-021", "canonical_ar": "التكافل", "canonical_en": "takaful (Islamic cooperative insurance)",
+      "definition_ar": "التأمينُ التعاونيُّ القائمُ على التبرّع؛ وفي الإجارة تكون كلفتُه على المؤجِّر بوصفه مالكاً.",
+      "definition_en": "Cooperative, donation-based insurance; in Ijara its cost rests on the lessor as owner.",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional.",
+      "provenance": { "sources": ["Input #3, Part 2 (I4)"], "grounding_basis": "grounded" }
+    },
+    {
+      "term_id": "G-022", "canonical_ar": "البيع مع الاستئجار", "canonical_en": "sale-and-leaseback",
+      "definition_ar": "أن يبيعَ العميلُ عيناً للمصرف ثم يستأجرَها؛ ويُشترَط فاصلٌ زمنيٌّ معتبرٌ منعاً من العِينة.",
+      "definition_en": "The customer sells an asset to the bank then leases it back; a genuine interval is required to avoid bai' al-inah.",
+      "status": "provisional", "origin": "growth-protocol",
+      "review_routing": "Consolidated Arabic review list (Stage 2) — provisional.",
+      "provenance": { "sources": ["Input #3, Part 2 (I7)"], "grounding_basis": "grounded" }
     }
   ]
 }

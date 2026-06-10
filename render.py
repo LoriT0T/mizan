@@ -118,6 +118,20 @@ def render_glossary(gloss):
     return "".join(out)
 
 
+def render_scope(scope):
+    out = [f"# {scope['scope_registry']} — Rendered View\n",
+           f"_Version {scope['version']} · DERIVED from `registry/scope_registry.json` — do not hand-edit._\n",
+           f"\n> **Purpose.** {scope['purpose']}\n",
+           f"\n**[ع]** {scope['statement_ar']}\n",
+           f"\n**[EN]** {scope['statement_en']}\n",
+           "\n## Coverage\n\n| Type | Status | Rule-set | Depth |\n|---|---|---|---|\n"]
+    for c in scope["coverage"]:
+        out.append(f"| {c['type']} | {c['status']} ({c.get('label_en','')}) | {c.get('rule_set') or '—'} | {c['depth']} |\n")
+    out.append(f"\n## Out-of-scope finding text\n\n**[ع]** {scope['out_of_scope_finding_text']['ar']}\n\n"
+               f"**[EN]** {scope['out_of_scope_finding_text']['en']}\n")
+    return "".join(out)
+
+
 def main():
     rules = load("rules.json")
     defer = load("defer_register.json")
@@ -127,6 +141,11 @@ def main():
         w("DEFER_REGISTER.md", render_defer(defer)),
         w("GLOSSARY.md", render_glossary(gloss)),
     ]
+    import os
+    if os.path.exists(os.path.join(ROOT, "registry", "rules_ijara.json")):
+        paths.append(w("REGISTRY_IJARA.md", render_registry(load("rules_ijara.json"))))
+        paths.append(w("DEFER_REGISTER_IJARA.md", render_defer(load("defer_register_ijara.json"))))
+        paths.append(w("SCOPE.md", render_scope(load("scope_registry.json"))))
     for p in paths:
         print(f"wrote {p}")
 

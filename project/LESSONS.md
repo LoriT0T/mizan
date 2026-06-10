@@ -47,6 +47,14 @@ Durable rules graduated from this project (`MISTAKE_ENGINE.md` format: `L-NNN`, 
 - **Invariant:** Arabic cue detection strips tashkīl/tatweel and folds alef/ya/ta-marbuta/hamza before regex, and is negation-aware (explicit-negative pattern checked first), while quotes remain VERBATIM from the raw text.
 - **Guardrail:** `pipeline/extractor._norm` + `_decide`; regression covered by `extractor_test.test_arabic_native_extraction_verbatim` (caught the "لا تُعَدّ إيراداً" false-positive and the diacritic-broken wa'd match during the build).
 
+**L-012 — Breadth grows one grounded type at a time; honesty about non-coverage is load-bearing.**
+- **Invariant:** Mizan covers only contract types with a grounded, calibrated rule-set (Murabaha, Ijara). It classifies structure (never rules), recognizes-but-does-not-cover (tawarruq → D3), and flags everything else out-of-scope; it never fabricates a rule, never applies one type's rules to another, never stays silent about an uncovered component. The scope registry is the single source of truth (README + memos read from it).
+- **Guardrail:** `registry/scope_registry.json` + `pipeline/scope.py` (out_of_scope findings) + `contract_type_classifier` (fails to "unrecognized"). Proven by `stage2_structural_test.test_unrecognized_component_yields_out_of_scope_finding` + `test_tawarruq_recognized_not_covered_no_rule_applied`. New Ijara rules in a SEPARATE registry file so the locked Murabaha registry stays byte-identical.
+
+**L-013 — Negation-first for violation cues; precedence for subset-structured types.**
+- **Invariant:** when a violation phrase contains the affirmative cue ("no separate" contains "separate"), detect the violation first; when one covered type's cues are a structural subset of another type (tawarruq ⊃ commodity-murabaha), the more specific type takes precedence.
+- **Guardrail:** `extractor` fusion-before-separation; `contract_type_classifier` tawarruq-precedence. See `FAULTS.md` F-005, F-006.
+
 **L-007 — Each source sits on the layer that matches its authority TYPE.**
 - **Invariant:** L1 = CBK/Higher Committee only; L2 = bank SSB fatwas (synthetic here); L3 = AAOIFI; LJ = Kuwaiti judicial practice (secular, secondary-publisher-reported). A source's layer must never overstate its authority kind.
 - **Guardrail:** `integrity_checks` I6 (L1 ref must be CBK/Higher Committee) + `synthetic_corpus_guard` S3 (no non-L2 layer synthetic). See `FAULTS.md` F-002.

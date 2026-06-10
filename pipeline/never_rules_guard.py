@@ -17,7 +17,7 @@ Stdlib only. No sibling imports. Entry point: `check(findings) -> list[str]`.
 """
 import re
 
-ALLOWED_STATUS = {"satisfied", "violated", "indeterminate", "deferral"}
+ALLOWED_STATUS = {"satisfied", "violated", "indeterminate", "deferral", "out_of_scope"}
 _VERDICT = re.compile(r"\b(permissible|impermissible|halal|haram|sharia[- ]?compliant|non[- ]?compliant|compliant)\b"
                       r"|حلال|حرام", re.IGNORECASE)
 _AUTHORED_FIELDS = ("status", "note", "summary")

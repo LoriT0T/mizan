@@ -50,20 +50,40 @@ class OpinionField:
         return self.PLACEHOLDER_EN
 
 
-def _desc_connective(structure):
+def _desc_connective(structure, contract_type="murabaha"):
+    if contract_type == "ijara":
+        return ("هذه مراجعةٌ لعقد إجارةٍ (وقد تكون منتهيةً بالتمليك) بين المؤسسة المالية بوصفها مؤجِّراً والعميل بوصفه مستأجِراً؛ محلُّ الإجارة مبيَّنٌ نصّاً أدناه.",
+                "This is a review of an Ijara (possibly Ijara Muntahia Bittamleek) between the institution as lessor and "
+                "the customer as lessee; the leased asset is quoted verbatim below.")
     return ("هذه مراجعةٌ لعقد مرابحةٍ للآمر بالشراء بين المؤسسة المالية والعميل ومورّدٍ طرفٍ ثالث؛ محلُّ العقد مبيَّنٌ نصّاً أدناه.",
             "This is a review of a Murabaha-to-the-Purchase-Orderer contract between the institution, the customer, "
             "and a third-party supplier; the subject of the contract is quoted verbatim below.")
 
 
-def _mech_connective():
+def _mech_connective(contract_type="murabaha"):
+    if contract_type == "ijara":
+        return ("العقدُ إجارةٌ؛ وفيما يلي الوقائعُ المُستخلَصةُ من العقد نصّاً (العينُ المؤجَّرة، الأجرةُ والمدّة، تبعةُ الملكية، التسليمُ، أداةُ التمليك).",
+                "The aqd is an Ijara; below are the facts extracted verbatim from the contract "
+                "(the leased asset, rent and term, ownership-risk allocation, delivery, transfer instrument).")
     return ("العقدُ مرابحةٌ للآمر بالشراء؛ وفيما يلي تسلسلُ الوقائع المُستخلَصةُ من العقد نصّاً (تملّكٌ وقبضٌ، وكالةٌ، ثمنٌ وإفصاح).",
             "The aqd is a Murabaha to the Purchase Orderer; below is the sequence extracted verbatim from the contract "
             "(ownership/possession, agency, price and disclosure).")
 
 
-def _mech_attributed(structure):
-    o, ar, en = structure["ownership"], [], []
+def _mech_attributed(structure, contract_type="murabaha"):
+    ar, en = [], []
+    if contract_type == "ijara":
+        ij = structure.get("ijara", {})
+        pairs = [("العينُ والأجرة", "Asset and rent", structure["asset"].get("quote") or ij.get("rent_quote")),
+                 ("تبعةُ الملكية", "Ownership-risk allocation", ij.get("lessor_risk_quote") or ij.get("risk_shift_quote")),
+                 ("توقيتُ الأجرة", "Rent timing", ij.get("rent_timing_quote")),
+                 ("أداةُ التمليك (الإجارة المنتهية بالتمليك)", "Transfer instrument (IMB)", ij.get("transfer_quote"))]
+        for lab_ar, lab_en, q in pairs:
+            if q:
+                ar.append(f"- {lab_ar}: «{q}»")
+                en.append(f"- {lab_en}: «{q}»")
+        return "\n".join(ar), "\n".join(en)
+    o = structure["ownership"]
     if o.get("acquire_quote"):
         ar.append(f"- تسلسلُ التملّك والقبض: «{o['acquire_quote']}»")
         en.append(f"- Ownership/possession: «{o['acquire_quote']}»")
@@ -76,12 +96,12 @@ def _mech_attributed(structure):
     return "\n".join(ar), "\n".join(en)
 
 
-def generate(structure, findings, rules, defer, glossary, seam=None, authoritative_lang="ar", contract_file=""):
+def generate(structure, findings, rules, defer, glossary, seam=None, authoritative_lang="ar", contract_file="", contract_type="murabaha"):
     opinion = OpinionField()
     generated_prose = []
 
     # ---- connective prose (gated) ----
-    desc_ar, desc_en = _desc_connective(structure)
+    desc_ar, desc_en = _desc_connective(structure, contract_type)
     model_used = False
     if seam is not None and seam.available():
         out = seam.interpret("Draft a neutral bilingual description (keys ar,en) of this contract DATA; "
@@ -90,7 +110,7 @@ def generate(structure, findings, rules, defer, glossary, seam=None, authoritati
             desc_ar, desc_en, model_used = out["ar"], out.get("en", desc_en), True
         elif isinstance(out, str) and out:
             desc_ar, model_used = out, True
-    mech_ar, mech_en = _mech_connective()
+    mech_ar, mech_en = _mech_connective(contract_type)
     issues_intro = ("المسائلُ المثارةُ قاعدةً بقاعدة (تحديدٌ لا حكم):",
                     "Issues identified rule by rule (identification, not a ruling):")
     evidence_intro = ("الأدلةُ والمراجعُ بطبقاتها (L1 تعليمات بنك الكويت المركزي/الهيئة العليا · L2 فتاوى الهيئة الشرعية للمصرف [اصطناعية في هذا العرض] · L3 معايير AAOIFI · LJ القضاء الكويتي):",
@@ -108,7 +128,7 @@ def generate(structure, findings, rules, defer, glossary, seam=None, authoritati
     # ---- attributed content (exempt: verbatim quotes / citations / positions / placeholder) ----
     asset_q = structure["asset"]["quote"] or "—"
     desc_att = (f"محلُّ العقد (نصّاً): «{asset_q}»", f"Subject of the contract (verbatim): «{asset_q}»")
-    mech_att = _mech_attributed(structure)
+    mech_att = _mech_attributed(structure, contract_type)
 
     issue_lines_ar, issue_lines_en = [], []
     for f in findings:

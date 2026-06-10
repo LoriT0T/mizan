@@ -1,0 +1,20 @@
+### SYNTHETIC CONTRACT — Mizan Stage 2 test corpus — NOT A REAL AGREEMENT ###
+Contract type: MIXED — a Murabaha component PLUS an unrecognized (Mudaraba) component
+Language: English
+Expected: the Murabaha part is checked (R1–R6); the Mudaraba part is honestly flagged OUT-OF-SCOPE (no rule fabricated, Murabaha rules NOT applied to it).
+
+Parties:
+- Institution: Demo Islamic Bank K.S.C.
+- Customer: Demo Customer
+- Supplier: Third-Party Supplier Co.
+
+PART A — Murabaha to the Purchase Orderer:
+Asset: One specified new motor vehicle (a permissible asset), identified by chassis number CHASSIS-2005.
+Clause A1 (Acquisition and possession): The Bank purchases the Asset from the Supplier and takes ownership and possession of it, bearing all risks of ownership, before any sale to the Customer.
+Clause A2 (Sale and price): The Bank sells the Asset to the Customer at a disclosed cost of KWD 10,000 plus a disclosed profit markup of KWD 1,000; the price is fixed at contract and does not change after conclusion.
+Clause A3 (Late payment): Any late-payment charge shall be donated to charity and shall not be taken as income of the Bank; the markup shall not increase on late payment.
+Clause A4 (Promise): The Customer gives a unilateral promise to purchase; no bilateral binding promise is made.
+Clause A5 (Ownership history): The Asset is sourced from the Supplier and is not owned by the Customer; it is not bought back from the Customer.
+
+PART B — Mudaraba investment side-agreement:
+Clause B1: The Bank and the Customer also enter into a Mudaraba (profit-sharing investment partnership), under which the Customer contributes capital and the Bank acts as mudarib, sharing profit at an agreed ratio.

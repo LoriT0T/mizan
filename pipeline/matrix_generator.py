@@ -21,7 +21,9 @@ SEVERITY_NOTE_EN = ("The severity tiers (minor/moderate/major) are a CONFIGURABL
                     "scheme), NOT a binding AAOIFI scale. Contested matters are not graded.")
 
 # Default convention (configurable via severity_config).
-DEFAULT_SEVERITY = {"R1": "major", "R2": "moderate", "R3": "major", "R4": "major", "R5": "moderate"}
+DEFAULT_SEVERITY = {"R1": "major", "R2": "moderate", "R3": "major", "R4": "major", "R5": "moderate",
+                    "I1": "major", "I2": "moderate", "I3": "major", "I4": "major", "I5": "major",
+                    "I6": "major", "I7": "major"}
 SEV_AR = {"minor": "طفيف", "moderate": "متوسّط", "major": "جسيم"}
 RISK = {
     "R1": ("تنظيميّ/ماليّ", "regulatory/financial"),
@@ -29,6 +31,13 @@ RISK = {
     "R3": ("سمعيّ/تنظيميّ", "reputational/regulatory"),
     "R4": ("تنظيميّ", "regulatory"),
     "R5": ("تنظيميّ", "regulatory"),
+    "I1": ("سمعيّ/تنظيميّ", "reputational/regulatory"),
+    "I2": ("تنظيميّ", "regulatory"),
+    "I3": ("تنظيميّ", "regulatory"),
+    "I4": ("تنظيميّ/ماليّ", "regulatory/financial"),
+    "I5": ("تنظيميّ/ماليّ", "regulatory/financial"),
+    "I6": ("تنظيميّ", "regulatory"),
+    "I7": ("تنظيميّ", "regulatory"),
 }
 REMEDIATION = {
     "R1": ("تصحيحُ الهيكل بحيث يتملّك المصرفُ الأصلَ ويقبضه قبل البيع؛ والعرضُ على الهيئة الشرعية.",
@@ -42,10 +51,28 @@ REMEDIATION = {
     "R5": ("توجيهُ غرامة التأخّر إلى جهةٍ خيرية (تطهيرُ الإيراد)؛ ومنعُ زيادة الربح؛ تصحيحُ البند.",
            "Direct the late-payment penalty to charity (income purification); bar markup increase; rectify the clause."),
 }
+REMEDIATION.update({
+    "I1": ("قصرُ الإجارة على عينٍ غيرِ مستهلكةٍ معيَّنةٍ مباحةِ الاستعمال؛ والعرضُ على الهيئة.",
+           "Restrict the lease to an identified non-consumable asset put to a lawful use; escalate to the SSB."),
+    "I2": ("تحديدُ الأجرة والمدّة عند العقد وإلغاءُ حقّ الزيادة المنفردة؛ تصحيحُ البند.",
+           "Define rent and term at contract and remove the unilateral-increase right; rectify the clause."),
+    "I3": ("تأخيرُ عقد الإجارة حتى يتملّك المصرفُ العين ويقبضها؛ والعرضُ على الهيئة.",
+           "Defer the lease until the bank acquires and possesses the asset; escalate to the SSB."),
+    "I4": ("إعادةُ تبعة الملكية (الصيانة الأساسية والتكافل والتلف الكلّي) إلى المؤجِّر؛ تصحيحُ البنود؛ والعرضُ على الهيئة.",
+           "Return ownership risk (basic maintenance, takaful, total-loss) to the lessor; rectify the clauses; escalate to the SSB."),
+    "I5": ("ربطُ استحقاق الأجرة بالتسليم لا بتاريخ العقد؛ وإسقاطُها عند تعطّل المنفعة بلا تعدٍّ؛ تصحيحُ البند.",
+           "Tie rent accrual to delivery, not the contract date; abate it on non-negligent loss of use; rectify the clause."),
+    "I6": ("إفرادُ نقل الملكية بأداةٍ مستقلّةٍ عن عقد الإجارة؛ تصحيحُ الهيكل؛ والعرضُ على الهيئة.",
+           "Set the ownership transfer in an instrument separate from the lease; restructure; escalate to the SSB."),
+    "I7": ("إيجادُ فاصلٍ زمنيٍّ معتبرٍ بين البيع والاستئجار؛ والعرضُ على الهيئة.",
+           "Introduce a genuine interval between sale and leaseback; escalate to the SSB."),
+})
 INDET_REMEDIATION = ("استكمالُ الواقعة الناقصة ثم إعادةُ الفحص؛ مراجعةٌ بشرية.",
                      "Obtain the missing fact then re-check; human review.")
 DEFER_REMEDIATION = ("الإحالةُ إلى الهيئة الشرعية للبتّ (مسألةٌ خلافية).",
                      "Escalation to the SSB for determination (contested matter).")
+OOS_REMEDIATION = ("الإحالةُ إلى عالمٍ شرعيٍّ مؤهّل (خارجَ نطاق التغطية المعايَرة لميزان).",
+                   "Route to a qualified Sharia scholar (outside Mizan's calibrated coverage).")
 
 
 def generate(findings, authoritative_lang="ar", severity_config=None):
@@ -66,15 +93,26 @@ def generate(findings, authoritative_lang="ar", severity_config=None):
         elif status == "indeterminate":
             severity = None
             rem_ar, rem_en = INDET_REMEDIATION
+        elif status == "out_of_scope":
+            severity = None
+            rem_ar, rem_en = OOS_REMEDIATION
         else:  # violated
             severity = sev.get(rid)
             rem_ar, rem_en = REMEDIATION.get(rid, ("—", "—"))
         risk_ar, risk_en = RISK.get(rid, ("—", "—"))
+        if status == "out_of_scope":
+            comp = f.get("component", "unrecognized")
+            rule_ar = f"مكوِّن خارج النطاق: {comp}"
+            rule_en = f"out-of-scope component: {comp}"
+            clause = f.get("note_en", "") or f.get("note", "")
+        else:
+            rule_ar, rule_en = f.get("rule_title_ar", ""), f.get("rule_title_en", "")
+            clause = f.get("quote", "") or (f.get("missing_fact", "") if status == "indeterminate" else "")
         rows.append({
-            "rule_id": rid,
+            "rule_id": rid or "—",
             "status": status,
-            "rule_ar": f.get("rule_title_ar", ""), "rule_en": f.get("rule_title_en", ""),
-            "clause_quote": f.get("quote", "") or (f.get("missing_fact", "") if status == "indeterminate" else ""),
+            "rule_ar": rule_ar, "rule_en": rule_en,
+            "clause_quote": clause,
             "citations": citations,
             "severity": severity, "severity_ar": (SEV_AR.get(severity) if severity else None),
             "risk_ar": risk_ar, "risk_en": risk_en,
@@ -92,6 +130,8 @@ def generate(findings, authoritative_lang="ar", severity_config=None):
 def _sev_cell(row):
     if row["status"] == "deferral":
         return "— (لا تُصنَّف / not graded)"
+    if row["status"] == "out_of_scope":
+        return "— (خارج النطاق / out of scope)"
     if row["severity"] is None:
         return "— (—)"
     return f"{row['severity_ar']} / {row['severity']}"

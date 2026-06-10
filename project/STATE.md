@@ -88,5 +88,41 @@ Stage 1a is closed.
 - Mistakes → F-004 (verbatim quote embedded in gated prose, caught by the gate); lessons L-010 (opinion lock / watermark gate), L-011 (gate scans connective only).
 - New canonical Arabic (template) → rendered/ARABIC_REVIEW_LIST_1c.md. No new glossary terms created.
 
+## Stage 1c — COMPLETE (see above).
+
+---
+
+# STAGE 2 — scope-awareness + honest deferral + Ijara rule-set (in progress)
+**Branch-trigger:** classifier may use model seam for ambiguous docs → cost-routing (loaded); contract docs = same untrusted class as 1b (no new knowledge file).
+**Input #3:** `inputs/Mizan_Input3_Ijara_Grounding_Report.md` (copied from Downloads; required, present). Establishes I1–I7 (all **established**) + contested matters. Every Ijara rule traces to Input #3 or fetched+cited public source — never recall.
+
+## Key design decisions (to keep Murabaha registry byte-identical + 1a/1b/1c tests green untouched)
+- **Murabaha `rules.json`, `defer_register.json` stay BYTE-IDENTICAL.** Ijara rules → NEW `registry/rules_ijara.json`. New Ijara contested matters → NEW `registry/defer_register_ijara.json` (D4 rate-benchmarking, D5 AITAB). Ijara reuses D1 (wa'd, IMB transfer promise) + D2 (inah, sale-leaseback interval) from the existing register.
+- **Glossary changes ONLY via growth protocol** (sanctioned): append Ijara terms (G-014+) as `provisional`/`grounded`, bump glossary version, history append. (This is the one locked-registry file that changes, and only via the documented protocol.)
+- **Checker is generic** (evaluates whatever rules are passed); orchestrator selects rule-set by classified type. Existing tests pass `rules.json` (Murabaha) → unchanged 6 findings. New I-evaluators added to checker.py are not invoked by Murabaha calls → 1b/1c tests stay green.
+- **rule.schema scope enum** extended to ["murabaha","ijara"] (schema is ours; doesn't break inline-schema unit tests).
+- **never_rules_guard ALLOWED_STATUS** += "out_of_scope" (new honest status; existing guard tests still pass).
+
+## Units (compartmentalized)
+- `contract_type_classifier.py` — structure/text → {murabaha|ijara|tawarruq|unrecognized} (deterministic cues; seam for ambiguous; fails to unrecognized). Classifies structure, not ruling.
+- `scope.py` + `registry/scope_registry.json` — single source of truth for coverage; assess(types) → (covered_types, out_of_scope_findings). README + memos read from it.
+- Ijara facts in extractor (reuse Arabic normalize + negation machinery).
+- checker I1–I7 evaluators + D1 deferral when IMB (wa'd) — never-rules discipline.
+- memo/matrix type-aware (Ijara mechanics; I-rule severity/remediation config). Structural locks unchanged.
+- Out-of-scope finding (status out_of_scope): covered parts checked, uncovered flagged, nothing fabricated.
+
+## Ijara rules (I1–I7, all established, grounded Input #3 Part 2)
+I1 asset eligibility (non-consumable/identified/permissible use) · I2 rent+term defined, no unilateral increase · I3 lessor owns, lease preceded by acquisition · **I4 ownership risk stays with lessor (HEADLINE, most common defect)** · I5 rent after delivery + only while usable · I6 IMB transfer SEPARATE from lease (→D1 wa'd) · I7 sale-leaseback interval (→D2 inah).
+
+## Stage 2 — COMPLETE, self-verified (2026-06-10)
+- Part A (honesty): `contract_type_classifier` (murabaha/ijara/tawarruq/unrecognized; fails to unrecognized) · `registry/scope_registry.json` + `scope.py` (single source of truth; out_of_scope findings) · out-of-scope behavior wired + tested (mixed: covered checked + uncovered flagged; tawarruq → D3 no rule).
+- Part B (Ijara): `registry/rules_ijara.json` I1–I7 (grounded Input #3; I4 headline) · `registry/defer_register_ijara.json` D4/D5 (reuses D1/D2) · extractor Ijara facts · checker I1–I7 + IMB→D1 deferral · memo/matrix type-aware. Glossary grew G-014..G-022 via growth protocol (v1.3.0, provisional/grounded).
+- Renders: `rendered/REGISTRY_IJARA.md`, `DEFER_REGISTER_IJARA.md`, `SCOPE.md`; memos+matrices for corpus/stage2 in `rendered/memos/`.
+- Corpus: `corpus/stage2/` (Ijara clean + I4/I5/I6 defects + tawarruq + mixed-OOS). Kept separate so 1c structural tests (corpus/) stay green untouched; `stage2_structural_test` covers the new corpus.
+- Full suite GREEN (1a+1b+1c+2): `./run_tests.sh`. Schema enum extended (scope +ijara, id +I, defer scope_status +ijara); validation validates both registries.
+- **Murabaha rules.json + defer_register.json BYTE-IDENTICAL to Stage 1** (Ijara is separate files); glossary changed ONLY via growth protocol; Foundry byte-untouched; only ~/mizan written.
+- Mistakes → F-005 (negation-matched-affirmative), F-006 (tawarruq mis-class), F-007 (verdict-in-note recurrence); lessons L-012 (grow one type, scope honesty), L-013 (negation-first / precedence).
+- New canonical Arabic → `rendered/ARABIC_REVIEW_LIST_2.md`.
+
 ## Next action
-CHECKPOINT — STOP after 1c. Independent verifier report + workspace zip for the principal. Stages beyond 1c authorized only after the principal reviews this checkpoint.
+CHECKPOINT — STOP after Stage 2. Independent verifier + zip for the principal. No frontend, no remote, no push.

@@ -97,7 +97,24 @@ python3 pipeline/run_generate.py <file>     # print one contract's memo + matrix
 ```
 Rendered artifacts: [rendered/memos/](rendered/memos/) — `*.memo.md` and `*.matrix.md` per corpus contract.
 
+## Stage 2 — scope-awareness + honest deferral + the Ijara rule-set
+Mizan is now honest about **what it does not cover**, and adds **Ijara** as a second grounded, calibrated contract type. Breadth grows one grounded type at a time; ungrounded rules are forbidden.
+
+- **Scope registry** (`registry/scope_registry.json`, rendered `rendered/SCOPE.md`) is the single source of truth for coverage — this README and the memos read from it so the stated limits never drift:
+  - **covered + calibrated:** Murabaha (R1–R6), Ijara (I1–I7)
+  - **recognized but not covered:** Tawarruq (classifier knows it; **no rule-set** — routed to defer **D3** with positions surfaced)
+  - **unrecognized:** everything else → flagged out-of-scope, routed to the scholar
+- **Contract-type classifier** (`pipeline/contract_type_classifier.py`) types a contract (murabaha / ijara / tawarruq / unrecognized) by structure cues; it classifies, it does not rule; it fails to "unrecognized" rather than guessing.
+- **Out-of-scope behavior** (`pipeline/scope.py`): for any uncovered component Mizan emits an explicit out-of-scope finding — it never fabricates a rule, never applies one type's rules to another, never stays silent. A **mixed** contract gets covered parts checked **and** uncovered parts flagged.
+- **Ijara rules** (`registry/rules_ijara.json`, I1–I7; rendered `rendered/REGISTRY_IJARA.md`): asset eligibility · rent/term defined · lessor owns before lease · **I4 lessor bears ownership risk (the headline test)** · rent after delivery · IMB transfer separate (→ defer D1) · sale-and-leaseback interval (→ defer D2). New contested matters D4 (rate-benchmarking), D5 (AITAB) in `registry/defer_register_ijara.json`.
+
+```bash
+python3 pipeline/run_pipeline.py            # classify + check every contract (corpus/ + corpus/stage2/)
+python3 pipeline/run_generate.py            # memo + matrix for every contract
+./run_tests.sh                              # full suite: 1a + 1b + 1c + 2
+```
+
 ## Status
-**Stage 1a — complete, calibrated, locked.** **Stage 1b — complete, self-verified.** **Stage 1c — complete, self-verified.** No web app, no site, no remote, no push. Stages beyond 1c are authorized only after the principal reviews this checkpoint. Generated memos are **drafts for a qualified scholar**; the opinion is the scholar's alone; the corpus is synthetic; this is a demonstration, not certified.
+**Stage 1a — locked.** **Stage 1b — self-verified.** **Stage 1c — self-verified.** **Stage 2 — self-verified.** No web app, no site, no remote, no push. Stages beyond 2 are authorized only after the principal reviews this checkpoint. Generated memos are **drafts for a qualified scholar**; the opinion is the scholar's alone; Mizan **does not and cannot determine Sharia compliance**, and is honest about the contract types it does not cover; the corpus is synthetic; this is a demonstration, not certified. The Murabaha registry (rules + defer) is byte-identical to Stage 1; the glossary grew only via the documented growth protocol.
 
 _This project inherits the Foundry foundation (read-only at `/Users/musaed/v0/foundry-v0/`). It is local-only; nothing was written outside `/Users/musaed/mizan/`._

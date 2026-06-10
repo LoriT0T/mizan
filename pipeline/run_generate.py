@@ -18,28 +18,43 @@ OUT = os.path.join(ROOT, "rendered", "memos")
 
 
 def _slug(fn):
-    return fn.replace(".txt", "")
+    return os.path.basename(fn).replace(".txt", "")
+
+
+def _corpus_paths():
+    paths = []
+    for d in (CORPUS, os.path.join(CORPUS, "stage2")):
+        if os.path.isdir(d):
+            paths += [os.path.join(d, fn) for fn in os.listdir(d) if fn.endswith(".txt")]
+    return sorted(paths, key=os.path.basename)
+
+
+def _find(fn):
+    for d in (CORPUS, os.path.join(CORPUS, "stage2")):
+        p = os.path.join(d, fn)
+        if os.path.exists(p):
+            return p
+    return os.path.join(CORPUS, fn)
 
 
 def run_all():
     os.makedirs(OUT, exist_ok=True)
     rules, defer, glossary = orchestrator.load_registry()
-    files = sorted(fn for fn in os.listdir(CORPUS) if fn.endswith(".txt"))
-    for fn in files:
-        res = orchestrator.generate_for_contract(os.path.join(CORPUS, fn), rules, defer, glossary)
-        base = _slug(fn)
+    for path in _corpus_paths():
+        res = orchestrator.generate_for_contract(path, rules, defer, glossary)
+        base = _slug(path)
         with open(os.path.join(OUT, base + ".memo.md"), "w", encoding="utf-8") as f:
             f.write(res["memo"]["render_md"])
         with open(os.path.join(OUT, base + ".matrix.md"), "w", encoding="utf-8") as f:
             f.write(res["matrix"]["render_md"])
         n_rows = len(res["matrix"]["rows"])
-        print(f"  {fn}: memo + matrix written  [{res['seam_mode']}] · matrix rows: {n_rows} · "
-              f"opinion placeholder: {res['memo']['opinion_is_placeholder']}")
+        print(f"  {base}.txt: memo + matrix written  [{res['seam_mode']}] · "
+              f"matrix rows: {n_rows} · opinion placeholder: {res['memo']['opinion_is_placeholder']}")
     print(f"\nWrote bilingual memos + matrices to {OUT}")
 
 
 def run_one(fn):
-    res = orchestrator.generate_for_contract(os.path.join(CORPUS, fn))
+    res = orchestrator.generate_for_contract(_find(fn))
     print(res["memo"]["render_md"])
     print("\n\n" + "=" * 78 + "\n\n")
     print(res["matrix"]["render_md"])

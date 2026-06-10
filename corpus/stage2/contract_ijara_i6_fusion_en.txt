@@ -1,0 +1,20 @@
+### SYNTHETIC CONTRACT — Mizan Stage 2 test corpus — NOT A REAL AGREEMENT ###
+Contract type: Ijara Muntahia Bittamleek (lease-to-own)
+Language: English
+Seeded defect: I6 — sale and lease fused (automatic ownership transfer baked into the lease)
+
+Parties:
+- Institution (Lessor): Demo Islamic Bank K.S.C.
+- Customer (Lessee): Demo Customer
+
+Leased asset: One specified machine (a non-consumable asset) of permissible use, identified by serial SER-2003.
+
+Clause 1 (Ownership): The lessor owns the asset and acquires it before leasing.
+
+Clause 2 (Rent and term): The rent is defined at KWD 300 monthly and the lease term is defined as five years; the lessor may not unilaterally increase the rent.
+
+Clause 3 (Ownership risk): The lessor bears basic maintenance, takaful insurance, and total-loss risk; the lessee bears only operational maintenance.
+
+Clause 4 (Delivery): Rent accrues only after delivery of the asset and while it remains usable.
+
+Clause 5 (Transfer): Sale and lease are bound into one contract, with automatic ownership transfer baked into the lease at term end; there is no separate transfer instrument.

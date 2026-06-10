@@ -1,0 +1,12 @@
+{
+  "corpus": "Mizan Stage 2 synthetic corpus — Ijara + scope/out-of-scope",
+  "label": "Every file is SYNTHETIC and carries the SYNTHETIC marker; corpus_loader asserts it at load.",
+  "contracts": [
+    { "file": "contract_ijara_clean_ar.txt", "language": "ar", "type": "ijara (IMB)", "seeded_defect": null, "expected": "I1-I6 satisfied; I7 not engaged (indeterminate); IMB -> D1 wa'd deferral" },
+    { "file": "contract_ijara_i4_riskshift_ar.txt", "language": "ar", "type": "ijara (IMB)", "seeded_defect": "I4", "expected": "I4 violated (ownership risk shifted to lessee — the headline defect); others satisfied; D1 deferral" },
+    { "file": "contract_ijara_i6_fusion_en.txt", "language": "en", "type": "ijara (IMB)", "seeded_defect": "I6", "expected": "I6 violated (sale/lease fused, automatic transfer); others satisfied; D1 deferral" },
+    { "file": "contract_ijara_i5_rentbefore_en.txt", "language": "en", "type": "ijara (operating)", "seeded_defect": "I5", "expected": "I5 violated (rent before delivery); others satisfied; not IMB (I6 not engaged)" },
+    { "file": "contract_tawarruq_en.txt", "language": "en", "type": "tawarruq", "seeded_defect": null, "expected": "recognized-not-covered: single OUT-OF-SCOPE finding routed to D3 with positions; NO rule applied" },
+    { "file": "contract_mixed_oos_en.txt", "language": "en", "type": "murabaha + mudaraba", "seeded_defect": null, "expected": "Murabaha part checked (R1-R6 + R6 deferral); Mudaraba part flagged OUT-OF-SCOPE; nothing fabricated" }
+  ]
+}

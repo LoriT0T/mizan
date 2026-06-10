@@ -19,6 +19,12 @@
       "change": "Principal calibration applied: all items on the Arabic review list ACCEPTED as-is. Lifecycle status flipped to 'locked' for seed G-001..G-012 (from locked-pending-calibration) and for growth-protocol G-013 (from provisional). Schema migration (registry-wide): the provenance axis was relabelled from 'established_or_provisional' (established|provisional) to 'grounding_basis' (grounded|unverified) and the container unified to 'provenance', so the rule-status word 'established' can no longer be confused with a sourcing label. G-013 grounding_basis set to 'unverified' (tertiary web glossaries). No entries added or removed; no rendering changed.",
       "added": [],
       "relabelled": ["G-001","G-002","G-003","G-004","G-005","G-006","G-007","G-008","G-009","G-010","G-011","G-012","G-013"]
+    },
+    {
+      "version": "1.3.0-stage2",
+      "date": "2026-06-10",
+      "change": "Stage 2 growth protocol: encountered Ijara terms of art while grounding the Ijara rule-set (Input #3); researched against the grounding report; appended G-014..G-022 with status provisional, grounding_basis grounded; routed to the Stage-2 consolidated Arabic review list. No collision with any locked rendering.",
+      "added": ["G-014","G-015","G-016","G-017","G-018","G-019","G-020","G-021","G-022"]
     }
   ]
 }

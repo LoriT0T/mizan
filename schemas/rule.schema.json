@@ -6,8 +6,8 @@
   "required": ["id", "scope", "status", "arabic_review_status", "title_ar", "title_en", "rule_ar", "rule_en", "satisfied_by", "violated_by", "sources", "provenance"],
   "additionalProperties": false,
   "properties": {
-    "id": { "type": "string", "pattern": "^R[1-9][0-9]*$" },
-    "scope": { "type": "string", "enum": ["murabaha"] },
+    "id": { "type": "string", "pattern": "^[RI][1-9][0-9]*$" },
+    "scope": { "type": "string", "enum": ["murabaha", "ijara"] },
     "status": { "type": "string", "enum": ["established", "contested"] },
     "arabic_review_status": { "type": "string", "enum": ["awaiting-expert-judgment", "locked"] },
     "title_ar": { "type": "string", "minLength": 1 },

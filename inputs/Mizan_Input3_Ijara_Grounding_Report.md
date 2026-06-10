@@ -1,0 +1,88 @@
+# Domain-Grounding Research: Ijara (Islamic Leasing) — Mizan Input #3
+
+> **Provenance note.** This is the Ijara grounding report referenced as Input #3 in the Mizan Stage 2 instructions. It was produced by a research pass over public authoritative sources (AAOIFI Shari'ah Standard No. 9 as transposed in the State Bank of Pakistan Compendium and the publicly circulated SS-9 text; Mufti Taqi Usmani's "Rules of Leasing"; academic compliance studies in the ISRA/MDPI/Emerald literature; and Islamic-finance practitioner explainers). It maintains an established-vs-provisional discipline; preserve those labels when encoding. The full AAOIFI SS 9 text is copyrighted — reference standard number, clause numbers, topic coverage, and widely-cited public principles only; never reproduce proprietary clause text. This report is scoped to feed the Mizan rule registry (the Ijara analogue of the R-rules), not to be a complete treatise.
+
+## TL;DR
+- **Ijara = transfer of usufruct (manfa'ah), not ownership.** The lessor (the bank) buys and *owns* the asset and leases its use for a defined rent over a defined term; the defining Sharia test is that **the lessor must genuinely bear ownership risk for the whole term** — major maintenance, insurance/takaful, and the risk of total loss/destruction. Shifting that risk to the lessee is the single most common defect and turns the lease into a disguised interest-bearing finance lease.
+- **The seven encodable conditions** (the Ijara analogue of Murabaha's R1–R6) are: (I1) usufruct-yielding, non-consumable, precisely identified, permissible-use asset; (I2) rent and term defined at contract, no unilateral post-contract rent increase; (I3) lessor owns the asset and the lease is preceded by the lessor's acquisition of the asset/usufruct; (I4) **ownership risk (major maintenance, insurance/takaful, total-loss) stays with the lessor**; lessee bears only use-related/operational costs and damage from misuse/negligence; (I5) rent accrues only after delivery and only while the asset remains usable; (I6) in Ijara Muntahia Bittamleek (lease-to-own), the ownership-transfer mechanism must be a **separate** instrument (promise/gift/sale), not fused into the lease; (I7) in sale-and-leaseback, a genuine interval must separate the sale and the leaseback (anti-'inah).
+- **Anchor authority for Kuwait stays the same hierarchy:** CBK instructions + Higher Committee (binding) → the bank's own SSB fatwas (binding per-bank; synthetic here) → AAOIFI SS 9 (persuasive reference). Ijara is heavily used in Kuwaiti retail finance (home, vehicle, equipment), typically in the Ijara Muntahia Bittamleek lease-to-own form.
+
+## Key Findings
+
+1. **Ijara is the second most common Islamic retail financing structure after Murabaha**, and in banking it almost always takes the **Ijara Muntahia Bittamleek (IMB)** form — a lease ending in ownership transfer — used for homes, vehicles and equipment. AAOIFI's Accounting Board itself describes Ijara and IMB as "amongst the most popular Islamic finance transactions," also underlying many sukuk structures.
+
+2. **The doctrinal core is risk, not paperwork.** Because the lessor keeps ownership, the risk-reward maxims (al-ghunm bil-ghurm / al-kharaj bil-daman, established in the Murabaha report) require the lessor to bear ownership risk. The compliance literature is consistent: "all the liabilities and ownership risk shall be borne by lessor; however, the liabilities regarding the use of the property shall be borne by lessee." A lease that pushes major maintenance, total-loss risk, and insurance onto the lessee is the classic non-compliance.
+
+3. **Rent timing is a riba tripwire.** Rent may only accrue once the asset is delivered and usable. Charging rent from the price-payment date (before delivery) "amounts to charging rent on the money given to the customer, which is nothing but interest" (Usmani). Advance rent may be *collected* but must be held on-account and only applied once rent is actually due.
+
+4. **IMB requires structural separation.** The lease and the eventual ownership transfer must be legally distinct; if the lease itself ties sale and lease together so the lessor's ownership responsibilities evaporate, "the structure turns into a disguised credit sale or impermissible hybrid." A unilateral promise (wa'd) to transfer ownership is the accepted mechanism — which connects to the same contested wa'd-bindingness question flagged for Murabaha (defer register D1).
+
+## Details
+
+### PART 1 — Structure & mechanics
+
+**Plain Ijara (operating lease).** The institution owns an asset and grants the customer the right to use it (the usufruct) for a fixed term against fixed rent. At term end the asset returns to the lessor. The lessor bears ownership costs throughout.
+
+**Ijara Muntahia Bittamleek / Ijara wa Iqtina (lease-to-own) — the banking norm.** A lease *plus a separate arrangement* by which ownership passes to the lessee at the end, via one of several mechanisms: gift (hibah), token consideration, sale at a stated price, sale for the remaining amount, or gradual transfer over the term. The lease must remain a genuine lease during the term; the transfer is handled by a separate, lawfully-disclosed mechanism.
+
+**Banking acquisition pattern.** As with Murabaha, the bank often purchases the asset through the customer acting as the bank's purchasing agent, or pays the supplier directly. AAOIFI SS 9 requires that *the lease be preceded by the lessor's acquisition of the asset or its usufruct* — you cannot lease what you do not yet own/control. (Topic at SS 9 clause area on "acquisition of the asset to be leased.")
+
+**Forward Ijara (Ijara mawsufah fi al-dhimmah).** Unlike sale, an Ijara may be contracted for a future date (a lease whose subject is described-in-liability). This is permitted with conditions and is the basis of "forward lease" sukuk; it is an advanced variant, flagged here but not a core registry rule for Stage 2.
+
+### PART 2 — The encodable Sharia conditions (the Ijara rule-set)
+
+Each is stated as a checkable condition with its common failure pattern — the structure the Mizan rule registry should mirror for Ijara, anchored to AAOIFI SS 9 (L3), CBK/Higher Committee (L1), the bank's SSB fatwas (L2, synthetic), and Kuwaiti judicial practice where relevant (LJ).
+
+**I1 — Asset eligibility: usufruct-yielding, non-consumable, identified, permissible use.**
+The leased asset must be a non-consumable that yields usufruct while its corpus survives (property, vehicle, machinery — not money, fuel, food or anything consumed in the using), must be precisely identified, and must be put to a permissible use. AAOIFI SS 9 gives the explicit example that premises may not be leased "for the purpose of an impermissible act by the lessee, such as leasing premises to be used as headquarters by an Institution dealing in interest, or to a shopkeeper for selling or storing prohibited goods."
+- *Violation patterns:* leasing a consumable; an unidentified/under-specified asset (gharar); leasing for a prohibited use (a riba-based business, alcohol storage, etc.).
+
+**I2 — Rent and term defined at contract; no unilateral increase.**
+Both the rental amount and the lease term must be determined at contract formation to avoid gharar. Rent may be a single figure or staged across phases, and in long leases may be benchmarked to an index *provided the formula, review points and limits (caps/floors) are clearly stated at the outset*. What is prohibited and **void** is a unilateral post-contract increase by the lessor.
+- *Violation patterns:* undefined rent or term; a lessor's unilateral right to raise rent; an open/unbounded benchmark with no stated formula or cap. *(Note: benchmarking rent to a conventional rate index is permitted by the dominant practitioner view but is contested by some scholars — see Defer register.)*
+
+**I3 — Lessor owns the asset; lease preceded by acquisition.**
+The lessor must own the asset (or its usufruct) and must have acquired it before leasing it. You cannot lease what you do not own/control.
+- *Violation patterns:* lease executed before the bank acquires the asset; the bank never genuinely takes ownership (paper-only title with the customer bearing everything — overlaps I4).
+
+**I4 — Ownership risk stays with the lessor (THE central test).**
+Because ownership remains with the lessor, the lessor bears all ownership-derived liabilities: **major/structural ("basic") maintenance, insurance/takaful as owner, ownership-linked registration/taxes, and the risk of total loss or destruction not caused by the lessee.** The lessee bears only **operational/usage maintenance** and damage from his own misuse or negligence. If the asset is insured it must be **takaful at the lessor's expense** (the lessor may delegate the lessee to *arrange* it as agent, but the cost is the lessor's). If the asset is destroyed without the lessee's fault, the lessor bears the loss and rent stops.
+- *Violation patterns (the most common real defects):* major/structural maintenance pushed onto the lessee; insurance/takaful cost borne by the lessee; lessee made to bear total-loss/destruction risk; rent continuing after non-negligent destruction. *(Practitioner note: a Shariah-compliant mechanism lets the lessee carry out major maintenance as the lessor's agent and be reimbursed / have it added as a supplementary rent element — the cost still economically rests on the lessor.)*
+
+**I5 — Rent accrues only after delivery and only while usable.**
+The lease period and rent liability begin when the asset is delivered to the lessee (whether or not he begins using it). Rent charged for any period before delivery is impermissible (it is rent on money = interest). Advance rent may be collected but held on-account and applied only once due. If the asset loses the function for which it was leased and cannot be repaired, the lease terminates and no rent is due for the unusable period (absent lessee negligence).
+- *Violation patterns:* rent accruing from the price-payment/contract date rather than delivery; rent claimed for a period the asset was unusable through no fault of the lessee.
+
+**I6 — IMB: ownership-transfer mechanism must be SEPARATE from the lease.**
+In lease-to-own, the transfer of ownership must be effected by an independent instrument — a (typically unilateral) promise to gift or sell, or a separate sale — and must not be fused into the lease contract itself such that the lessor's ownership responsibilities disappear. The lease must be a real lease during the term, with a genuine distinction between rent (for usufruct) and price (for transfer of title).
+- *Violation patterns:* sale and lease bound into one contract so ownership is "in name only"; automatic title transfer baked into the lease; the transfer treated as the substance with the lease as a mere financing wrapper (disguised credit sale).
+
+**I7 — Sale-and-leaseback: a genuine interval is required (anti-'inah).**
+Where the customer sells an asset to the bank and the bank leases it back via IMB, AAOIFI SS 9 (clause 8/5 in the AAOIFI numbering cited by the SBP transposition; rendered 9/5 in some editions) requires that **a reasonable interval of time pass between the sale and the leaseback**, during which the asset or its value may change — to avoid the structure collapsing into 'inah. Academic review finds some Malaysian banks execute both legs instantly, which the literature flags as non-compliant with this clause.
+- *Violation patterns:* instantaneous sale-and-leaseback to the same party with no interval (an 'inah pattern, the Ijara cousin of Murabaha's R4). *(This connects to defer-register D2, the 'inah boundary.)*
+
+### PART 3 — Scholarly disagreement (route to the defer register, never adjudicate)
+
+- **Rate-benchmarking.** Benchmarking rent (especially the variable element of a long IMB) to a conventional interest index is permitted by the dominant practitioner/AAOIFI-tolerated view *if formula and limits are pre-stated*, but criticized by a minority of scholars as importing riba pricing. → surface positions, defer.
+- **The wa'd to transfer ownership (its bindingness).** IMB relies on a promise of sale/gift; whether a unilateral promise is legally binding is the same contested question already in the defer register as **D1** (wa'd bindingness). The "general rules do not recognize the unilateral promise as a source of legal obligation" view sits against the contemporary enabling view. → defer (link to D1).
+- **Sale-and-leaseback interval length.** What counts as a sufficient interval under SS 9 8/5 is not sharply fixed and is applied differently across jurisdictions (GCC stricter, some Malaysian practice instant). → defer/flag.
+- **AITAB (al-ijarah thumma al-bay') maintenance/takaful practice.** Malaysian AITAB practice often shifts maintenance and takaful onto the lessee, which the fiqh literature flags as non-compliant — a jurisdictional divergence, not a settled rule. → flag as jurisdictional.
+
+### PART 4 — AAOIFI structure (reference only; text is copyrighted)
+
+Ijara is **AAOIFI Shari'ah Standard No. 9, "Ijarah and Ijarah Muntahia Bittamleek"** (issued by the AAOIFI Shari'ah Board at its meeting of 11–16 May 2002, Madinah). Scope: asset Ijara (operating lease and IMB), whether the institution is lessor or lessee. It **excludes** the hire of persons/labour contracts and Sukuk al-Ijara (covered by the Investment Sukuk standard). Publicly documented clause-topic areas include: the **promise to lease** (and the permissible security deposit limited to actual damage), **acquisition of the asset to be leased**, **concluding the Ijara contract and the rent/rentals**, **subject matter and guarantees**, **the parties' respective liabilities** (the ownership-risk-to-lessor / use-liabilities-to-lessee split), **changes to the Ijara**, and the **modalities of ownership transfer in IMB** (the separate gift/sale/promise mechanisms). The cited clause references for specific rules (e.g. 5/1/8 insurance-as-takaful-at-lessor's-expense; the 8/5 or 9/5 sale-and-leaseback interval; the 4/1/3 no-rent-if-not-delivered area) should be confirmed against the purchased AAOIFI text before any production use — clause *numbering* varies across editions and transpositions. The Ijara accounting standard is **FAS 8** (being superseded by a revised AAOIFI Ijara accounting standard) — accounting, not Sharia, and out of scope for the rule registry.
+
+## Recommendations (for the registry build)
+
+- **Encode I1–I7 as the Ijara rule-set**, mirroring the Murabaha entry shape (canonical Arabic composed natively + English parallel; layer L1/L2/L3/LJ + citation; satisfied-by / violated-by patterns; status established|contested; provenance grounding_basis). I1–I7 are **established**; the rate-benchmarking question and the wa'd-bindingness question are **contested** and belong in the defer register, not as hard rules.
+- **Make I4 (ownership-risk-stays-with-lessor) the headline Ijara check**, with the most detailed violated-by patterns — it is the central test and the most common real defect, the Ijara analogue of Murabaha R1.
+- **Reuse existing defer entries where they connect:** wa'd bindingness (D1) covers the IMB ownership-transfer promise; the 'inah boundary (D2) covers I7's sale-and-leaseback interval. Add new defer entries only for genuinely new contested matters (rate-benchmarking; AITAB maintenance/takaful jurisdictional divergence).
+- **Glossary additions likely needed** (via the growth protocol, provisional → calibration): الإجارة (ijara), المنفعة (usufruct/manfa'ah), الإجارة المنتهية بالتمليك (Ijara Muntahia Bittamleek), العين المؤجَّرة (the leased asset), الأجرة (rent), الصيانة الأساسية/التشغيلية (basic/operational maintenance), التكافل (takaful), بيع ثم استئجار / البيع مع الاستئجار (sale-and-leaseback). Compose canonical Arabic natively; route to the consolidated review list for calibration.
+
+## Caveats
+
+- **Established vs provisional:** the seven conditions I1–I7 and the lessor-bears-ownership-risk principle are well-established and convergent across AAOIFI SS 9, Usmani's leasing rules, and the compliance literature. Specific **clause numbers** (5/1/8, 8/5 vs 9/5, 4/1/3) are as cited by transpositions and academic papers and should be confirmed against the purchased AAOIFI SS 9 text — numbering differs across editions. The "basic vs operational" maintenance line is principle-clear but its exact application is judgment-dependent.
+- **Copyright boundary:** AAOIFI SS 9 full text is copyrighted; this report uses clause-topic structure and widely-cited principles from public transpositions (SBP Compendium), the publicly circulated SS-9 PDF, Usmani's published rules, and academic analysis — not reproduced proprietary clause text. The registry must cite by standard/clause number and principle, never reproduce text.
+- **Contested matters must defer, not resolve:** rate-benchmarking, wa'd bindingness (D1), the sale-and-leaseback interval, and AITAB maintenance/takaful practice are genuine live disagreements / jurisdictional divergences. Mizan surfaces positions and routes to the SSB.
+- **Religious dimension unchanged:** Mizan flags, identifies, and cites for the Ijara rules exactly as for Murabaha; it never rules. The opinion field stays empty; the not-a-fatwa watermark stays on every memo.
+- **Jurisdiction:** this report's rules are framed for Kuwait's hierarchy (CBK/Higher Committee binding, AAOIFI persuasive). GCC practice (stricter on the 'inah interval, lessor-borne takaful) differs from some Malaysian/AITAB practice; where the test contracts are Kuwaiti/GCC, the GCC reading governs.

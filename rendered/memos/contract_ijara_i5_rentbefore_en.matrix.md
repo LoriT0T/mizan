@@ -1,0 +1,16 @@
+# مصفوفة عدم المطابقة — Non-Compliance Matrix
+> **أداة بحث وصياغة — ليست فتوى. للعرض على عالم شرعي مؤهّل.**
+> **Research and drafting aid — not a fatwa. For review by a qualified Sharia scholar.**
+
+> تصنيفُ الخطورة (طفيف/متوسّط/جسيم) اصطلاحٌ قابلٌ للضبط (مخطَّطٌ أكاديميٌّ من دراسة ISRA)، وليس سُلَّماً مُلزِماً من AAOIFI. المسائلُ الخلافيةُ لا تُصنَّف.
+> The severity tiers (minor/moderate/major) are a CONFIGURABLE convention (an ISRA academic scheme), NOT a binding AAOIFI scale. Contested matters are not graded.
+
+| القاعدة Rule | الحالة Status | البند (نصٌّ حرفيّ) Clause (verbatim) | القاعدة المخالَفة + الطبقة Rule + layer | الخطورة Severity | نوع الخطر Risk | المعالجة الموصى بها Remediation | الحالة Status | الجهة Owner |
+|---|---|---|---|---|---|---|---|---|
+| I5 | violated | Seeded defect: I5 — rent accrues before delivery (rent on money) | استحقاقُ الأجرة بعد التسليم وما دامت المنفعةُ قائمة / Rent accrues only after delivery and only while the asset is usable<br>[L1] CBK Circular 2/IBS/369/2016<br>[L3] AAOIFI Sharia Standard No. 9 (Ijarah) — rentals; no rent if not delivered<br>[L2] SYNTHETIC SSB fatwa SSB-SYNTH-IJR-005 | جسيم / major | تنظيميّ/ماليّ / regulatory/financial | ربطُ استحقاق الأجرة بالتسليم لا بتاريخ العقد؛ وإسقاطُها عند تعطّل المنفعة بلا تعدٍّ؛ تصحيحُ البند. <br> Tie rent accrual to delivery, not the contract date; abate it on non-negligent loss of use; rectify the clause. | open | ____ |
+| I6 | indeterminate | whether the transfer instrument is separate from the lease | الإجارة المنتهية بالتمليك: فصلُ أداة نقل الملكية عن عقد الإجارة / IMB: the ownership-transfer mechanism must be SEPARATE from the lease<br>[L1] CBK Circular 2/IBS/369/2016<br>[L3] AAOIFI Sharia Standard No. 9 (Ijarah Muntahia Bittamleek) — modalities of ownership transfer<br>[L2] SYNTHETIC SSB fatwa SSB-SYNTH-IJR-006 | — (—) | تنظيميّ / regulatory | استكمالُ الواقعة الناقصة ثم إعادةُ الفحص؛ مراجعةٌ بشرية. <br> Obtain the missing fact then re-check; human review. | open | ____ |
+| I7 | indeterminate | no sale-and-leaseback present; I7 engages only for sale-and-leaseback | البيع ثم الاستئجار: اشتراطُ فاصلٍ زمنيٍّ معتبر (منعُ العِينة) / Sale-and-leaseback: a genuine interval is required (anti-inah)<br>[L1] GCC stricter reading of the inah interval; CBK Circular 2/IBS/369/2016 governance frame<br>[L3] AAOIFI Sharia Standard No. 9 (Ijarah) — sale-and-leaseback interval (clause 8/5 per SBP transposition; 9/5 in some editions)<br>[L2] SYNTHETIC SSB fatwa SSB-SYNTH-IJR-007 | — (—) | تنظيميّ / regulatory | استكمالُ الواقعة الناقصة ثم إعادةُ الفحص؛ مراجعةٌ بشرية. <br> Obtain the missing fact then re-check; human review. | open | ____ |
+| I6 | deferral | — | الإجارة المنتهية بالتمليك: فصلُ أداة نقل الملكية عن عقد الإجارة / IMB: the ownership-transfer mechanism must be SEPARATE from the lease<br>[L1] CBK Circular 2/IBS/369/2016<br>[L3] AAOIFI Sharia Standard No. 9 (Ijarah Muntahia Bittamleek) — modalities of ownership transfer<br>[L2] SYNTHETIC SSB fatwa SSB-SYNTH-IJR-006 | — (لا تُصنَّف / not graded) | تنظيميّ / regulatory | الإحالةُ إلى الهيئة الشرعية للبتّ (مسألةٌ خلافية). <br> Escalation to the SSB for determination (contested matter). | open | ____ |
+
+> **أداة بحث وصياغة — ليست فتوى. للعرض على عالم شرعي مؤهّل.**
+> **Research and drafting aid — not a fatwa. For review by a qualified Sharia scholar.**

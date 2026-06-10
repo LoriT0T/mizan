@@ -66,15 +66,22 @@ def _print_findings(findings):
             print(f"          routing: {f['routing_en']}")
 
 
+def _corpus_paths():
+    paths = []
+    for d in (CORPUS, os.path.join(CORPUS, "stage2")):
+        if os.path.isdir(d):
+            paths += [os.path.join(d, fn) for fn in os.listdir(d) if fn.endswith(".txt")]
+    return sorted(paths, key=os.path.basename)
+
+
 def run_all():
     print("=" * 78)
     print(BANNER)
     print("=" * 78)
-    files = sorted(fn for fn in os.listdir(CORPUS) if fn.endswith(".txt"))
     rules, defer, glossary = orchestrator.load_registry()
-    for fn in files:
-        res = orchestrator.run_contract(os.path.join(CORPUS, fn), rules, defer, glossary)
-        print(f"\n### {fn}  [{res['seam_mode']}]")
+    for path in _corpus_paths():
+        res = orchestrator.run_contract(path, rules, defer, glossary)
+        print(f"\n### {os.path.basename(path)}  [{res['seam_mode']}] · type={res.get('primary_type')} covered={res.get('covered_types')}")
         _print_structure(res["structure"])
         print(f"    findings (guard {res['guard']}):")
         _print_findings(res["findings"])
@@ -83,7 +90,9 @@ def run_all():
 
 
 def run_one(fn):
-    res = orchestrator.run_contract(os.path.join(CORPUS, fn))
+    path = next((p for d in (CORPUS, os.path.join(CORPUS, "stage2"))
+                 for p in [os.path.join(d, fn)] if os.path.exists(p)), os.path.join(CORPUS, fn))
+    res = orchestrator.run_contract(path)
     print(json.dumps(res, ensure_ascii=False, indent=2))
 
 
