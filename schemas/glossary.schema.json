@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Mizan Terminology Glossary entry",
+  "description": "One Islamic-finance term of art. Exactly ONE canonical Arabic form and ONE canonical English rendering. Seed entries are locked-pending-calibration; growth-protocol entries enter provisional and are routed to the principal's consolidated review list.",
+  "type": "object",
+  "required": ["term_id", "canonical_ar", "canonical_en", "definition_ar", "definition_en", "status", "origin", "grounding"],
+  "additionalProperties": false,
+  "properties": {
+    "term_id": { "type": "string", "pattern": "^G-[0-9]{3}$" },
+    "canonical_ar": { "type": "string", "minLength": 1 },
+    "canonical_en": { "type": "string", "minLength": 1 },
+    "definition_ar": { "type": "string", "minLength": 1 },
+    "definition_en": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["locked-pending-calibration", "provisional", "locked"] },
+    "origin": { "type": "string", "enum": ["seed", "growth-protocol"] },
+    "grounding": {
+      "type": "object", "required": ["sources", "established_or_provisional"], "additionalProperties": false,
+      "properties": {
+        "sources": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1, "maxLength": 240 } },
+        "established_or_provisional": { "type": "string", "enum": ["established", "provisional"] }
+      }
+    },
+    "review_routing": { "type": "string" },
+    "scope_note": { "type": "string" }
+  }
+}

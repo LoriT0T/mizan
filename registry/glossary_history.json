@@ -1,0 +1,17 @@
+{
+  "history": "Mizan Terminology Glossary — append-only version history. Entries are never deleted or rewritten in place; each change appends a new version record.",
+  "versions": [
+    {
+      "version": "1.0.0-stage1a",
+      "date": "2026-06-10",
+      "change": "Seed established at birth: 12 core Murabaha terms of art (G-001..G-012), each status locked-pending-calibration, grounded in Input #2.",
+      "added": ["G-001","G-002","G-003","G-004","G-005","G-006","G-007","G-008","G-009","G-010","G-011","G-012"]
+    },
+    {
+      "version": "1.1.0-stage1a",
+      "date": "2026-06-10",
+      "change": "Growth protocol demonstration: encountered unseeded term بيع التولية; researched on demand against public authoritative sources; appended G-013 with status provisional; routed to the consolidated Arabic review list. No collision with any locked rendering.",
+      "added": ["G-013"]
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "registry": "Mizan Murabaha Rule Registry",
+  "version": "1.0.0-stage1a",
+  "scope": "murabaha",
+  "language_authority": "Arabic is the canonical side; English is the parallel rendering. For Sharia pronouncements and onshore Kuwaiti instruments the Arabic prevails (Input #2, Part 3).",
+  "source_layers": {
+    "L1": "CBK instructions / Higher Committee of Shari'ah Supervision — binding in Kuwait. NOTE: CBK mandates the governance function and binds the bank to its SSB's fatwas and to external Sharia audit; it does not itself adjudicate the Sharia conformity of a given financing (Input #2, Part 3). Where a Kuwaiti court requirement is the binding anchor (e.g. proof of prior acquisition), it is recorded here.",
+    "L2": "The institution's own SSB fatwas — binding per-bank. In this demonstration the L2 corpus is SYNTHETIC and is labelled synthetic on every entry; it stands in for a real bank's fatwa history and must never be read as an actual ruling.",
+    "L3": "AAOIFI Sharia Standards — persuasive reference in Kuwait (used by reference/influence, not a full legal mandate, unlike Bahrain/Qatar/Oman/UAE). Cited by standard number, topic, and publicly-documented principle ONLY; proprietary clause text is never reproduced."
+  },
+  "copyright_boundary": "The full AAOIFI Sharia Standards text is copyrighted and sold by AAOIFI. This registry references structure, standard numbers, topic coverage, and widely-cited public principles only. Clause-level verification against purchased AAOIFI texts is a required step before any real-world use.",
+  "rules": [
+    {
+      "id": "R1",
+      "scope": "murabaha",
+      "status": "established",
+      "arabic_review_status": "awaiting-expert-judgment",
+      "title_ar": "التملّك والقبض قبل إعادة البيع",
+      "title_en": "Ownership and possession before resale",
+      "rule_ar": "يجب أن تتملّك المؤسسةُ الأصلَ تملّكاً حقيقياً وتقبضه قبضاً حقيقياً أو حكمياً، فتتحمّل تبعةَ هلاكه ومخاطرَ ملكيته ولو يسيراً من الزمن، قبل بيعه للعميل؛ فلا يصحّ أن تبيع المؤسسةُ ما لم تملكه وتقبضه.",
+      "rule_en": "The institution must take genuine ownership of the asset and take actual or constructive possession of it — thereby bearing the risk of its loss and the risks of its ownership, even if only for a short time — before selling it to the customer; the institution may not sell what it has not owned and possessed.",
+      "satisfied_by": [
+        { "ar": "شراء المؤسسة الأصلَ من المورّد وقيدُه في ملكها وتحمّلها تبعةَ الهلاك قبل عقد البيع مع العميل.", "en": "The institution buys the asset from the supplier, records it in its ownership, and bears the risk of loss before contracting the sale with the customer." },
+        { "ar": "ثبوت القبض الحقيقي (التسلّم) أو الحكمي (التمكين والتخلية ونقل التبعة) قبل إعادة البيع.", "en": "Actual possession (physical receipt) or constructive possession (enablement/clearing of the asset and transfer of risk) is established before resale." }
+      ],
+      "violated_by": [
+        { "ar": "أن يدفع المصرفُ الثمنَ للمورّد نيابةً عن العميل بينما يتصرّف العميل وكيلاً بالشراء، فلا يتحمّل المصرفُ مخاطرَ الملكية أصلاً (وهو أشيع صور الخلل، ويحوّل العمليةَ إلى قرض بفائدة مستتر).", "en": "The bank pays the supplier on the customer's behalf while the customer acts as buying agent, so the bank never bears ownership risk (the single most common defect — converts the transaction into a disguised interest loan)." },
+        { "ar": "تنفيذ بيع الأصل للعميل قبل أن يقبضه المصرفُ ويملكه (بيع قبل القبض).", "en": "Executing the sale to the customer before the bank takes title and possession (sale before possession / bai' qabl al-qabd)." }
+      ],
+      "sources": [
+        { "layer": "L1", "ref": "Kuwaiti judiciary — Chambers Islamic Finance 2025 (Kuwait)", "principle": "Kuwaiti courts will not endorse artificial Murabaha and require proof the bank actually acquired the asset prior to its resale to the customer.", "synthetic": false },
+        { "layer": "L1", "ref": "CBK Circular 2/IBS/369/2016", "principle": "Governance frame: the SSB inspects all contracts and its fatwas (which encode this condition) are binding on the bank; management is responsible for Sharia compliance.", "synthetic": false },
+        { "layer": "L3", "ref": "AAOIFI Sharia Standard No. 8 (Murabaha); No. 18 (Possession / Qabd)", "principle": "Acquisition-and-possession requirement: the institution must own and possess the asset, bearing ownership risk, before reselling.", "synthetic": false },
+        { "layer": "L2", "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-001", "principle": "Demonstration bank fatwa affirming that no Murabaha sale may precede the bank's documented acquisition and risk-bearing. SYNTHETIC — not a real ruling.", "synthetic": true }
+      ],
+      "provenance": { "input": "Input #2, Part 2 (Murabaha conditions a/b; red flags) + Recommendations Stage 1 check (1)", "established_or_provisional": "established" },
+      "notes": "The doctrinal basis is qabd-before-resale and al-kharaj bil-daman (entitlement to return requires bearing ownership risk)."
+    },
+    {
+      "id": "R2",
+      "scope": "murabaha",
+      "status": "established",
+      "arabic_review_status": "awaiting-expert-judgment",
+      "title_ar": "الإفصاح عن التكلفة والربح وتثبيت الثمن",
+      "title_en": "Disclosure of cost and markup; price fixed",
+      "rule_ar": "يجب الإفصاحُ للعميل عن ثمن التكلفة وهامش الربح إفصاحاً تامّاً، وأن يكون الثمنُ — وهو التكلفة مضافاً إليها الربحُ — وجدولُ الأقساط محدَّداً مثبَّتاً عند العقد، فلا يتغيّر بعد إبرامه.",
+      "rule_en": "The cost price and the profit markup must be fully disclosed to the customer, and the price — cost plus profit — together with the instalment schedule must be determined and fixed at contract, not changing after conclusion.",
+      "satisfied_by": [
+        { "ar": "بيانُ التكلفة الفعلية وهامش الربح صراحةً في العقد، وثباتُ مجموع الثمن وآجال الأقساط حتى السداد.", "en": "The actual cost and the profit markup are stated explicitly in the contract, and the total price and instalment terms remain fixed through to settlement." }
+      ],
+      "violated_by": [
+        { "ar": "إخفاء التكلفة أو الربح، فتؤول العمليةُ إلى مساومة لا مرابحة.", "en": "Concealing the cost or the markup — which turns the transaction into a musawamah, not a Murabaha." },
+        { "ar": "ربطُ الثمن أو الربح بمؤشّر متغيّر بعد العقد أو إعادةُ تسعيره لاحقاً.", "en": "Tying the price or markup to a variable index after contract, or re-pricing it later." }
+      ],
+      "sources": [
+        { "layer": "L1", "ref": "CBK Circular 2/IBS/369/2016", "principle": "Governance frame: the bank is bound by its SSB's fatwa requiring disclosure and price certainty.", "synthetic": false },
+        { "layer": "L3", "ref": "AAOIFI Sharia Standard No. 8 (Murabaha) — conditions of the contract and the price", "principle": "Full disclosure of cost and markup distinguishes Murabaha from musawamah; price and markup are determined and fixed at contract.", "synthetic": false },
+        { "layer": "L2", "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-002", "principle": "Demonstration bank fatwa requiring written disclosure of cost and profit and prohibiting post-contract re-pricing. SYNTHETIC — not a real ruling.", "synthetic": true }
+      ],
+      "provenance": { "input": "Input #2, Part 2 (Murabaha conditions c/d)", "established_or_provisional": "established" },
+      "notes": "Disclosure is the defining feature separating Murabaha (cost-plus, disclosed) from musawamah (cost not disclosed)."
+    },
+    {
+      "id": "R3",
+      "scope": "murabaha",
+      "status": "established",
+      "arabic_review_status": "awaiting-expert-judgment",
+      "title_ar": "وجود الأصل وإباحته",
+      "title_en": "The asset exists and is permissible",
+      "rule_ar": "يجب أن يكون الأصلُ محلَّ المرابحة موجوداً مملوكاً معيَّناً، وأن يكون مالاً متقوَّماً مباحاً شرعاً؛ فلا تصحّ المرابحةُ في محرَّمٍ ولا في معدوم.",
+      "rule_en": "The asset subject to the Murabaha must exist, be owned, and be specified, and must be lawful (halal) property of value; a Murabaha is valid neither in a prohibited thing nor in a non-existent one.",
+      "satisfied_by": [
+        { "ar": "تعيينُ أصلٍ قائمٍ مباحِ المنفعة (كسيّارة أو عقار أو سلعة)، يمكن تملّكه وقبضه.", "en": "A specified, existing asset of permissible use (e.g. a car, real estate, a commodity) that can be owned and possessed." }
+      ],
+      "violated_by": [
+        { "ar": "تمويلُ سلعةٍ أو نشاطٍ محرَّم (كالخمر أو لحم الخنزير أو الخدمات المالية الربوية).", "en": "Financing a prohibited good or activity (e.g. alcohol, pork, conventional interest-based financial services)." },
+        { "ar": "استعمالُ المرابحة لحاجات نقدية بحتة (رواتب، فواتير، سيولة عامّة) دون شراء أصلٍ حقيقي.", "en": "Using Murabaha for pure cash needs (salaries, utility bills, general liquidity) with no real underlying asset purchase." }
+      ],
+      "sources": [
+        { "layer": "L1", "ref": "CBK Circular 2/IBS/369/2016", "principle": "Governance frame: the bank is bound by its SSB's fatwa restricting Murabaha to existing, permissible assets.", "synthetic": false },
+        { "layer": "L3", "ref": "AAOIFI Sharia Standard No. 8 (Murabaha)", "principle": "The asset must exist and be permissible (halal) to be a valid subject of Murabaha.", "synthetic": false },
+        { "layer": "L2", "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-003", "principle": "Demonstration bank fatwa confirming the asset must be existing, identified and Sharia-permissible. SYNTHETIC — not a real ruling.", "synthetic": true }
+      ],
+      "provenance": { "input": "Input #2, Part 2 (Murabaha condition a; red flag 'pure cash needs')", "established_or_provisional": "established" },
+      "notes": "Roots in the prohibition of haram subject matter and the bar on selling the non-existent (gharar)."
+    },
+    {
+      "id": "R4",
+      "scope": "murabaha",
+      "status": "established",
+      "arabic_review_status": "awaiting-expert-judgment",
+      "title_ar": "ألّا يكون الأصلُ مملوكاً للعميل أصلاً (منع بيع العِينة)",
+      "title_en": "The asset is not already the customer's (bar on bai' al-inah)",
+      "rule_ar": "يجب ألّا يكون الأصلُ محلَّ المرابحة مملوكاً للعميل قبل العقد ولا عائداً إليه بإعادة شرائه منه؛ فإن بيعَ الأصلِ ثمّ إعادةَ شرائه من العميل يقع في بيع العِينة الممنوع في دول الخليج.",
+      "rule_en": "The asset must not be owned by the customer before the contract, nor return to him by being bought back from him; selling the asset and then repurchasing it from the customer falls into bai' al-inah, which is prohibited across the GCC.",
+      "satisfied_by": [
+        { "ar": "أن يكون مصدرُ الأصل طرفاً ثالثاً (المورّد) لا العميلَ نفسه، وألّا يعود الأصلُ إلى بائعه الأصلي باتفاق مسبق.", "en": "The asset's source is a third party (the supplier), not the customer, and the asset does not return to its original seller by prior arrangement." }
+      ],
+      "violated_by": [
+        { "ar": "شراءُ المصرف الأصلَ من العميل ثمّ إعادةُ بيعه له بثمنٍ مؤجّلٍ أعلى (بيع العِينة).", "en": "The bank buys the asset from the customer then resells it back to him at a higher deferred price (bai' al-inah / sale-and-buyback)." }
+      ],
+      "sources": [
+        { "layer": "L1", "ref": "GCC prohibition of bai' al-inah; CBK Circular 2/IBS/369/2016 governance frame", "principle": "bai' al-inah is widely prohibited across the GCC; the bank is bound by its SSB's fatwa rejecting it.", "synthetic": false },
+        { "layer": "L3", "ref": "AAOIFI Sharia Standard No. 8 (Murabaha)", "principle": "The asset must not already belong to the customer — otherwise the structure collapses into prohibited bai' al-inah.", "synthetic": false },
+        { "layer": "L2", "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-004", "principle": "Demonstration bank fatwa prohibiting purchase-then-resale to the same customer. SYNTHETIC — not a real ruling.", "synthetic": true }
+      ],
+      "provenance": { "input": "Input #2, Part 2 (Murabaha condition e; red flag 'customer's own property')", "established_or_provisional": "established" },
+      "notes": "The boundary between an acceptable structure and bai' al-inah has genuine ambiguities — registered in the defer register (see defer_ref).",
+      "defer_ref": "D2"
+    },
+    {
+      "id": "R5",
+      "scope": "murabaha",
+      "status": "established",
+      "arabic_review_status": "awaiting-expert-judgment",
+      "title_ar": "غرامةُ التأخّر للخير لا للإيراد، ومنعُ زيادة الربح",
+      "title_en": "Late-payment charge to charity, never income; no markup increase",
+      "rule_ar": "لا يجوز زيادةُ هامش الربح أو الثمن عند تأخّر العميل في السداد؛ وإن اشتُرطت غرامةٌ على المماطلة فيجب صرفُها في وجوه الخير، ولا تُعَدّ إيراداً للمؤسسة.",
+      "rule_en": "It is not permissible to increase the profit markup or the price upon the customer's late payment; and if a penalty for delay is stipulated, it must be disbursed to charitable causes and must not be counted as income of the institution.",
+      "satisfied_by": [
+        { "ar": "ثباتُ الثمن عند التأخّر، وتوجيهُ أيّ غرامةِ مماطلةٍ إلى جهةٍ خيرية موثّقة لا إلى إيراد المصرف.", "en": "The price stays fixed on delay, and any late-payment penalty is channelled to a documented charity, not to the bank's income." }
+      ],
+      "violated_by": [
+        { "ar": "إعادةُ تسعير الربح أو زيادتُه عند التأخّر (محاكاةٌ للفائدة المركّبة).", "en": "Re-pricing or increasing the markup on late payment (replicates compounding interest)." },
+        { "ar": "احتجازُ غرامة التأخّر إيراداً للمصرف بدل صرفها في الخير.", "en": "Retaining the late-payment penalty as bank income instead of disbursing it to charity." }
+      ],
+      "sources": [
+        { "layer": "L1", "ref": "CBK Circular 2/IBS/369/2016", "principle": "Governance frame: the bank is bound by its SSB's fatwa on late-payment treatment; external Sharia audit tests it.", "synthetic": false },
+        { "layer": "L3", "ref": "AAOIFI Sharia Standard No. 8 (Murabaha) — default / late-payment treatment", "principle": "The markup may not increase on default; any late-payment charge is directed to charity, not income.", "synthetic": false },
+        { "layer": "L2", "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-005", "principle": "Demonstration bank fatwa, mirroring widely-reported GCC SSB practice, directing late-payment penalties to charity and barring markup increase. SYNTHETIC — not a real ruling.", "synthetic": true }
+      ],
+      "provenance": { "input": "Input #2, Part 2 (red flag 'markup re-priced on late payment'); Part 4 KFH late-penalty rectification example", "established_or_provisional": "established" },
+      "notes": "Penalty-to-charity is the standard remedy that prevents a late charge from becoming riba."
+    },
+    {
+      "id": "R6",
+      "scope": "murabaha",
+      "status": "contested",
+      "arabic_review_status": "awaiting-expert-judgment",
+      "title_ar": "بنيةُ الوعد (الوعد بالشراء) في المرابحة للآمر بالشراء — مسألة خلافية",
+      "title_en": "The promise (wa'd) structure in MPO — contested",
+      "rule_ar": "في المرابحة للآمر بالشراء، مسألةُ إلزام الوعد بالشراء محلُّ خلافٍ معتبر بين الجهات العلمية: فبينما يُمنع الوعدُ الثنائي الملزم (إذ يؤول إلى عقدٍ مؤجَّلِ العوضين)، يجوز عند بعضهم إلزامُ الوعد الأحادي. لا يبتّ النظامُ في هذه المسألة، بل يَعرض المواقفَ المنسوبةَ إلى مصادرها ويحيلها إلى الهيئة الشرعية للبتّ.",
+      "rule_en": "In Murabaha to the Purchase Orderer, the bindingness of the promise to purchase is a matter of considerable disagreement among scholarly bodies: while a mutually binding (bilateral) promise is impermissible (it amounts to a contract with both counter-values deferred), some hold a unilateral promise may be made binding. The system does not adjudicate this; it presents the positions attributed to their sources and refers the matter to the SSB.",
+      "satisfied_by": [
+        { "ar": "عرضُ موقفَي الجهتين (هيئة المحاسبة والمراجعة AAOIFI، ومجمع الفقه الإسلامي الدولي) منسوبَين إلى مصدرهما، وإحالةُ تحديد حكم الإلزام إلى الهيئة الشرعية للمصرف.", "en": "Presenting both bodies' positions (AAOIFI and the OIC International Islamic Fiqh Academy) attributed to source, and referring the determination of bindingness to the bank's SSB." }
+      ],
+      "violated_by": [
+        { "ar": "أن يبتّ النظامُ في إلزام الوعد من تلقاء نفسه، أو أن يُعامَل الوعدُ الثنائي الملزم وكأنه البيعُ نفسه فتُلغى نافذةُ تحمّل المصرف لمخاطر الملكية.", "en": "The system deciding the bindingness of the promise on its own, or treating a bilateral binding promise as the sale itself — which removes the bank's ownership-risk window." }
+      ],
+      "sources": [
+        { "layer": "L3", "ref": "AAOIFI Sharia Standard No. 8 (Murabaha) — procedures preceding the contract (the promise and its bindingness)", "principle": "The preliminary arrangement must not include a mutually binding bilateral promise; a unilateral promise may be made binding.", "synthetic": false },
+        { "layer": "L3", "ref": "OIC International Islamic Fiqh Academy — resolutions on the promise (wa'd) in Murabaha to the Purchase Orderer", "principle": "A promise is morally binding, and legally binding where it is conditional and the promisee has incurred expense.", "synthetic": false },
+        { "layer": "L2", "ref": "SYNTHETIC SSB fatwa SSB-SYNTH-MUR-006", "principle": "Demonstration bank fatwa electing one position on wa'd bindingness as a configurable, SSB-determined parameter. SYNTHETIC — not a real ruling.", "synthetic": true }
+      ],
+      "provenance": { "input": "Input #2, Part 2 (Murabaha 'Scholarly disagreement'); Recommendations Stage 1 check (6) 'flag, don't adjudicate'", "established_or_provisional": "established" },
+      "notes": "Status: contested. Bindingness is a configurable, SSB-determined parameter — never adjudicated by the tool. Cross-listed in the defer register.",
+      "defer_ref": "D1"
+    }
+  ]
+}

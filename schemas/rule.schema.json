@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Mizan Rule Registry entry",
+  "description": "One Murabaha-scope rule. Bilingual-complete; layered + cited; status established|contested. Citations reference standards by number/topic/principle ONLY — never reproduced clause text.",
+  "type": "object",
+  "required": ["id", "scope", "status", "arabic_review_status", "title_ar", "title_en", "rule_ar", "rule_en", "satisfied_by", "violated_by", "sources", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^R[1-9][0-9]*$" },
+    "scope": { "type": "string", "enum": ["murabaha"] },
+    "status": { "type": "string", "enum": ["established", "contested"] },
+    "arabic_review_status": { "type": "string", "enum": ["awaiting-expert-judgment", "locked"] },
+    "title_ar": { "type": "string", "minLength": 1 },
+    "title_en": { "type": "string", "minLength": 1 },
+    "rule_ar": { "type": "string", "minLength": 1 },
+    "rule_en": { "type": "string", "minLength": 1 },
+    "satisfied_by": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["ar", "en"], "additionalProperties": false,
+        "properties": { "ar": { "type": "string", "minLength": 1 }, "en": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "violated_by": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["ar", "en"], "additionalProperties": false,
+        "properties": { "ar": { "type": "string", "minLength": 1 }, "en": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "sources": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["layer", "ref", "principle", "synthetic"], "additionalProperties": false,
+        "properties": {
+          "layer": { "type": "string", "enum": ["L1", "L2", "L3"] },
+          "ref": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "principle": { "type": "string", "minLength": 1, "maxLength": 320 },
+          "synthetic": { "type": "boolean" }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object", "required": ["input", "established_or_provisional"], "additionalProperties": false,
+      "properties": {
+        "input": { "type": "string", "minLength": 1 },
+        "established_or_provisional": { "type": "string", "enum": ["established", "provisional"] }
+      }
+    },
+    "defer_ref": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

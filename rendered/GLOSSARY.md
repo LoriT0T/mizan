@@ -1,0 +1,95 @@
+# Mizan Terminology Glossary — Rendered View
+_Version 1.1.0-stage1a · DERIVED from `registry/glossary.json` — do not hand-edit._
+
+> **Discipline.** Exactly ONE canonical Arabic form (the canonical side) and ONE canonical English rendering per term. The glossary must never silently contain two renderings of one term. A term is never invented from recall without a fetched, cited grounding. Append-only in history.
+
+## Growth protocol
+
+_The documented procedure every future component invokes on encountering an Islamic-finance term of art NOT in the glossary._
+
+- (a) research the term on demand against public authoritative sources
+- (b) propose a bilingual entry with its grounding cited
+- (c) append with status: provisional — usable immediately, but routed into the principal's consolidated review list at the next checkpoint; his calibration flips it to locked
+- (d) validation: no entry may conflict with a locked (or locked-pending-calibration) rendering; collisions fail closed and surface for human resolution; the glossary is versioned and append-only in history
+
+---
+
+## Entries
+
+### Seed terms (status: locked-pending-calibration)
+
+| ID | Arabic (canonical) | English (canonical) | Status | Grounding |
+|---|---|---|---|---|
+| G-001 | المرابحة | Murabaha | locked-pending-calibration | Input #2, Part 2 (Murabaha) |
+| G-002 | القبض الحقيقي | actual (physical) possession | locked-pending-calibration | Input #2, Part 1 (qabd); Part 2 (Murabaha condition b) |
+| G-003 | القبض الحكمي | constructive possession | locked-pending-calibration | Input #2, Part 2 (Murabaha condition b — actual or constructive possession) |
+| G-004 | الوعد الملزم | binding promise (wa'd mulzim) | locked-pending-calibration | Input #2, Part 2 (Murabaha — wa'd) |
+| G-005 | بيع العينة | bai' al-inah (sale-and-buyback) | locked-pending-calibration | Input #2, Part 2 (Murabaha condition e); Caveats |
+| G-006 | هامش الربح | profit markup | locked-pending-calibration | Input #2, Part 2 (Murabaha conditions c/d) |
+| G-007 | الذمة | dhimmah (liability / debt obligation) | locked-pending-calibration | Input #2, Part 2 (Murabaha — deferred sale price as a debt); Tawarruq (financial obligation) |
+| G-008 | الربا | riba (usury / interest) | locked-pending-calibration | Input #2, Part 1 (Riba) |
+| G-009 | الغرر | gharar (excessive uncertainty) | locked-pending-calibration | Input #2, Part 1 (Gharar) |
+| G-010 | بيع المساومة | musawamah (bargaining sale) | locked-pending-calibration | Input #2, Part 2 (Murabaha condition c — distinguished from musawamah) |
+| G-011 | البيع المؤجّل | deferred-payment sale (bai' muajjal) | locked-pending-calibration | Input #2, Part 2 (Murabaha mechanics — bai' muajjal) |
+| G-012 | التورق المنظّم | organized tawarruq | locked-pending-calibration | Input #2, Part 2 (Tawarruq) |
+
+### Growth-protocol terms
+
+| ID | Arabic (canonical) | English (canonical) | Status | Grounding |
+|---|---|---|---|---|
+| G-013 | بيع التولية | tawliyah (sale at cost) | provisional | Fincyclopedia, 'Tawliyah' (fincyclopedia.net/islamic-finance/t/tawliyah) — par-value/at-cost sale, full cost disclosure, no markup; Ijara CDC glossary, 'Bayu al-amanah' (ijaracdc.com) — three trust sales: murabaha, tawliyah, wadiah; Wikipedia, 'Murabaha' — murabaha as one of three buyu' al-amanah requiring honest cost declaration |
+
+### Definitions
+
+- **G-001 · المرابحة — Murabaha**
+  - AR: بيعٌ بثمنٍ يساوي التكلفةَ مضافاً إليها ربحٌ معلوم، مع الإفصاح التامّ عن التكلفة والربح (أحد بيوع الأمانة).
+  - EN: A sale at a price equal to cost plus a known profit, with full disclosure of cost and markup (one of the trust sales, buyu' al-amanah).
+
+- **G-002 · القبض الحقيقي — actual (physical) possession**
+  - AR: تسلّمُ الأصل تسلّماً مادياً فعلياً.
+  - EN: Physical, actual receipt and taking of the asset.
+
+- **G-003 · القبض الحكمي — constructive possession**
+  - AR: قبضٌ تقديريٌّ بالتمكين والتخلية ونقلِ تبعةِ الهلاك دون تسلّمٍ مادّيٍّ مباشر.
+  - EN: Constructive possession by enablement, clearing of the asset, and transfer of the risk of loss, without direct physical receipt.
+
+- **G-004 · الوعد الملزم — binding promise (wa'd mulzim)**
+  - AR: وعدٌ يُلزَم به الواعدُ بإتمام المعاملة؛ وإلزامُه في المرابحة للآمر بالشراء محلُّ خلاف (انظر D1).
+  - EN: A promise by which the promisor is held bound to complete the transaction; its bindingness in MPO is contested (see D1).
+
+- **G-005 · بيع العينة — bai' al-inah (sale-and-buyback)**
+  - AR: بيعُ سلعةٍ بثمنٍ مؤجّلٍ ثمّ إعادةُ شرائها نقداً بأقلَّ من بائعها الأصلي؛ ممنوعٌ في دول الخليج.
+  - EN: Selling a good on deferred terms then buying it back for cash at a lower price from its original seller; prohibited across the GCC.
+
+- **G-006 · هامش الربح — profit markup**
+  - AR: الزيادةُ المعلومةُ على التكلفة التي يتّفق عليها بوصفها ربحَ المرابحة.
+  - EN: The known increment over cost agreed as the Murabaha profit.
+
+- **G-007 · الذمة — dhimmah (liability / debt obligation)**
+  - AR: المحلُّ المعنويُّ الذي يثبت فيه الدَّينُ والالتزامُ في ذمّة المدين.
+  - EN: The legal locus in which a debt and obligation are established as a charge on the debtor.
+
+- **G-008 · الربا — riba (usury / interest)**
+  - AR: كلُّ زيادةٍ مشروطةٍ مضمونةٍ على قرضٍ أو دَين (ربا النسيئة)، أو تفاضلٍ في مبادلةِ جنسٍ ربويٍّ واحدٍ يداً بيد (ربا الفضل).
+  - EN: Any stipulated, guaranteed increase on a loan or debt (riba al-nasiah), or an unequal hand-to-hand exchange of the same riba-bearing genus (riba al-fadl).
+
+- **G-009 · الغرر — gharar (excessive uncertainty)**
+  - AR: الغموضُ أو المخاطرةُ في أركان العقد؛ يُفسِدُ العقدَ إذا كان فاحشاً، ويُغتفَر إذا كان يسيراً.
+  - EN: Ambiguity or hazard in the essential elements of a contract; it vitiates the contract when excessive (fahish) and is tolerated when minor (yasir).
+
+- **G-010 · بيع المساومة — musawamah (bargaining sale)**
+  - AR: بيعٌ لا يُفصَح فيه عن التكلفة، بخلاف المرابحة.
+  - EN: A sale in which the cost is not disclosed, unlike Murabaha.
+
+- **G-011 · البيع المؤجّل — deferred-payment sale (bai' muajjal)**
+  - AR: بيعٌ يُؤجَّل فيه دفعُ الثمن إلى أجلٍ أو يُقسَّط، وهو الصورةُ المعتادةُ للمرابحة المصرفية.
+  - EN: A sale in which payment of the price is deferred or paid in instalments — the usual form of banking Murabaha.
+
+- **G-012 · التورق المنظّم — organized tawarruq** _(scope: Out-of-Murabaha-scope; seeded as a boundary marker only.)_
+  - AR: تمويلٌ بالسلع للحصول على نقدٍ يرتّب المصرفُ سلسلتَه كاملةً ويتوكّل في طرفيه؛ مسألةٌ خلافية خارج نطاق المرابحة (انظر D3).
+  - EN: Commodity financing to obtain cash where the bank arranges the whole chain and acts as agent on both legs; a contested matter outside Murabaha scope (see D3).
+
+- **G-013 · بيع التولية — tawliyah (sale at cost)** _(scope: Encountered on demand (not seeded). Demonstrates the growth protocol running end-to-end: researched → provisional entry → routed to the consolidated review list.)_
+  - AR: بيعٌ بثمنٍ يساوي تكلفةَ الاقتناء دون زيادةٍ ولا ربح، مع الإفصاح التامّ عن التكلفة؛ أحدُ بيوع الأمانة الثلاثة إلى جانب المرابحة (تكلفة + ربح) والوضيعة (بيعٌ بخسارة).
+  - EN: A sale at a price equal to the acquisition cost with no markup or profit, with full cost disclosure; one of the three trust sales (buyu' al-amanah) alongside Murabaha (cost + profit) and wadiah (sale at a loss).
+  - ↪ _Routed: Consolidated Arabic review list (rendered/ARABIC_REVIEW_LIST.md), provisional section — awaiting the principal's calibration to flip to locked._

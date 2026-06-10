@@ -1,0 +1,117 @@
+{
+  "glossary": "Mizan Terminology Glossary",
+  "version": "1.1.0-stage1a",
+  "discipline": "Exactly ONE canonical Arabic form (the canonical side) and ONE canonical English rendering per term. The glossary must never silently contain two renderings of one term. A term is never invented from recall without a fetched, cited grounding. Append-only in history.",
+  "growth_protocol": {
+    "summary": "The documented procedure every future component invokes on encountering an Islamic-finance term of art NOT in the glossary.",
+    "steps": [
+      "(a) research the term on demand against public authoritative sources",
+      "(b) propose a bilingual entry with its grounding cited",
+      "(c) append with status: provisional — usable immediately, but routed into the principal's consolidated review list at the next checkpoint; his calibration flips it to locked",
+      "(d) validation: no entry may conflict with a locked (or locked-pending-calibration) rendering; collisions fail closed and surface for human resolution; the glossary is versioned and append-only in history"
+    ]
+  },
+  "entries": [
+    {
+      "term_id": "G-001", "canonical_ar": "المرابحة", "canonical_en": "Murabaha",
+      "definition_ar": "بيعٌ بثمنٍ يساوي التكلفةَ مضافاً إليها ربحٌ معلوم، مع الإفصاح التامّ عن التكلفة والربح (أحد بيوع الأمانة).",
+      "definition_en": "A sale at a price equal to cost plus a known profit, with full disclosure of cost and markup (one of the trust sales, buyu' al-amanah).",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 2 (Murabaha)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-002", "canonical_ar": "القبض الحقيقي", "canonical_en": "actual (physical) possession",
+      "definition_ar": "تسلّمُ الأصل تسلّماً مادياً فعلياً.",
+      "definition_en": "Physical, actual receipt and taking of the asset.",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 1 (qabd); Part 2 (Murabaha condition b)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-003", "canonical_ar": "القبض الحكمي", "canonical_en": "constructive possession",
+      "definition_ar": "قبضٌ تقديريٌّ بالتمكين والتخلية ونقلِ تبعةِ الهلاك دون تسلّمٍ مادّيٍّ مباشر.",
+      "definition_en": "Constructive possession by enablement, clearing of the asset, and transfer of the risk of loss, without direct physical receipt.",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 2 (Murabaha condition b — actual or constructive possession)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-004", "canonical_ar": "الوعد الملزم", "canonical_en": "binding promise (wa'd mulzim)",
+      "definition_ar": "وعدٌ يُلزَم به الواعدُ بإتمام المعاملة؛ وإلزامُه في المرابحة للآمر بالشراء محلُّ خلاف (انظر D1).",
+      "definition_en": "A promise by which the promisor is held bound to complete the transaction; its bindingness in MPO is contested (see D1).",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 2 (Murabaha — wa'd)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-005", "canonical_ar": "بيع العينة", "canonical_en": "bai' al-inah (sale-and-buyback)",
+      "definition_ar": "بيعُ سلعةٍ بثمنٍ مؤجّلٍ ثمّ إعادةُ شرائها نقداً بأقلَّ من بائعها الأصلي؛ ممنوعٌ في دول الخليج.",
+      "definition_en": "Selling a good on deferred terms then buying it back for cash at a lower price from its original seller; prohibited across the GCC.",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 2 (Murabaha condition e); Caveats"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-006", "canonical_ar": "هامش الربح", "canonical_en": "profit markup",
+      "definition_ar": "الزيادةُ المعلومةُ على التكلفة التي يتّفق عليها بوصفها ربحَ المرابحة.",
+      "definition_en": "The known increment over cost agreed as the Murabaha profit.",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 2 (Murabaha conditions c/d)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-007", "canonical_ar": "الذمة", "canonical_en": "dhimmah (liability / debt obligation)",
+      "definition_ar": "المحلُّ المعنويُّ الذي يثبت فيه الدَّينُ والالتزامُ في ذمّة المدين.",
+      "definition_en": "The legal locus in which a debt and obligation are established as a charge on the debtor.",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 2 (Murabaha — deferred sale price as a debt); Tawarruq (financial obligation)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-008", "canonical_ar": "الربا", "canonical_en": "riba (usury / interest)",
+      "definition_ar": "كلُّ زيادةٍ مشروطةٍ مضمونةٍ على قرضٍ أو دَين (ربا النسيئة)، أو تفاضلٍ في مبادلةِ جنسٍ ربويٍّ واحدٍ يداً بيد (ربا الفضل).",
+      "definition_en": "Any stipulated, guaranteed increase on a loan or debt (riba al-nasiah), or an unequal hand-to-hand exchange of the same riba-bearing genus (riba al-fadl).",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 1 (Riba)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-009", "canonical_ar": "الغرر", "canonical_en": "gharar (excessive uncertainty)",
+      "definition_ar": "الغموضُ أو المخاطرةُ في أركان العقد؛ يُفسِدُ العقدَ إذا كان فاحشاً، ويُغتفَر إذا كان يسيراً.",
+      "definition_en": "Ambiguity or hazard in the essential elements of a contract; it vitiates the contract when excessive (fahish) and is tolerated when minor (yasir).",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 1 (Gharar)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-010", "canonical_ar": "بيع المساومة", "canonical_en": "musawamah (bargaining sale)",
+      "definition_ar": "بيعٌ لا يُفصَح فيه عن التكلفة، بخلاف المرابحة.",
+      "definition_en": "A sale in which the cost is not disclosed, unlike Murabaha.",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 2 (Murabaha condition c — distinguished from musawamah)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-011", "canonical_ar": "البيع المؤجّل", "canonical_en": "deferred-payment sale (bai' muajjal)",
+      "definition_ar": "بيعٌ يُؤجَّل فيه دفعُ الثمن إلى أجلٍ أو يُقسَّط، وهو الصورةُ المعتادةُ للمرابحة المصرفية.",
+      "definition_en": "A sale in which payment of the price is deferred or paid in instalments — the usual form of banking Murabaha.",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "grounding": { "sources": ["Input #2, Part 2 (Murabaha mechanics — bai' muajjal)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-012", "canonical_ar": "التورق المنظّم", "canonical_en": "organized tawarruq",
+      "definition_ar": "تمويلٌ بالسلع للحصول على نقدٍ يرتّب المصرفُ سلسلتَه كاملةً ويتوكّل في طرفيه؛ مسألةٌ خلافية خارج نطاق المرابحة (انظر D3).",
+      "definition_en": "Commodity financing to obtain cash where the bank arranges the whole chain and acts as agent on both legs; a contested matter outside Murabaha scope (see D3).",
+      "status": "locked-pending-calibration", "origin": "seed",
+      "scope_note": "Out-of-Murabaha-scope; seeded as a boundary marker only.",
+      "grounding": { "sources": ["Input #2, Part 2 (Tawarruq)"], "established_or_provisional": "established" }
+    },
+    {
+      "term_id": "G-013", "canonical_ar": "بيع التولية", "canonical_en": "tawliyah (sale at cost)",
+      "definition_ar": "بيعٌ بثمنٍ يساوي تكلفةَ الاقتناء دون زيادةٍ ولا ربح، مع الإفصاح التامّ عن التكلفة؛ أحدُ بيوع الأمانة الثلاثة إلى جانب المرابحة (تكلفة + ربح) والوضيعة (بيعٌ بخسارة).",
+      "definition_en": "A sale at a price equal to the acquisition cost with no markup or profit, with full cost disclosure; one of the three trust sales (buyu' al-amanah) alongside Murabaha (cost + profit) and wadiah (sale at a loss).",
+      "status": "provisional", "origin": "growth-protocol",
+      "scope_note": "Encountered on demand (not seeded). Demonstrates the growth protocol running end-to-end: researched → provisional entry → routed to the consolidated review list.",
+      "review_routing": "Consolidated Arabic review list (rendered/ARABIC_REVIEW_LIST.md), provisional section — awaiting the principal's calibration to flip to locked.",
+      "grounding": {
+        "sources": [
+          "Fincyclopedia, 'Tawliyah' (fincyclopedia.net/islamic-finance/t/tawliyah) — par-value/at-cost sale, full cost disclosure, no markup",
+          "Ijara CDC glossary, 'Bayu al-amanah' (ijaracdc.com) — three trust sales: murabaha, tawliyah, wadiah",
+          "Wikipedia, 'Murabaha' — murabaha as one of three buyu' al-amanah requiring honest cost declaration"
+        ],
+        "established_or_provisional": "provisional"
+      }
+    }
+  ]
+}
