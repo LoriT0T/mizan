@@ -30,6 +30,14 @@ Durable rules graduated from this project (`MISTAKE_ENGINE.md` format: `L-NNN`, 
 - **Invariant:** compose the Arabic at full capability, label `awaiting-expert-judgment`, and consolidate every item needing the scholar's eye into ONE review list at delivery — never block mid-build, never self-certify as scholar-approved. The principal's acceptance flips `awaiting-expert-judgment`→`locked` (rules) and lifecycle `provisional`/`locked-pending-calibration`→`locked` (glossary).
 - **Guardrail:** `arabic_review_status` field on every rule; the single `rendered/ARABIC_REVIEW_LIST.md`. (`RELIABILITY.md` §2.) Applied 2026-06-10: all items accepted as-is.
 
+**L-010 — The opinion field is a structural lock; the watermark is a generation gate.**
+- **Invariant:** the memo's Sharia opinion/ruling is reserved for a named human SSB member — its setter refuses all content (no code path fills it); every generated memo AND matrix carries the bilingual watermark or generation fails closed; contested matters render as a deferral section (positions + routing), never resolved.
+- **Guardrail:** `memo_generator.OpinionField.set` raises; the orchestrator gate asserts the watermark on both renders; corpus-wide `pipeline/structural_tests.py` proves all three across the whole corpus.
+
+**L-011 — The generation gate scans connective prose only; attributed text is exempt by construction.**
+- **Invariant:** verbatim contract quotes, registry citations, and cited positions are attributed (exempt) and are never placed in the gated `generated_prose` bucket; only generator-/model-authored connective prose is gated for verdict language.
+- **Guardrail:** `memo_generator`/`matrix_generator` keep `connective_*` and `attributed_*` separate; `never_rules_guard.check_prose` runs over connective only. See `FAULTS.md` F-004.
+
 **L-008 — The "never rules" guarantee is an output guard, not a coding convention.**
 - **Invariant:** the checker FLAGS/IDENTIFIES/CITES, never rules; no checker-authored field carries a verdict token, and status is never a permissibility word. Contested matters (R6/D1–D3) emit DEFERRAL only. Untrusted contract content is DATA, never instructions.
 - **Guardrail:** `pipeline/never_rules_guard.py` (N1 status enum, N2 verdict-token scan of authored fields) run on every result by the orchestrator, fail closed; `pipeline/input_rail.py` (injection inert) with the inertness proof in `extractor_test`. See `FAULTS.md` F-003.

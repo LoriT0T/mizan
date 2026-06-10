@@ -76,7 +76,28 @@ python3 pipeline/run_pipeline.py <file>     # one contract, full structured JSON
 
 Honest framing for 1b: findings are a **research/drafting aid** for the SSB. The system does **not** determine Sharia compliance; the corpus is synthetic; nothing here is validated by any scholar or bank; the L2 layer is synthetic; AAOIFI clause text is never reproduced.
 
+## Stage 1c — memo & matrix generator
+Generates, from the checker's findings, a bilingual **Sharia-review memo** and a **non-compliance matrix** — **drafts for a qualified scholar; the opinion is theirs alone, and the system does not and cannot determine Sharia compliance.**
+
+| Unit | Path | Concern |
+|---|---|---|
+| Memo generator | `pipeline/memo_generator.py` | findings → bilingual memo (Arabic-first); opinion field **structurally empty** (setter refuses); watermark every section; deferral section |
+| Matrix generator | `pipeline/matrix_generator.py` | findings → non-compliance matrix; configurable severity convention (deferrals not graded); registry remediation types |
+| Generation gate | `pipeline/never_rules_guard.py` (`check_prose`) | verdict language in generated/model-drafted connective prose fails generation closed (attributed quotes/positions exempt) |
+
+- **Arabic-first:** the Arabic memo is composed natively in MSA; English is the parallel rendered from it (authoritative language author-set, default Arabic).
+- **Opinion is never machine-filled:** `OpinionField.set` raises — a structural lock, not a convention. Reserved for a named human SSB member.
+- **Watermark on every memo + matrix, both languages:** «أداة بحث وصياغة — ليست فتوى…» / «Research and drafting aid — not a fatwa…» — or generation fails closed.
+- **Contested matters** (R6/D1–D3) render as a deferral section: the question, the cited divergent positions, the routing to the SSB — presented, never resolved.
+- **NO-KEY:** the deterministic memo/matrix is complete without a model; the seam only makes connective prose more fluent.
+
+```bash
+python3 pipeline/run_generate.py            # write bilingual memo + matrix for every contract -> rendered/memos/
+python3 pipeline/run_generate.py <file>     # print one contract's memo + matrix
+```
+Rendered artifacts: [rendered/memos/](rendered/memos/) — `*.memo.md` and `*.matrix.md` per corpus contract.
+
 ## Status
-**Stage 1a — complete, calibrated, locked.** **Stage 1b — complete and self-verified.** No memo generator, no web app, no remote, no push. Stages beyond 1b are authorized only after the principal reviews this checkpoint.
+**Stage 1a — complete, calibrated, locked.** **Stage 1b — complete, self-verified.** **Stage 1c — complete, self-verified.** No web app, no site, no remote, no push. Stages beyond 1c are authorized only after the principal reviews this checkpoint. Generated memos are **drafts for a qualified scholar**; the opinion is the scholar's alone; the corpus is synthetic; this is a demonstration, not certified.
 
 _This project inherits the Foundry foundation (read-only at `/Users/musaed/v0/foundry-v0/`). It is local-only; nothing was written outside `/Users/musaed/mizan/`._

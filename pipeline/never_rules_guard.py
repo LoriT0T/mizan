@@ -23,6 +23,20 @@ _VERDICT = re.compile(r"\b(permissible|impermissible|halal|haram|sharia[- ]?comp
 _AUTHORED_FIELDS = ("status", "note", "summary")
 
 
+def check_prose(segments):
+    """Generation gate (Stage 1c): scan GENERATED connective prose for verdict
+    language. `segments` is the list of strings the generator authored or the
+    model drafted — NOT the verbatim contract quotes and NOT the registry
+    citations/positions (those are assembled deterministically and are exempt by
+    construction, never placed in this list). Returns reasons (empty == clean).
+    A non-empty return means: fail the generation closed."""
+    errors = []
+    for i, seg in enumerate(segments):
+        if isinstance(seg, str) and _VERDICT.search(seg):
+            errors.append(f"N3 generated-prose[{i}]: verdict language in generated/model-drafted prose: {seg[:80]!r}")
+    return errors
+
+
 def check(findings):
     errors = []
     for i, f in enumerate(findings):

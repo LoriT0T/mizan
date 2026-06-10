@@ -74,5 +74,19 @@ Stage 1a is closed.
 - New mistakes → F-003 (verdict in note), lessons L-008 (never-rules is a guard), L-009 (Arabic normalise-before-match).
 - Consolidated Arabic review list (1b): `rendered/ARABIC_REVIEW_LIST_1b.md` — no new canonical/glossary Arabic locked; synthetic-contract Arabic offered for optional eyeballing.
 
+## Stage 1b — COMPLETE (see above).
+
+---
+
+# STAGE 1c — memo & matrix generator (COMPLETE, self-verified 2026-06-10)
+- Branch-trigger: prose via model seam → cost-routing (already loaded); no new untrusted-input class. Minimum loaded.
+- Units (compartmentalized; orchestrator wiring-only): memo_generator (Arabic-first; OpinionField structural lock; watermark; deferral section; connective/attributed separation) · matrix_generator (configurable severity, deferrals not graded, registry remediation types, watermark) · never_rules_guard.check_prose (generation gate) · run_generate (CLI).
+- Renders: bilingual memo + matrix for every corpus contract → rendered/memos/ (*.memo.md, *.matrix.md).
+- THREE structural tests bite (corpus-wide): opinion never auto-filled (+ structural setter lock); watermark always present (memo+matrix, both langs); generation gate catches a FakeSeam verdict. Plus memo(7)/matrix(6) unit tests, never_rules(8).
+- Full suite GREEN (1a+1b+1c): `./run_tests.sh`.
+- Registry + glossary unmodified (generators read-only). Foundry byte-untouched. Only ~/mizan written.
+- Mistakes → F-004 (verbatim quote embedded in gated prose, caught by the gate); lessons L-010 (opinion lock / watermark gate), L-011 (gate scans connective only).
+- New canonical Arabic (template) → rendered/ARABIC_REVIEW_LIST_1c.md. No new glossary terms created.
+
 ## Next action
-CHECKPOINT — STOP after 1b. Independent verifier report + workspace zip produced for the principal. Stages beyond 1b authorized only after the principal reviews this checkpoint.
+CHECKPOINT — STOP after 1c. Independent verifier report + workspace zip for the principal. Stages beyond 1c authorized only after the principal reviews this checkpoint.

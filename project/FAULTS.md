@@ -28,4 +28,12 @@ Mistakes tracked until each has a live guardrail (`MISTAKE_ENGINE.md`: `F-NNN`, 
 - **OWNING UNIT:** `pipeline/never_rules_guard.py` (N2), run on every result by the orchestrator (fail closed).
 - **GUARDRAIL:** already live — it caught this during the build. Fix: reworded the note to "no prohibited-category cue was found". The guard (not my vigilance) is what enforces it going forward. Tested by `never_rules_guard_test` + `orchestrator_test.test_guard_fail_closed_on_smuggled_verdict`.
 
-_Full suite green (Stage 1a + 1b): `./run_tests.sh`. 1a 36 unit tests + 1b 41 unit tests pass; registry validation green; both 1a fail-closed guards demonstrated; pipeline runs end-to-end in NO-KEY mode; the never-rules guard fails closed on smuggled verdict language._
+**F-004 — Generated connective prose embedded a verbatim quote, tripping the generation gate.**
+- **First seen:** 2026-06-10 (Stage 1c, first generation run) · **Recurrences:** 0 · **Status:** ENFORCED
+- **INSTANCE:** The memo description embedded the verbatim asset quote ("...a permissible asset...") and the whole string was placed in `generated_prose` (the gated bucket). The never-rules generation gate (N3) flagged "permissible" and failed generation closed — on attributed contract text, not a real verdict.
+- **CLASS:** mixing ATTRIBUTED content (verbatim quotes / citations / cited positions) into the gated connective-prose bucket causes the gate to fire on quoted contract/registry wording.
+- **INVARIANT:** the gate scans only generator-/model-authored connective prose; verbatim quotes, citations, and cited positions are attributed (exempt) and must never be placed in `generated_prose`.
+- **OWNING UNIT:** `pipeline/memo_generator.py` (connective vs attributed separation) + `pipeline/matrix_generator.py`.
+- **GUARDRAIL:** memo/matrix sections now carry separate `connective_*` (gated) and `attributed_*` (exempt) fields; only connective prose enters `generated_prose`. The gate (not my care) is what caught it. Tested by `memo_generator_test.test_verbatim_quote_not_in_generated_prose` + `structural_tests.test_generation_gate_catches_model_verdict`.
+
+_Full suite green (Stage 1a + 1b + 1c): `./run_tests.sh`. 1a 36 unit tests + 1b 41 unit tests pass; registry validation green; both 1a fail-closed guards demonstrated; pipeline runs end-to-end in NO-KEY mode; the never-rules guard fails closed on smuggled verdict language._

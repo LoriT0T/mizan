@@ -24,6 +24,18 @@ class TestNeverRulesGuard(unittest.TestCase):
         errs = g.check([{"rule_id": "R3", "status": "violated", "note": "هذا العقد حرام."}])
         self.assertTrue(any("N2" in e for e in errs))
 
+    def test_check_prose_clean_passes(self):
+        self.assertEqual(g.check_prose(["The aqd is a Murabaha to the Purchase Orderer.",
+                                        "العقدُ مرابحةٌ للآمر بالشراء."]), [])
+
+    def test_check_prose_catches_english_verdict(self):
+        errs = g.check_prose(["This contract is impermissible and must be rejected."])
+        self.assertTrue(any("N3" in e for e in errs))
+
+    def test_check_prose_catches_arabic_verdict(self):
+        errs = g.check_prose(["هذا العقد حلال."])
+        self.assertTrue(any("N3" in e for e in errs))
+
     def test_quoted_position_is_exempt(self):
         # 'impermissible' inside an attributed quote/position is reported, not ruled.
         finding = {"rule_id": "R6", "status": "deferral", "note": "Routed to the SSB.",

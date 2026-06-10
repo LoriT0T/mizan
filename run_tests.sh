@@ -27,8 +27,18 @@ echo "--- 1b pipeline smoke (NO-KEY, full corpus) ---"
 ( cd "$ROOT/pipeline" && python3 run_pipeline.py >/dev/null && echo "pipeline ran end-to-end OK" ) || fail=1
 
 echo
+echo "================= STAGE 1c — memo + matrix generation ================="
+echo "--- 1c isolated + structural tests ---"
+for t in memo_generator_test matrix_generator_test structural_tests; do
+  ( cd "$ROOT/pipeline" && python3 -m unittest "$t" ) 2>&1 | tail -1 || fail=1
+done
+echo
+echo "--- 1c generation smoke (NO-KEY, full corpus -> rendered/memos) ---"
+( cd "$ROOT/pipeline" && python3 run_generate.py >/dev/null && echo "memo+matrix generation ran end-to-end OK" ) || fail=1
+
+echo
 if [ "$fail" -eq 0 ]; then
-  echo "ALL GREEN (Stage 1a + Stage 1b)."
+  echo "ALL GREEN (Stage 1a + Stage 1b + Stage 1c)."
 else
   echo "SUITE RED — see above."
 fi

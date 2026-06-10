@@ -15,6 +15,8 @@ import extractor
 import checker
 import never_rules_guard
 import corpus_loader
+import memo_generator
+import matrix_generator
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -63,3 +65,34 @@ def run_contract(path, rules=None, defer=None, glossary=None, seam=None):
         "findings": findings,
         "guard": "passed (no verdict language; statuses non-verdict)",
     }
+
+
+def generate_for_contract(path, rules=None, defer=None, glossary=None, seam=None, authoritative_lang="ar"):
+    """Stage 1c: run the 1b pipeline, then generate the memo + matrix, gated.
+
+    The never-rules guard runs over ALL generated/model-drafted connective prose
+    (memo + matrix) as a GENERATION gate; the watermark must be present in the
+    rendered memo. Either failing fails the generation closed.
+    """
+    if rules is None:
+        rules, defer, glossary = load_registry()
+    if seam is None:
+        seam = model_seam.make_seam()
+    res = run_contract(path, rules, defer, glossary, seam)
+    findings, structure = res["findings"], res["structure"]
+
+    memo = memo_generator.generate(structure, findings, rules, defer, glossary, seam,
+                                   authoritative_lang, os.path.basename(path))
+    matrix = matrix_generator.generate(findings, authoritative_lang)
+
+    gate = never_rules_guard.check_prose(memo["generated_prose"] + matrix["generated_prose"])
+    if gate:
+        raise RuntimeError("never-rules GENERATION gate tripped (fail closed): " + "; ".join(gate))
+
+    wm = memo["watermark"]
+    for doc_name, render_md in (("memo", memo["render_md"]), ("matrix", matrix["render_md"])):
+        if wm["ar"] not in render_md or wm["en"] not in render_md:
+            raise RuntimeError(f"watermark missing from {doc_name} render — generation fails closed")
+
+    return {"file": os.path.basename(path), "seam_mode": res["seam_mode"],
+            "structure": structure, "findings": findings, "memo": memo, "matrix": matrix}
