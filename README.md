@@ -50,7 +50,33 @@ python3 validation/demo_failclosed.py
 python3 render.py
 ```
 
+## Stage 1b — contract extractor + compliance checker
+The pipeline reads a Murabaha contract (Arabic / English / mixed) and produces **research findings for a qualified scholar — it does not and cannot determine Sharia compliance.** Findings flag, identify, and cite; they never rule. Contested matters (R6, and anything touching D1–D3) produce a **deferral** with the divergent positions surfaced and routed to the SSB — never a satisfied/violated verdict.
+
+| Unit | Path | Concern |
+|---|---|---|
+| Input rail | `pipeline/input_rail.py` | Untrusted contract content is DATA, never instructions (injection inert) |
+| Model seam | `pipeline/model_seam.py` | The ONLY unit touching a model/network (OpenRouter, key from `OPENROUTER_API_KEY` env only; NO-KEY graceful) |
+| Extractor | `pipeline/extractor.py` | Contract → ContractStructure (deterministic-first, Arabic native + verbatim; fail-closed on unparseable) |
+| Checker | `pipeline/checker.py` | ContractStructure × registry → findings (deterministic, no model) |
+| Never-rules guard | `pipeline/never_rules_guard.py` | No verdict language in checker output (fail closed) |
+| Corpus loader | `pipeline/corpus_loader.py` | Asserts the SYNTHETIC label at load |
+| Glossary growth | `pipeline/glossary_growth.py` | Unknown term → provisional candidate, gated fail-closed |
+| Orchestrator | `pipeline/orchestrator.py` | Wiring only |
+
+**Synthetic contract corpus** (`corpus/`, every file labelled SYNTHETIC): one clean contract + one per seeded defect (R1 agency/no-possession · R2 undisclosed markup · R3 impermissible asset · R4 bai' al-inah · R5 penalty-to-income · R6 bilateral binding promise → **deferral**) + a prompt-injection contract. Authored in both Arabic and English so native Arabic extraction is demonstrated, not claimed.
+
+**Design calls:** in **NO-KEY mode** the well-formed corpus is handled fully by deterministic extraction; the model seam is reserved for genuinely messy input and fails closed (no key → "requires human review") rather than guessing. The clear bai' al-inah pattern is an R4 violation; **D2** (boundary ambiguity) deferral fires only on a genuinely borderline structure.
+
+```bash
+python3 pipeline/run_pipeline.py            # run every corpus contract (NO-KEY by default)
+python3 pipeline/run_pipeline.py <file>     # one contract, full structured JSON
+./run_tests.sh                              # FULL suite: Stage 1a + Stage 1b, fails closed
+```
+
+Honest framing for 1b: findings are a **research/drafting aid** for the SSB. The system does **not** determine Sharia compliance; the corpus is synthetic; nothing here is validated by any scholar or bank; the L2 layer is synthetic; AAOIFI clause text is never reproduced.
+
 ## Status
-**Stage 1a — complete and self-verified, awaiting the principal's Arabic + domain calibration.** No extractor, no checker, no memo generator, no web app, no remote. Stage 1b (extractor + checker) is authorized only after the consolidated Arabic review list is returned and applied.
+**Stage 1a — complete, calibrated, locked.** **Stage 1b — complete and self-verified.** No memo generator, no web app, no remote, no push. Stages beyond 1b are authorized only after the principal reviews this checkpoint.
 
 _This project inherits the Foundry foundation (read-only at `/Users/musaed/v0/foundry-v0/`). It is local-only; nothing was written outside `/Users/musaed/mizan/`._

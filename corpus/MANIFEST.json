@@ -1,0 +1,16 @@
+{
+  "corpus": "Mizan Stage 1b synthetic contract corpus",
+  "label": "Every file is SYNTHETIC and carries the SYNTHETIC marker on line 1; corpus_loader asserts it at load (fail closed).",
+  "note": "Authored to exercise the extractor + checker. Not real agreements; not validated by any scholar or bank.",
+  "contracts": [
+    { "file": "contract_clean_en.txt", "language": "en", "seeded_defect": null,  "expected": "R1-R5 satisfied; R6 deferral (contested)" },
+    { "file": "contract_clean_ar.txt", "language": "ar", "seeded_defect": null,  "expected": "R1-R5 satisfied; R6 deferral (contested)" },
+    { "file": "contract_r1_agency_ar.txt", "language": "ar", "seeded_defect": "R1", "expected": "R1 violated (agency / no bank possession); R2-R5 satisfied; R6 deferral" },
+    { "file": "contract_r2_undisclosed_en.txt", "language": "en", "seeded_defect": "R2", "expected": "R2 violated (cost/markup undisclosed); others satisfied; R6 deferral" },
+    { "file": "contract_r3_impermissible_en.txt", "language": "en", "seeded_defect": "R3", "expected": "R3 violated (impermissible asset); others satisfied; R6 deferral" },
+    { "file": "contract_r4_inah_ar.txt", "language": "ar", "seeded_defect": "R4", "expected": "R4 violated (bai' al-inah clear pattern); others satisfied; R6 deferral" },
+    { "file": "contract_r5_penalty_income_en.txt", "language": "en", "seeded_defect": "R5", "expected": "R5 violated (penalty to bank income); others satisfied; R6 deferral" },
+    { "file": "contract_r6_bilateral_en.txt", "language": "en", "seeded_defect": "R6", "expected": "R6 DEFERRAL (bilateral binding promise found; positions surfaced; routed to SSB) — NOT a violation; R1-R5 satisfied" },
+    { "file": "contract_injection_en.txt", "language": "en", "seeded_defect": null, "expected": "Same as clean_en; embedded injection recorded but inert (zero behavioral effect; no verdict emitted)" }
+  ]
+}

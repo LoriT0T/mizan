@@ -20,4 +20,12 @@ Mistakes tracked until each has a live guardrail (`MISTAKE_ENGINE.md`: `F-NNN`, 
 - **OWNING UNIT:** `validation/integrity_checks.py`.
 - **GUARDRAIL:** added **I6** — every L1 source ref must contain "CBK" or "Higher Committee", else fail closed. Added the **LJ** layer for judicial practice and moved the source there. Suite re-runs green. Tested by `integrity_checks_test.test_l1_must_be_cbk_or_higher_committee`.
 
-_The validation suite (`validation/run_all.py`) is green; all 36 isolated unit tests pass; both fail-closed guards demonstrated._
+**F-003 — The checker's own descriptive note carried verdict language ("permissible").**
+- **First seen:** 2026-06-10 (Stage 1b build, first pipeline run) · **Recurrences:** 0 · **Status:** ENFORCED
+- **INSTANCE:** The R3-satisfied finding note read "A specified, existing, permissible asset." The word "permissible" is a permissibility verdict — exactly what the tool must never assert. The `never_rules_guard` tripped and the orchestrator failed closed on my own output.
+- **CLASS:** any checker-AUTHORED prose (notes/summaries) can smuggle a verdict token even when describing a fact, not just in the status field.
+- **INVARIANT:** the checker flags/identifies/cites and never rules — including in its free-text notes; verdict tokens (permissible/impermissible/halal/haram/compliant) never appear in checker-authored fields.
+- **OWNING UNIT:** `pipeline/never_rules_guard.py` (N2), run on every result by the orchestrator (fail closed).
+- **GUARDRAIL:** already live — it caught this during the build. Fix: reworded the note to "no prohibited-category cue was found". The guard (not my vigilance) is what enforces it going forward. Tested by `never_rules_guard_test` + `orchestrator_test.test_guard_fail_closed_on_smuggled_verdict`.
+
+_Full suite green (Stage 1a + 1b): `./run_tests.sh`. 1a 36 unit tests + 1b 41 unit tests pass; registry validation green; both 1a fail-closed guards demonstrated; pipeline runs end-to-end in NO-KEY mode; the never-rules guard fails closed on smuggled verdict language._

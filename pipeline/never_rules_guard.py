@@ -1,0 +1,36 @@
+"""Concern: the checker FLAGS, IDENTIFIES, CITES — it never RULES.
+
+No checker-authored output may assert a permissibility verdict. Enforced two
+ways, fail-closed:
+  N1  status is one of {satisfied, violated, indeterminate, deferral} — never a
+      permissibility word;
+  N2  checker-AUTHORED prose fields (status, note, summary) contain no verdict
+      token (حلال / حرام / permissible / impermissible / halal / haram /
+      compliant / non-compliant).
+
+Scope: only the checker's own fields are scanned. Attributed/quoted registry
+text (the `quote`, `citations`, `positions` fields) is EXEMPT — it legitimately
+contains words like "impermissible" inside a cited scholarly position, which the
+checker reports without adopting. Quoting a position is not ruling.
+
+Stdlib only. No sibling imports. Entry point: `check(findings) -> list[str]`.
+"""
+import re
+
+ALLOWED_STATUS = {"satisfied", "violated", "indeterminate", "deferral"}
+_VERDICT = re.compile(r"\b(permissible|impermissible|halal|haram|sharia[- ]?compliant|non[- ]?compliant|compliant)\b"
+                      r"|حلال|حرام", re.IGNORECASE)
+_AUTHORED_FIELDS = ("status", "note", "summary")
+
+
+def check(findings):
+    errors = []
+    for i, f in enumerate(findings):
+        status = f.get("status")
+        if status not in ALLOWED_STATUS:
+            errors.append(f"N1 finding[{i}] ({f.get('rule_id')}): status '{status}' is not an allowed non-verdict status {sorted(ALLOWED_STATUS)}")
+        for field in _AUTHORED_FIELDS:
+            val = f.get(field, "")
+            if isinstance(val, str) and _VERDICT.search(val):
+                errors.append(f"N2 finding[{i}] ({f.get('rule_id')}): checker-authored field '{field}' contains verdict language: {val!r}")
+    return errors

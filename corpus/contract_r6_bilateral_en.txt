@@ -1,0 +1,23 @@
+### SYNTHETIC CONTRACT — Mizan Stage 1b test corpus — NOT A REAL AGREEMENT ###
+Contract type: Murabaha to the Purchase Orderer
+Language: English
+Seeded defect: R6 — bilateral binding promise (CONTESTED → must yield a DEFERRAL, not a violation)
+
+Parties:
+- Institution (Seller): Demo Islamic Bank K.S.C.
+- Customer (Purchase Orderer): Demo Customer
+- Supplier: Third-Party Supplier Co.
+
+Asset: One specified new motor vehicle (a permissible asset), identified by chassis number CHASSIS-0006.
+
+Clause 1 (Acquisition and possession): The Bank purchases the Asset from the Supplier and takes ownership and possession of it, bearing all risks of ownership, before any sale to the Customer.
+
+Clause 2 (Sale and price): After acquisition, the Bank sells the Asset to the Customer at a total price of KWD 11,000, being a disclosed cost of KWD 10,000 plus a disclosed profit markup of KWD 1,000. The price is fixed at contract and does not change after conclusion.
+
+Clause 3 (Instalments): The Customer shall pay the price in 24 fixed monthly instalments.
+
+Clause 4 (Late payment): Any late-payment charge shall be donated to charity and shall not be taken as income of the Bank. The profit markup shall not increase on late payment.
+
+Clause 5 (Promise / wa'd): The parties enter into a bilateral binding promise; both parties are mutually bound to conclude the sale, and neither may withdraw.
+
+Clause 6 (Ownership history): The Asset is sourced from the Supplier and is not owned by the Customer prior to this transaction; it is not bought back from the Customer.

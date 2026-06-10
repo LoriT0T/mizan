@@ -42,4 +42,37 @@ Principal accepted all Arabic review items as-is. Changes made:
 - Suite green (5/5 checks, 36 unit tests, both fail-closed guards); Foundry byte-untouched; only `~/mizan/` written.
 
 ## Next action
-**Stage 1b (extractor + checker) is authorized** upon the principal's confirmation of this calibration result. Stage 1a is closed.
+Stage 1a is closed.
+
+---
+
+# STAGE 1b — extractor + compliance checker (in progress)
+**Branch-trigger check (honest):** untrusted document input → loaded `knowledge/guardrails`; model seam → loaded `knowledge/cost-routing`. Only those two. (Not RAG: single provided document, no corpus retrieval. Not orchestration/deployment/eval/memory/mcp/context-engineering.)
+
+**Source of truth:** locked registry (rules v1.1.0, defer v1.1.0, glossary v1.2.0) — READ-ONLY to 1b code. The checker never mutates the registry; new terms enter only via the glossary growth protocol (provisional → review list). Rule logic not traceable to a registry entry does not exist.
+
+**Architecture (compartmentalized; `pipeline/`):**
+- `input_rail` — contract content is DATA never instructions (injection inert); wraps text for any model use, scans+records injection spans (non-blocking).
+- `model_seam` — ONLY unit touching model/network. OpenRouter, key from env `OPENROUTER_API_KEY` only; per-language override; graceful NO-KEY mode. FakeSeam in tests.
+- `extractor` — text → ContractStructure (deterministic-first, bilingual, Arabic verbatim; model reserved for messy interpretation). Fail-closed → "extraction incomplete — requires human review". Detects unknown terms → growth protocol.
+- `checker` — ContractStructure × registry → findings (deterministic, no model). status ∈ {satisfied, violated, indeterminate, deferral}. Contested (R6/D1–D3) → DEFERRAL only.
+- `never_rules_guard` — output guard: no verdict language (حلال/حرام/permissible/impermissible) in checker-authored fields; status never a permissibility word.
+- `corpus_loader` — asserts SYNTHETIC label on every contract at load (extends the synthetic discipline).
+- `glossary_growth` — thin: term + researched sources → provisional candidate, gated by Stage-1a `glossary_checks.check_candidate` (fail-closed). Live web research is the documented on-demand step.
+- `orchestrator` — wiring only.
+
+**Design call (NO-KEY mode):** the synthetic corpus is well-formed, so deterministic extraction covers it end-to-end with no key. The model seam is reserved for genuinely ambiguous interpretation; in NO-KEY mode such cases fail closed to "requires human review" rather than guessing.
+
+**Design call (R4/D2):** the clear, unambiguous bai' al-inah pattern is an established R1–R5-class violation (R4 violated). D2 (boundary ambiguity) deferral fires only when the extractor flags the inah boundary as ambiguous — not on the textbook clear case.
+
+## Stage 1b — COMPLETE and self-verified (2026-06-10)
+- Units built (compartmentalized; orchestrator wiring-only): input_rail, model_seam, extractor, checker, never_rules_guard, corpus_loader, glossary_growth, orchestrator + run_pipeline.
+- Synthetic corpus (9 contracts, all SYNTHETIC-labelled): clean ar+en, R1–R6 one-defect-each, injection. R6 defect yields DEFERRAL (not violation).
+- Full suite GREEN: 1a 36 unit tests + registry validation + both fail-closed guards; 1b 41 unit tests + NO-KEY end-to-end pipeline run. `./run_tests.sh`.
+- Every seeded defect caught with citation+layer; clean passes; R6 defers with positions; injection inert; never-rules guard fails closed (caught my own verdict-note → F-003).
+- Registry + schemas BYTE-IDENTICAL to Stage 1a (checker never mutates). Foundry byte-untouched. Only ~/mizan written.
+- New mistakes → F-003 (verdict in note), lessons L-008 (never-rules is a guard), L-009 (Arabic normalise-before-match).
+- Consolidated Arabic review list (1b): `rendered/ARABIC_REVIEW_LIST_1b.md` — no new canonical/glossary Arabic locked; synthetic-contract Arabic offered for optional eyeballing.
+
+## Next action
+CHECKPOINT — STOP after 1b. Independent verifier report + workspace zip produced for the principal. Stages beyond 1b authorized only after the principal reviews this checkpoint.

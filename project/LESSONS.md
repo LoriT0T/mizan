@@ -30,6 +30,15 @@ Durable rules graduated from this project (`MISTAKE_ENGINE.md` format: `L-NNN`, 
 - **Invariant:** compose the Arabic at full capability, label `awaiting-expert-judgment`, and consolidate every item needing the scholar's eye into ONE review list at delivery — never block mid-build, never self-certify as scholar-approved. The principal's acceptance flips `awaiting-expert-judgment`→`locked` (rules) and lifecycle `provisional`/`locked-pending-calibration`→`locked` (glossary).
 - **Guardrail:** `arabic_review_status` field on every rule; the single `rendered/ARABIC_REVIEW_LIST.md`. (`RELIABILITY.md` §2.) Applied 2026-06-10: all items accepted as-is.
 
+**L-008 — The "never rules" guarantee is an output guard, not a coding convention.**
+- **Invariant:** the checker FLAGS/IDENTIFIES/CITES, never rules; no checker-authored field carries a verdict token, and status is never a permissibility word. Contested matters (R6/D1–D3) emit DEFERRAL only. Untrusted contract content is DATA, never instructions.
+- **Guardrail:** `pipeline/never_rules_guard.py` (N1 status enum, N2 verdict-token scan of authored fields) run on every result by the orchestrator, fail closed; `pipeline/input_rail.py` (injection inert) with the inertness proof in `extractor_test`. See `FAULTS.md` F-003.
+- **Why:** during the build the guard caught my own note saying "permissible". Vigilance is not a boundary; the wired guard is.
+
+**L-009 — Arabic matching must normalise before it matches.**
+- **Invariant:** Arabic cue detection strips tashkīl/tatweel and folds alef/ya/ta-marbuta/hamza before regex, and is negation-aware (explicit-negative pattern checked first), while quotes remain VERBATIM from the raw text.
+- **Guardrail:** `pipeline/extractor._norm` + `_decide`; regression covered by `extractor_test.test_arabic_native_extraction_verbatim` (caught the "لا تُعَدّ إيراداً" false-positive and the diacritic-broken wa'd match during the build).
+
 **L-007 — Each source sits on the layer that matches its authority TYPE.**
 - **Invariant:** L1 = CBK/Higher Committee only; L2 = bank SSB fatwas (synthetic here); L3 = AAOIFI; LJ = Kuwaiti judicial practice (secular, secondary-publisher-reported). A source's layer must never overstate its authority kind.
 - **Guardrail:** `integrity_checks` I6 (L1 ref must be CBK/Higher Committee) + `synthetic_corpus_guard` S3 (no non-L2 layer synthetic). See `FAULTS.md` F-002.
