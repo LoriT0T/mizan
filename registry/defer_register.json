@@ -1,6 +1,6 @@
 {
   "register": "Mizan Defer-on-Disagreement Register",
-  "version": "1.0.0-stage1a",
+  "version": "1.1.0-stage1a",
   "principle": "These are contested matters. The system surfaces each with its divergent authoritative positions cited, and NEVER adjudicates. The routing is always: requires scholarly determination by the SSB.",
   "entries": [
     {
@@ -31,7 +31,7 @@
       ],
       "routing_ar": "يتطلّب بتّاً من الهيئة الشرعية (الوعد بوصفه معياراً قابلاً للضبط تحدّده الهيئة).",
       "routing_en": "Requires scholarly determination by the SSB (bindingness is a configurable parameter the SSB sets).",
-      "provenance": { "input": "Input #2, Part 2 (Murabaha — Scholarly disagreement) + Caveats (wa'd bindingness a genuine live dispute)", "established_or_provisional": "established" }
+      "provenance": { "input": "Input #2, Part 2 (Murabaha — Scholarly disagreement) + Caveats (wa'd bindingness a genuine live dispute)", "grounding_basis": "grounded" }
     },
     {
       "id": "D2",
@@ -55,7 +55,7 @@
       ],
       "routing_ar": "يتطلّب بتّاً من الهيئة الشرعية لتكييف الصورة المعروضة وتحديد وقوعها في العِينة من عدمه.",
       "routing_en": "Requires scholarly determination by the SSB to characterise the presented structure and decide whether it constitutes bai' al-inah.",
-      "provenance": { "input": "Input #2, Part 2 (Murabaha red flags) + Caveats (bai' al-inah a genuine live dispute)", "established_or_provisional": "established" }
+      "provenance": { "input": "Input #2, Part 2 (Murabaha red flags) + Caveats (bai' al-inah a genuine live dispute)", "grounding_basis": "grounded" }
     },
     {
       "id": "D3",
@@ -90,7 +90,7 @@
       ],
       "routing_ar": "خارج نطاق المرابحة في المرحلة 1أ؛ مُسجَّلٌ للبتّ من الهيئة الشرعية في مرحلةٍ لاحقة عند تناول التورّق.",
       "routing_en": "Out of Murabaha scope in Stage 1a; recorded for scholarly determination by the SSB in a later stage when tawarruq is addressed.",
-      "provenance": { "input": "Input #2, Part 2 (Tawarruq — Scholarly disagreement) + Recommendations Stage 3 (deferral showcase)", "established_or_provisional": "established" }
+      "provenance": { "input": "Input #2, Part 2 (Tawarruq — Scholarly disagreement) + Recommendations Stage 3 (deferral showcase)", "grounding_basis": "grounded" }
     }
   ]
 }

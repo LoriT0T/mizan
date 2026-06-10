@@ -1,7 +1,7 @@
 # Mizan Terminology Glossary — Rendered View
-_Version 1.1.0-stage1a · DERIVED from `registry/glossary.json` — do not hand-edit._
+_Version 1.2.0-stage1a · DERIVED from `registry/glossary.json` — do not hand-edit._
 
-> **Discipline.** Exactly ONE canonical Arabic form (the canonical side) and ONE canonical English rendering per term. The glossary must never silently contain two renderings of one term. A term is never invented from recall without a fetched, cited grounding. Append-only in history.
+> **Discipline.** Exactly ONE canonical Arabic form (the canonical side) and ONE canonical English rendering per term. The glossary must never silently contain two renderings of one term. A term is never invented from recall without a fetched, cited grounding. Append-only in history. Two independent axes (never conflated): lifecycle 'status' (locked-pending-calibration -> provisional -> locked) tracks human calibration; provenance 'grounding_basis' (grounded | unverified) tracks sourcing strength.
 
 ## Growth protocol
 
@@ -18,26 +18,26 @@ _The documented procedure every future component invokes on encountering an Isla
 
 ### Seed terms (status: locked-pending-calibration)
 
-| ID | Arabic (canonical) | English (canonical) | Status | Grounding |
-|---|---|---|---|---|
-| G-001 | المرابحة | Murabaha | locked-pending-calibration | Input #2, Part 2 (Murabaha) |
-| G-002 | القبض الحقيقي | actual (physical) possession | locked-pending-calibration | Input #2, Part 1 (qabd); Part 2 (Murabaha condition b) |
-| G-003 | القبض الحكمي | constructive possession | locked-pending-calibration | Input #2, Part 2 (Murabaha condition b — actual or constructive possession) |
-| G-004 | الوعد الملزم | binding promise (wa'd mulzim) | locked-pending-calibration | Input #2, Part 2 (Murabaha — wa'd) |
-| G-005 | بيع العينة | bai' al-inah (sale-and-buyback) | locked-pending-calibration | Input #2, Part 2 (Murabaha condition e); Caveats |
-| G-006 | هامش الربح | profit markup | locked-pending-calibration | Input #2, Part 2 (Murabaha conditions c/d) |
-| G-007 | الذمة | dhimmah (liability / debt obligation) | locked-pending-calibration | Input #2, Part 2 (Murabaha — deferred sale price as a debt); Tawarruq (financial obligation) |
-| G-008 | الربا | riba (usury / interest) | locked-pending-calibration | Input #2, Part 1 (Riba) |
-| G-009 | الغرر | gharar (excessive uncertainty) | locked-pending-calibration | Input #2, Part 1 (Gharar) |
-| G-010 | بيع المساومة | musawamah (bargaining sale) | locked-pending-calibration | Input #2, Part 2 (Murabaha condition c — distinguished from musawamah) |
-| G-011 | البيع المؤجّل | deferred-payment sale (bai' muajjal) | locked-pending-calibration | Input #2, Part 2 (Murabaha mechanics — bai' muajjal) |
-| G-012 | التورق المنظّم | organized tawarruq | locked-pending-calibration | Input #2, Part 2 (Tawarruq) |
+| ID | Arabic (canonical) | English (canonical) | Status | Grounding basis | Sources |
+|---|---|---|---|---|---|
+| G-001 | المرابحة | Murabaha | locked | grounded | Input #2, Part 2 (Murabaha) |
+| G-002 | القبض الحقيقي | actual (physical) possession | locked | grounded | Input #2, Part 1 (qabd); Part 2 (Murabaha condition b) |
+| G-003 | القبض الحكمي | constructive possession | locked | grounded | Input #2, Part 2 (Murabaha condition b — actual or constructive possession) |
+| G-004 | الوعد الملزم | binding promise (wa'd mulzim) | locked | grounded | Input #2, Part 2 (Murabaha — wa'd) |
+| G-005 | بيع العينة | bai' al-inah (sale-and-buyback) | locked | grounded | Input #2, Part 2 (Murabaha condition e); Caveats |
+| G-006 | هامش الربح | profit markup | locked | grounded | Input #2, Part 2 (Murabaha conditions c/d) |
+| G-007 | الذمة | dhimmah (liability / debt obligation) | locked | grounded | Input #2, Part 2 (Murabaha — deferred sale price as a debt); Tawarruq (financial obligation) |
+| G-008 | الربا | riba (usury / interest) | locked | grounded | Input #2, Part 1 (Riba) |
+| G-009 | الغرر | gharar (excessive uncertainty) | locked | grounded | Input #2, Part 1 (Gharar) |
+| G-010 | بيع المساومة | musawamah (bargaining sale) | locked | grounded | Input #2, Part 2 (Murabaha condition c — distinguished from musawamah) |
+| G-011 | البيع المؤجّل | deferred-payment sale (bai' muajjal) | locked | grounded | Input #2, Part 2 (Murabaha mechanics — bai' muajjal) |
+| G-012 | التورق المنظّم | organized tawarruq | locked | grounded | Input #2, Part 2 (Tawarruq) |
 
 ### Growth-protocol terms
 
-| ID | Arabic (canonical) | English (canonical) | Status | Grounding |
-|---|---|---|---|---|
-| G-013 | بيع التولية | tawliyah (sale at cost) | provisional | Fincyclopedia, 'Tawliyah' (fincyclopedia.net/islamic-finance/t/tawliyah) — par-value/at-cost sale, full cost disclosure, no markup; Ijara CDC glossary, 'Bayu al-amanah' (ijaracdc.com) — three trust sales: murabaha, tawliyah, wadiah; Wikipedia, 'Murabaha' — murabaha as one of three buyu' al-amanah requiring honest cost declaration |
+| ID | Arabic (canonical) | English (canonical) | Status | Grounding basis | Sources |
+|---|---|---|---|---|---|
+| G-013 | بيع التولية | tawliyah (sale at cost) | locked | unverified | Fincyclopedia, 'Tawliyah' (fincyclopedia.net/islamic-finance/t/tawliyah) — par-value/at-cost sale, full cost disclosure, no markup; Ijara CDC glossary, 'Bayu al-amanah' (ijaracdc.com) — three trust sales: murabaha, tawliyah, wadiah; Wikipedia, 'Murabaha' — murabaha as one of three buyu' al-amanah requiring honest cost declaration |
 
 ### Definitions
 
@@ -92,4 +92,4 @@ _The documented procedure every future component invokes on encountering an Isla
 - **G-013 · بيع التولية — tawliyah (sale at cost)** _(scope: Encountered on demand (not seeded). Demonstrates the growth protocol running end-to-end: researched → provisional entry → routed to the consolidated review list.)_
   - AR: بيعٌ بثمنٍ يساوي تكلفةَ الاقتناء دون زيادةٍ ولا ربح، مع الإفصاح التامّ عن التكلفة؛ أحدُ بيوع الأمانة الثلاثة إلى جانب المرابحة (تكلفة + ربح) والوضيعة (بيعٌ بخسارة).
   - EN: A sale at a price equal to the acquisition cost with no markup or profit, with full cost disclosure; one of the three trust sales (buyu' al-amanah) alongside Murabaha (cost + profit) and wadiah (sale at a loss).
-  - ↪ _Routed: Consolidated Arabic review list (rendered/ARABIC_REVIEW_LIST.md), provisional section — awaiting the principal's calibration to flip to locked._
+  - ↪ _Routed: Was routed to the consolidated Arabic review list (rendered/ARABIC_REVIEW_LIST.md); the principal accepted it on 2026-06-10, flipping status provisional -> locked. grounding_basis remains 'unverified' (tertiary web glossaries; confirm against primary sources before production)._

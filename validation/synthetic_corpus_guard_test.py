@@ -26,6 +26,16 @@ class TestSyntheticGuard(unittest.TestCase):
             {"layer": "L3", "ref": "AAOIFI SS 8", "principle": "p", "synthetic": True}]}]}
         self.assertTrue(any("S3" in e for e in scg.check(rules)))
 
+    def test_judicial_layer_marked_synthetic_flagged(self):
+        rules = {"rules": [{"id": "R1", "sources": [
+            {"layer": "LJ", "ref": "Kuwaiti judicial practice (Chambers)", "principle": "p", "synthetic": True}]}]}
+        self.assertTrue(any("S3" in e for e in scg.check(rules)))
+
+    def test_judicial_layer_real_passes(self):
+        rules = {"rules": [{"id": "R1", "sources": [
+            {"layer": "LJ", "ref": "Kuwaiti judicial practice (Chambers)", "principle": "p", "synthetic": False}]}]}
+        self.assertEqual(scg.check(rules), [])
+
 
 if __name__ == "__main__":
     unittest.main()

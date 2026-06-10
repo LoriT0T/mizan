@@ -1,10 +1,11 @@
 # Mizan Murabaha Rule Registry — Rendered View
-_Version 1.0.0-stage1a · scope: murabaha · DERIVED from `registry/rules.json` — do not hand-edit._
+_Version 1.1.0-stage1a · scope: murabaha · DERIVED from `registry/rules.json` — do not hand-edit._
 > **Mizan is a copilot, never a mufti.** It researches, drafts, and documents for a qualified human scholar (SSB); it never issues a ruling. Contested matters are surfaced, never adjudicated.
 ## Source layers
-- **L1** — CBK instructions / Higher Committee of Shari'ah Supervision — binding in Kuwait. NOTE: CBK mandates the governance function and binds the bank to its SSB's fatwas and to external Sharia audit; it does not itself adjudicate the Sharia conformity of a given financing (Input #2, Part 3). Where a Kuwaiti court requirement is the binding anchor (e.g. proof of prior acquisition), it is recorded here.
+- **L1** — CBK instructions / Higher Committee of Shari'ah Supervision — binding in Kuwait, and L1 contains ONLY these. NOTE: CBK mandates the governance function and binds the bank to its SSB's fatwas and to external Sharia audit; it does not itself adjudicate the Sharia conformity of a given financing (Input #2, Part 3).
 - **L2** — The institution's own SSB fatwas — binding per-bank. In this demonstration the L2 corpus is SYNTHETIC and is labelled synthetic on every entry; it stands in for a real bank's fatwa history and must never be read as an actual ruling.
 - **L3** — AAOIFI Sharia Standards — persuasive reference in Kuwait (used by reference/influence, not a full legal mandate, unlike Bahrain/Qatar/Oman/UAE). Cited by standard number, topic, and publicly-documented principle ONLY; proprietary clause text is never reproduced.
+- **LJ** — Kuwaiti judicial practice — binding court precedent in Kuwait, sitting OUTSIDE the three-tier Sharia-standards hierarchy: it is secular judicial enforcement, not a CBK instrument (L1), an SSB fatwa (L2), or an AAOIFI standard (L3). Cited via secondary publishers (e.g. Chambers Islamic Finance) that REPORT the practice, not via a primary court instrument; treat as binding-practice-as-reported, to be confirmed against primary judgments before production use.
 
 > **Copyright boundary.** The full AAOIFI Sharia Standards text is copyrighted and sold by AAOIFI. This registry references structure, standard numbers, topic coverage, and widely-cited public principles only. Clause-level verification against purchased AAOIFI texts is a required step before any real-world use.
 
@@ -23,7 +24,7 @@ _Version 1.0.0-stage1a · scope: murabaha · DERIVED from `registry/rules.json` 
 
 > The institution must take genuine ownership of the asset and take actual or constructive possession of it — thereby bearing the risk of its loss and the risks of its ownership, even if only for a short time — before selling it to the customer; the institution may not sell what it has not owned and possessed.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #2, Part 2 (Murabaha conditions a/b; red flags) + Recommendations Stage 1 check (1) (established)_
+_Arabic review status: **locked** · provenance: Input #2, Part 2 (Murabaha conditions a/b; red flags) + Recommendations Stage 1 check (1) · grounding: grounded_
 
 **What satisfies it:**
 - The institution buys the asset from the supplier, records it in its ownership, and bears the risk of loss before contracting the sale with the customer.
@@ -38,8 +39,8 @@ _Arabic review status: **awaiting-expert-judgment** · provenance: Input #2, Par
   - تنفيذ بيع الأصل للعميل قبل أن يقبضه المصرفُ ويملكه (بيع قبل القبض).
 
 **Sources (layer · citation · principle):**
-- **L1** — Kuwaiti judiciary — Chambers Islamic Finance 2025 (Kuwait)
-  - _Kuwaiti courts will not endorse artificial Murabaha and require proof the bank actually acquired the asset prior to its resale to the customer._
+- **LJ** — Kuwaiti judicial practice — reported in Chambers Islamic Finance 2025 (Kuwait), a secondary publisher
+  - _Kuwaiti courts will not endorse artificial Murabaha and require proof the bank actually acquired the asset prior to its resale to the customer (binding court practice as reported; confirm against primary judgments before production)._
 - **L1** — CBK Circular 2/IBS/369/2016
   - _Governance frame: the SSB inspects all contracts and its fatwas (which encode this condition) are binding on the bank; management is responsible for Sharia compliance._
 - **L3** — AAOIFI Sharia Standard No. 8 (Murabaha); No. 18 (Possession / Qabd)
@@ -62,7 +63,7 @@ _Note: The doctrinal basis is qabd-before-resale and al-kharaj bil-daman (entitl
 
 > The cost price and the profit markup must be fully disclosed to the customer, and the price — cost plus profit — together with the instalment schedule must be determined and fixed at contract, not changing after conclusion.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #2, Part 2 (Murabaha conditions c/d) (established)_
+_Arabic review status: **locked** · provenance: Input #2, Part 2 (Murabaha conditions c/d) · grounding: grounded_
 
 **What satisfies it:**
 - The actual cost and the profit markup are stated explicitly in the contract, and the total price and instalment terms remain fixed through to settlement.
@@ -97,7 +98,7 @@ _Note: Disclosure is the defining feature separating Murabaha (cost-plus, disclo
 
 > The asset subject to the Murabaha must exist, be owned, and be specified, and must be lawful (halal) property of value; a Murabaha is valid neither in a prohibited thing nor in a non-existent one.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #2, Part 2 (Murabaha condition a; red flag 'pure cash needs') (established)_
+_Arabic review status: **locked** · provenance: Input #2, Part 2 (Murabaha condition a; red flag 'pure cash needs') · grounding: grounded_
 
 **What satisfies it:**
 - A specified, existing asset of permissible use (e.g. a car, real estate, a commodity) that can be owned and possessed.
@@ -132,7 +133,7 @@ _Note: Roots in the prohibition of haram subject matter and the bar on selling t
 
 > The asset must not be owned by the customer before the contract, nor return to him by being bought back from him; selling the asset and then repurchasing it from the customer falls into bai' al-inah, which is prohibited across the GCC.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #2, Part 2 (Murabaha condition e; red flag 'customer's own property') (established)_
+_Arabic review status: **locked** · provenance: Input #2, Part 2 (Murabaha condition e; red flag 'customer's own property') · grounding: grounded_
 
 **What satisfies it:**
 - The asset's source is a third party (the supplier), not the customer, and the asset does not return to its original seller by prior arrangement.
@@ -167,7 +168,7 @@ _Note: The boundary between an acceptable structure and bai' al-inah has genuine
 
 > It is not permissible to increase the profit markup or the price upon the customer's late payment; and if a penalty for delay is stipulated, it must be disbursed to charitable causes and must not be counted as income of the institution.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #2, Part 2 (red flag 'markup re-priced on late payment'); Part 4 KFH late-penalty rectification example (established)_
+_Arabic review status: **locked** · provenance: Input #2, Part 2 (red flag 'markup re-priced on late payment'); Part 4 KFH late-penalty rectification example · grounding: grounded_
 
 **What satisfies it:**
 - The price stays fixed on delay, and any late-payment penalty is channelled to a documented charity, not to the bank's income.
@@ -202,7 +203,7 @@ _Note: Penalty-to-charity is the standard remedy that prevents a late charge fro
 
 > In Murabaha to the Purchase Orderer, the bindingness of the promise to purchase is a matter of considerable disagreement among scholarly bodies: while a mutually binding (bilateral) promise is impermissible (it amounts to a contract with both counter-values deferred), some hold a unilateral promise may be made binding. The system does not adjudicate this; it presents the positions attributed to their sources and refers the matter to the SSB.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #2, Part 2 (Murabaha 'Scholarly disagreement'); Recommendations Stage 1 check (6) 'flag, don't adjudicate' (established)_
+_Arabic review status: **locked** · provenance: Input #2, Part 2 (Murabaha 'Scholarly disagreement'); Recommendations Stage 1 check (6) 'flag, don't adjudicate' · grounding: grounded_
 
 **What satisfies it:**
 - Presenting both bodies' positions (AAOIFI and the OIC International Islamic Fiqh Academy) attributed to source, and referring the determination of bindingness to the bank's SSB.

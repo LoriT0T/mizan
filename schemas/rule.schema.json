@@ -33,7 +33,7 @@
       "items": {
         "type": "object", "required": ["layer", "ref", "principle", "synthetic"], "additionalProperties": false,
         "properties": {
-          "layer": { "type": "string", "enum": ["L1", "L2", "L3"] },
+          "layer": { "type": "string", "enum": ["L1", "L2", "L3", "LJ"] },
           "ref": { "type": "string", "minLength": 1, "maxLength": 160 },
           "principle": { "type": "string", "minLength": 1, "maxLength": 320 },
           "synthetic": { "type": "boolean" }
@@ -41,10 +41,10 @@
       }
     },
     "provenance": {
-      "type": "object", "required": ["input", "established_or_provisional"], "additionalProperties": false,
+      "type": "object", "required": ["input", "grounding_basis"], "additionalProperties": false,
       "properties": {
         "input": { "type": "string", "minLength": 1 },
-        "established_or_provisional": { "type": "string", "enum": ["established", "provisional"] }
+        "grounding_basis": { "type": "string", "enum": ["grounded", "unverified"] }
       }
     },
     "defer_ref": { "type": "string" },

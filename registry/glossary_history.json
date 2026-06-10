@@ -12,6 +12,13 @@
       "date": "2026-06-10",
       "change": "Growth protocol demonstration: encountered unseeded term بيع التولية; researched on demand against public authoritative sources; appended G-013 with status provisional; routed to the consolidated Arabic review list. No collision with any locked rendering.",
       "added": ["G-013"]
+    },
+    {
+      "version": "1.2.0-stage1a",
+      "date": "2026-06-10",
+      "change": "Principal calibration applied: all items on the Arabic review list ACCEPTED as-is. Lifecycle status flipped to 'locked' for seed G-001..G-012 (from locked-pending-calibration) and for growth-protocol G-013 (from provisional). Schema migration (registry-wide): the provenance axis was relabelled from 'established_or_provisional' (established|provisional) to 'grounding_basis' (grounded|unverified) and the container unified to 'provenance', so the rule-status word 'established' can no longer be confused with a sourcing label. G-013 grounding_basis set to 'unverified' (tertiary web glossaries). No entries added or removed; no rendering changed.",
+      "added": [],
+      "relabelled": ["G-001","G-002","G-003","G-004","G-005","G-006","G-007","G-008","G-009","G-010","G-011","G-012","G-013"]
     }
   ]
 }

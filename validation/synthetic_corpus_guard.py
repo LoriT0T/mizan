@@ -5,8 +5,9 @@ SYNTHETIC stand-in. It must never be mistakable for a real ruling. This guard
 asserts, at load:
   S1  every L2 source has synthetic == True;
   S2  every L2 source's ref carries the explicit 'SYNTHETIC' label;
-  S3  no L1 or L3 source is marked synthetic (real layers must not be flagged
-      synthetic, and synthetic content must not masquerade as a real layer).
+  S3  no non-L2 source is marked synthetic (every real layer — L1, L3, LJ —
+      must not be flagged synthetic, and synthetic content must not masquerade
+      as a real layer).
 
 Stdlib only. No sibling imports. Entry point: `check(rules_data) -> list[str]`.
 """
@@ -28,7 +29,7 @@ def check(rules_data):
                     errors.append(f"S1 {where}: L2 source must have synthetic == true")
                 if LABEL not in ref and LABEL not in s.get("principle", ""):
                     errors.append(f"S2 {where}: L2 source must carry the '{LABEL}' label")
-            elif layer in ("L1", "L3"):
+            else:  # any real layer (L1, L3, LJ, ...) must not be synthetic
                 if synthetic is True:
                     errors.append(f"S3 {where}: {layer} source must not be marked synthetic")
     return errors

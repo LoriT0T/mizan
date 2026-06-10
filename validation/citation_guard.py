@@ -56,6 +56,6 @@ def check(rules_data, defer_data, glossary_data):
             errors += check_field(p.get("citation", ""), "citation", f"{eid}.positions[{i}].citation")
     for g in glossary_data.get("entries", []):
         gid = g.get("term_id", "<no-id>")
-        for i, src in enumerate(g.get("grounding", {}).get("sources", [])):
+        for i, src in enumerate(g.get("provenance", {}).get("sources", [])):
             errors += check_field(src, "gloss_src", f"{gid}.grounding.sources[{i}]")
     return errors

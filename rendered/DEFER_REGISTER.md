@@ -1,5 +1,5 @@
 # Mizan Defer-on-Disagreement Register — Rendered View
-_Version 1.0.0-stage1a · DERIVED from `registry/defer_register.json` — do not hand-edit._
+_Version 1.1.0-stage1a · DERIVED from `registry/defer_register.json` — do not hand-edit._
 
 > **Principle.** These are contested matters. The system surfaces each with its divergent authoritative positions cited, and NEVER adjudicates. The routing is always: requires scholarly determination by the SSB.
 
@@ -32,7 +32,7 @@ _Version 1.0.0-stage1a · DERIVED from `registry/defer_register.json` — do not
 
 **التوجيه (AR):** يتطلّب بتّاً من الهيئة الشرعية (الوعد بوصفه معياراً قابلاً للضبط تحدّده الهيئة).
 
-_Provenance: Input #2, Part 2 (Murabaha — Scholarly disagreement) + Caveats (wa'd bindingness a genuine live dispute) (established)_
+_Provenance: Input #2, Part 2 (Murabaha — Scholarly disagreement) + Caveats (wa'd bindingness a genuine live dispute) · grounding: grounded_
 
 ---
 
@@ -58,7 +58,7 @@ _Provenance: Input #2, Part 2 (Murabaha — Scholarly disagreement) + Caveats (w
 
 **التوجيه (AR):** يتطلّب بتّاً من الهيئة الشرعية لتكييف الصورة المعروضة وتحديد وقوعها في العِينة من عدمه.
 
-_Provenance: Input #2, Part 2 (Murabaha red flags) + Caveats (bai' al-inah a genuine live dispute) (established)_
+_Provenance: Input #2, Part 2 (Murabaha red flags) + Caveats (bai' al-inah a genuine live dispute) · grounding: grounded_
 
 ---
 
@@ -94,6 +94,6 @@ _Provenance: Input #2, Part 2 (Murabaha red flags) + Caveats (bai' al-inah a gen
 
 **التوجيه (AR):** خارج نطاق المرابحة في المرحلة 1أ؛ مُسجَّلٌ للبتّ من الهيئة الشرعية في مرحلةٍ لاحقة عند تناول التورّق.
 
-_Provenance: Input #2, Part 2 (Tawarruq — Scholarly disagreement) + Recommendations Stage 3 (deferral showcase) (established)_
+_Provenance: Input #2, Part 2 (Tawarruq — Scholarly disagreement) + Recommendations Stage 3 (deferral showcase) · grounding: grounded_
 
 ---

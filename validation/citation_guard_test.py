@@ -29,7 +29,7 @@ class TestCitationGuard(unittest.TestCase):
              "principle": "Acquisition-and-possession requirement before resale.", "synthetic": False}]}]}
         defer = {"entries": [{"id": "D1", "positions": [
             {"citation": "OIC Fiqh Academy Resolution 179 (19/5), Sharjah, 2009"}]}]}
-        gloss = {"entries": [{"term_id": "G-001", "grounding": {"sources": ["Input #2, Part 2 (Murabaha)"]}}]}
+        gloss = {"entries": [{"term_id": "G-001", "provenance": {"sources": ["Input #2, Part 2 (Murabaha)"]}}]}
         self.assertEqual(cg.check(rules, defer, gloss), [])
 
 

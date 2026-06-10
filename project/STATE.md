@@ -34,5 +34,12 @@
 | f | Consolidated Arabic review list | done |
 | g | Confirm only ~/mizan written; Foundry byte-untouched | done |
 
+## Calibration applied (2026-06-10)
+Principal accepted all Arabic review items as-is. Changes made:
+- All rule `arabic_review_status` and all glossary lifecycle statuses → `locked` (rules v1.1.0, glossary v1.2.0, defer v1.1.0).
+- **Amendment 1:** R1's Kuwaiti-judiciary source reclassified L1 → new **LJ** layer (judicial practice, outside the L1/L2/L3 Sharia-standards hierarchy); guardrail I6 added (L1 = CBK/Higher Committee only). See `FAULTS.md` F-002.
+- **Amendment 2:** provenance axis relabelled `established_or_provisional`(established|provisional) → `grounding_basis`(grounded|unverified), container unified to `provenance` across registry+defer+glossary; integrity I5 now asserts the three axes' vocabularies are pairwise-disjoint so "established" can only mean rule status. G-013 grounding_basis = `unverified`.
+- Suite green (5/5 checks, 36 unit tests, both fail-closed guards); Foundry byte-untouched; only `~/mizan/` written.
+
 ## Next action
-CHECKPOINT — stop after Stage 1a. Await principal's Arabic + domain calibration before Stage 1b (extractor + checker) is authorized.
+**Stage 1b (extractor + checker) is authorized** upon the principal's confirmation of this calibration result. Stage 1a is closed.

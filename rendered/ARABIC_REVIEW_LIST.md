@@ -1,5 +1,8 @@
 # قائمة المراجعة العربية الموحَّدة — Consolidated Arabic Review List
 
+> **✅ CALIBRATED — 2026-06-10.** The principal accepted ALL items below as-is: R1–R6 canonical texts, seed glossary G-001…G-012, and provisional G-013. Statuses were flipped to `locked`; the glossary was versioned to v1.2.0; the suite re-ran green. This document is retained as the record of what was reviewed and the grounding/alternatives behind each item.
+
+
 > **For the principal (qualified native-Arabic scholar).** Per the foundation's expert-calibration principle (`RELIABILITY.md` §2): the Arabic below was composed at full capability, natively in formal MSA (not translated from English), and grounded in the two inputs + the public sources cited. It is **not** self-certified. Every item is labelled `awaiting-expert-judgment` / `provisional`. Your native-Arabic and domain judgment is the **final calibration layer** — your calibration flips these to `locked`. This is one consolidated list at delivery, not scattered mid-build interruptions.
 >
 > **Scope of your review:** wording, fiqh precision, and term-of-art choice. This does **not** ask you to adjudicate any contested matter (R6 / D1–D3 remain deferred to the SSB by design).

@@ -31,9 +31,8 @@ def render_registry(rules):
     out.append(f"_Version {rules['version']} · scope: {rules['scope']} · DERIVED from `registry/rules.json` — do not hand-edit._\n")
     out.append("> **Mizan is a copilot, never a mufti.** It researches, drafts, and documents for a qualified human scholar (SSB); it never issues a ruling. Contested matters are surfaced, never adjudicated.\n")
     out.append("## Source layers\n")
-    out.append(f"- **L1** — {L['L1']}\n")
-    out.append(f"- **L2** — {L['L2']}\n")
-    out.append(f"- **L3** — {L['L3']}\n")
+    for key, desc in L.items():
+        out.append(f"- **{key}** — {desc}\n")
     out.append(f"\n> **Copyright boundary.** {rules['copyright_boundary']}\n")
     out.append(f"\n> **Language authority.** {rules['language_authority']}\n")
     out.append("\n---\n")
@@ -43,7 +42,7 @@ def render_registry(rules):
         out.append(f"**العنوان:** {r['title_ar']}\n")
         out.append(f"\n**Arabic (canonical):**\n\n> {r['rule_ar']}\n")
         out.append(f"\n**English (parallel):**\n\n> {r['rule_en']}\n")
-        out.append(f"\n_Arabic review status: **{r['arabic_review_status']}** · provenance: {r['provenance']['input']} ({r['provenance']['established_or_provisional']})_\n")
+        out.append(f"\n_Arabic review status: **{r['arabic_review_status']}** · provenance: {r['provenance']['input']} · grounding: {r['provenance']['grounding_basis']}_\n")
         out.append("\n**What satisfies it:**\n")
         for s in r["satisfied_by"]:
             out.append(f"- {s['en']}\n  - {s['ar']}\n")
@@ -83,7 +82,7 @@ def render_defer(defer):
             out.append(f"  - _Citation: {p['citation']}_\n")
         out.append(f"\n**Routing (EN):** {e['routing_en']}\n")
         out.append(f"\n**التوجيه (AR):** {e['routing_ar']}\n")
-        out.append(f"\n_Provenance: {e['provenance']['input']} ({e['provenance']['established_or_provisional']})_\n")
+        out.append(f"\n_Provenance: {e['provenance']['input']} · grounding: {e['provenance']['grounding_basis']}_\n")
         out.append("\n---\n")
     return "".join(out)
 
@@ -101,13 +100,13 @@ def render_glossary(gloss):
     for status_filter, heading in [("seed", "### Seed terms (status: locked-pending-calibration)"),
                                     ("growth-protocol", "### Growth-protocol terms")]:
         out.append(f"\n{heading}\n\n")
-        out.append("| ID | Arabic (canonical) | English (canonical) | Status | Grounding |\n")
-        out.append("|---|---|---|---|---|\n")
+        out.append("| ID | Arabic (canonical) | English (canonical) | Status | Grounding basis | Sources |\n")
+        out.append("|---|---|---|---|---|---|\n")
         for g in gloss["entries"]:
             if g["origin"] != status_filter:
                 continue
-            src = "; ".join(g["grounding"]["sources"])
-            out.append(f"| {g['term_id']} | {g['canonical_ar']} | {g['canonical_en']} | {g['status']} | {src} |\n")
+            src = "; ".join(g["provenance"]["sources"])
+            out.append(f"| {g['term_id']} | {g['canonical_ar']} | {g['canonical_en']} | {g['status']} | {g['provenance']['grounding_basis']} | {src} |\n")
     out.append("\n### Definitions\n")
     for g in gloss["entries"]:
         note = f" _(scope: {g['scope_note']})_" if g.get("scope_note") else ""
