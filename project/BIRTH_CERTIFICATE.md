@@ -3,8 +3,8 @@
 > The birth questions (`BOOTSTRAP.md` STEP 1), answered from this project's own context — the only place specifics enter. Problem-discovery is satisfied **externally** by Input #1 (the Kuwait Islamic-banking diagnostic), so it is not re-derived here.
 
 - **Born:** 2026-06-10
-- **Foundry root (read-only):** `/Users/musaed/v0/foundry-v0/` — foundation verified upgraded (fresh-context independent-verification, in-run state-durability, expert-judgment-as-final-calibration, transcend safety carve-out) before birth.
-- **Workspace:** `/Users/musaed/mizan/` (own git repo, local only, no remote).
+- **Foundry root (read-only):** the Foundry root (private agent foundation, read-only, not in this repo) — foundation verified upgraded (fresh-context independent-verification, in-run state-durability, expert-judgment-as-final-calibration, transcend safety carve-out) before birth.
+- **Workspace:** `~/mizan` (this repo; local-only git).
 - **Stage at birth:** 1a only — the bilingual Murabaha Rule Registry as a standalone, verified artifact.
 
 ## 1. Goal, and what "working well" looks like

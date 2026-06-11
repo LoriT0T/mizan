@@ -4,8 +4,8 @@
 
 **Project:** Mizan (ميزان) — a Sharia-review *copilot* for Islamic-finance contracts. It researches, drafts, and documents for a qualified human scholar; it **never rules**.
 **Stage:** 1a only — the bilingual Rule Registry (Murabaha scope), built and verified as a standalone artifact before any pipeline code.
-**Workspace:** `/Users/musaed/mizan/` (own git repo, local only, no remote).
-**Foundry root:** `/Users/musaed/v0/foundry-v0/` — READ-ONLY. Baseline SHA-256 over all 29 files: `8e71b7a3f64d0b6ce13ec59f6f65107c4df128015cd0b4cb68dd7e9426d33062` (captured at birth; re-verified at checkpoint).
+**Workspace:** `~/mizan` (this repo; local-only git).
+**Foundry root:** the Foundry root (private agent foundation, read-only, not in this repo) — READ-ONLY. Baseline SHA-256 over all 29 files: `8e71b7a3f64d0b6ce13ec59f6f65107c4df128015cd0b4cb68dd7e9426d33062` (captured at birth; re-verified at checkpoint).
 
 ## Inputs (both read fully before writing)
 - **Input #1** — `~/Downloads/Kuwait Banking.pdf` (7pp): problem-discovery diagnostic. Satisfies the problem-discovery birth question externally.
