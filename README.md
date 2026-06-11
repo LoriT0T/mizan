@@ -7,7 +7,7 @@ _License: [MIT](LICENSE) · a working demonstration — local-only, **not deploy
 
 ## Honest framing (read this first)
 - **Built on publicly documented principles.** Every rule, citation, and claim traces to one of two input documents or a fetched, cited public source — never to model recall.
-- **Not certified.** This artifact has **not** been validated by a Sharia scholar or any bank. The canonical Arabic and all domain content are labelled `awaiting-expert-judgment` and await the principal's calibration (see `rendered/ARABIC_REVIEW_LIST.md`).
+- **Not certified.** The canonical Arabic has been reviewed and **locked** by the principal (a qualified native-Arabic reviewer) — see the consolidated review lists in `rendered/ARABIC_REVIEW_LIST*.md`. The system as a whole is still a **demonstration**: it has **not** been certified by any bank, it is not a substitute for the SSB's ruling, and clause-level AAOIFI verification (below) remains required before any real-world use.
 - **Clause-level AAOIFI verification is a required next step.** The full AAOIFI Sharia Standards text is copyrighted; this registry references standard numbers, topics, and widely-cited principles **only** — never reproduced clause text. Before any real-world use, every L3 reference must be verified against the purchased AAOIFI texts.
 - **The L2 corpus is SYNTHETIC.** The bank-SSB-fatwa layer here is a clearly-labelled stand-in for demonstration; it is not, and must never be read as, a real ruling.
 - **The tool never rules.** The Sharia opinion is structurally reserved to the human SSB.
@@ -132,7 +132,7 @@ MIZAN_PORT=9001 python3 web/server.py
 ```
 - **NO-KEY mode is first-class:** with no `OPENROUTER_API_KEY` the UI runs the full deterministic pipeline and shows a *"NO-KEY mode — deterministic extraction only"* badge. With a key set in the **server env only**, the model seam is used; the key never appears in any served byte (scanned on every response), log, or error.
 - **Untrusted uploads:** size-capped (256 KB), `.txt`/paste only, run through the injection-inert input rail, held in RAM for the session only (never persisted to disk), no telemetry, no external calls except the seam.
-- **The UI never rules:** the not-a-fatwa watermark sits at the top of every page (both languages); status labels come from the engine's vocabulary only; the never-rules guard runs over the UI chrome at serve time and fails closed; deferral and out-of-scope items are shown prominently **not graded**; a calibration badge reads `arabic_review_status` from the engine and shows *"Arabic pending expert calibration"* for the Stage-2 Ijara/glossary Arabic.
+- **The UI never rules:** the not-a-fatwa watermark sits at the top of every page (both languages); status labels come from the engine's vocabulary only; the never-rules guard runs over the UI chrome at serve time and fails closed; deferral and out-of-scope items are shown prominently **not graded**; a calibration badge reads `arabic_review_status` from the engine (with all Arabic now locked it shows *"All Arabic calibrated"*; it would show *"Arabic pending expert calibration"* for any not-yet-locked content).
 - A `/scope` page renders exactly what Mizan covers and to what depth.
 
 **GCC/Kuwait test corpus** (`corpus/stage3/`, researched then authored — see `corpus/stage3/PROVENANCE.md`): T1 clean Kuwaiti vehicle Murabaha · T2 Murabaha with a *subtle* buried R1 defect · T3 home IMB with the I4 ownership-risk-shift *dressed* in an "obligations of the customer" schedule · T4 commodity tawarruq (recognized, no rule, D3) · T5 Murabaha + investment-wakala (covered checked, uncovered out-of-scope). Result bundles (findings · memo · matrix · rendered HTML) in `rendered/stage3/`.
@@ -142,4 +142,4 @@ MIZAN_PORT=9001 python3 web/server.py
 ## Status
 **Stage 1a — locked.** **1b / 1c / 2 — self-verified.** **Stage 3 — self-verified (local frontend + GCC corpus).** No remote, no push, no public hosting. Generated memos are **drafts for a qualified scholar**; the opinion is the scholar's alone; Mizan **does not and cannot determine Sharia compliance** and is honest about the types it does not cover; the corpus is synthetic; not certified. The Murabaha **and Ijara** registries are unmodified by Stage 3 (the frontend reads the engine, not the registry); the glossary grew only via the documented growth protocol.
 
-_This project inherits the Foundry foundation (read-only at `/Users/musaed/v0/foundry-v0/`). It is local-only; nothing was written outside `/Users/musaed/mizan/`._
+_This project was built on a private "Foundry" agent foundation (inherited read-only, not part of this repo). It is local-only by design._
