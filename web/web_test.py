@@ -124,10 +124,18 @@ class TestPortConfig(unittest.TestCase):
             occupied.shutdown()
 
 
+# A SYNTHETIC, non-credential test key. Assembled from parts so no real-key
+# literal token ("sk-" + "or-") ever appears contiguously in source — keeps the
+# public repo clean for automated secret scanners. At runtime it forms a string
+# of the OpenRouter key SHAPE, so it still exercises the server's key-scan.
+FAKE_KEY = "sk-" + "or-" + "FAKE" + "KEY" + "DONOTLEAK" + "0000"
+FAKE_MARK = "FAKEKEYDONOTLEAK"
+
+
 class TestKeyNeverServed(unittest.TestCase):
     def setUp(self):
         self._saved = os.environ.get("OPENROUTER_API_KEY")
-        os.environ["OPENROUTER_API_KEY"] = "FAKEKEYDONOTLEAK0000"
+        os.environ["OPENROUTER_API_KEY"] = FAKE_KEY
         self.httpd, self.port = _free_server()
 
     def tearDown(self):
@@ -138,14 +146,13 @@ class TestKeyNeverServed(unittest.TestCase):
             os.environ["OPENROUTER_API_KEY"] = self._saved
 
     def test_key_absent_from_every_served_response(self):
-        sentinel = "FAKEKEYDONOTLEAK0000"
         for path in ("/", "/scope"):
             _, body = _get(self.port, path)
-            self.assertNotIn(sentinel, body, path)
-            self.assertNotIn("SENTINEL", body, path)
+            self.assertNotIn(FAKE_KEY, body, path)
+            self.assertNotIn(FAKE_MARK, body, path)
         _, run = _post_text(self.port, SAMPLE)
-        self.assertNotIn(sentinel, run)
-        self.assertNotIn("SENTINEL", run)
+        self.assertNotIn(FAKE_KEY, run)
+        self.assertNotIn(FAKE_MARK, run)
 
 
 class TestServeTimeGuard(unittest.TestCase):
