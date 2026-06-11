@@ -24,7 +24,7 @@ _Version 1.0.0-stage2 · scope: ijara · DERIVED from `registry/rules_ijara.json
 
 > The leased asset must be a non-consumable that yields usufruct while its corpus survives, be precisely identified (negating ambiguity), and be put to a permissible use; a lease is invalid for a consumable, for an unidentified asset, or for one leased to an impermissible use.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #3, Part 2 (I1) · grounding: grounded_
+_Arabic review status: **locked** · provenance: Input #3, Part 2 (I1) · grounding: grounded_
 
 **What satisfies it:**
 - Leasing an existing non-consumable asset (property, vehicle, machinery), precisely identified, for a permissible use.
@@ -61,7 +61,7 @@ _Note: Usufruct (manfa'ah) of an owned, surviving corpus is the basis of Ijara._
 
 > The rent and the lease term must be determined at contract to negate gharar; the rent may be a single figure or staged across known periods. The lessor may not unilaterally increase the rent after the contract is concluded.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #3, Part 2 (I2) · grounding: grounded_
+_Arabic review status: **locked** · provenance: Input #3, Part 2 (I2) · grounding: grounded_
 
 **What satisfies it:**
 - Stating the rent amount and the lease term at contract, fixed except by a pre-agreed, bounded, disclosed formula.
@@ -96,7 +96,7 @@ _Note: Benchmarking the variable rent element to a conventional index is a CONTE
 
 > The lessor must own the asset or its usufruct, and his acquisition of it must precede the lease contract; it is not valid to lease what one does not own or possess.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #3, Part 2 (I3) · grounding: grounded_
+_Arabic review status: **locked** · provenance: Input #3, Part 2 (I3) · grounding: grounded_
 
 **What satisfies it:**
 - The lessor's ownership and possession of the asset are established before the lease is concluded.
@@ -131,7 +131,7 @@ _Note: Ijara analogue of the ownership-before-resale principle; connects to al-k
 
 > Ownership liability remains with the lessor for the whole term: basic (structural) maintenance, takaful insurance as owner, and the risk of total loss or destruction not caused by the lessee's transgression; the lessee bears only operational maintenance and what arises from his own misuse or negligence. If the asset is destroyed without transgression, the rent abates and the lessor bears the loss.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #3, Part 2 (I4); Key Findings 2 · grounding: grounded_
+_Arabic review status: **locked** · provenance: Input #3, Part 2 (I4); Key Findings 2 · grounding: grounded_
 
 **What satisfies it:**
 - The lessor bears basic maintenance, takaful, and total-loss risk; the lessee bears only operational maintenance.
@@ -172,7 +172,7 @@ _Note: THE headline Ijara test and the most common real defect (the Ijara analog
 
 > Rent is due only after delivery of the leased asset and only while it remains usable; rent for a period before delivery is invalid — it would be rent on money, which is riba — as is rent for a period in which the usufruct ceased without the lessee's transgression. Advance rent may be collected on-account and applied only when due.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #3, Part 2 (I5); Key Findings 3 · grounding: grounded_
+_Arabic review status: **locked** · provenance: Input #3, Part 2 (I5); Key Findings 3 · grounding: grounded_
 
 **What satisfies it:**
 - Rent accrues from the delivery date and abates when the usufruct ceases without transgression.
@@ -207,7 +207,7 @@ _Note: Rent-before-delivery is a riba tripwire (Usmani)._
 
 > In Ijara Muntahia Bittamleek, the transfer of ownership must be effected by an instrument separate from the lease (a promise to sell or gift, or a separate sale), not fused into the contract such that the lessor's ownership liability disappears; the lease remains a genuine lease throughout, distinguishing rent (for usufruct) from price (for transfer of title).
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #3, Part 2 (I6); Key Findings 4 · grounding: grounded_
+_Arabic review status: **locked** · provenance: Input #3, Part 2 (I6); Key Findings 4 · grounding: grounded_
 
 **What satisfies it:**
 - The transfer of ownership is set in a promise or sale separate from the lease, the lease remaining a genuine lease.
@@ -246,7 +246,7 @@ _Note: The bindingness of the transfer promise (wa'd) is CONTESTED — referred 
 
 > In sale-then-leaseback a reasonable interval — during which the asset or its value may change — must separate the sale from the leaseback, to avoid bai' al-inah; executing both legs simultaneously with the same party is invalid.
 
-_Arabic review status: **awaiting-expert-judgment** · provenance: Input #3, Part 2 (I7) · grounding: grounded_
+_Arabic review status: **locked** · provenance: Input #3, Part 2 (I7) · grounding: grounded_
 
 **What satisfies it:**
 - A reasonable interval passes between the customer's sale of the asset to the bank and his leaseback of it.

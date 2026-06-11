@@ -25,6 +25,13 @@
       "date": "2026-06-10",
       "change": "Stage 2 growth protocol: encountered Ijara terms of art while grounding the Ijara rule-set (Input #3); researched against the grounding report; appended G-014..G-022 with status provisional, grounding_basis grounded; routed to the Stage-2 consolidated Arabic review list. No collision with any locked rendering.",
       "added": ["G-014","G-015","G-016","G-017","G-018","G-019","G-020","G-021","G-022"]
+    },
+    {
+      "version": "1.4.0-calibrated",
+      "date": "2026-06-10",
+      "change": "Principal calibration applied (all three review lists accepted in full): lifecycle status flipped provisional -> locked for the growth-protocol terms G-013..G-022. The provenance grounding_basis axis is UNCHANGED (G-013 remains 'unverified' — tertiary web sources — even though it is now locked; G-014..G-022 remain 'grounded'); calibration flips the human-review lifecycle, not the sourcing strength. No entries added or removed; no rendering changed.",
+      "added": [],
+      "relabelled": ["G-013","G-014","G-015","G-016","G-017","G-018","G-019","G-020","G-021","G-022"]
     }
   ]
 }

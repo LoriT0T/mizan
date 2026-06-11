@@ -1,5 +1,7 @@
 # قائمة المراجعة العربية الموحَّدة — Stage 3 (UI canon Arabic)
 
+> **✅ CALIBRATED — 2026-06-10.** The principal accepted this list in full. The UI canon Arabic (status labels, watermark, badges, headings) is locked. With all rule/glossary Arabic now locked, the UI calibration badge reads "All Arabic calibrated."
+
 > **For the principal.** Per the expert-calibration principle: the **UI canon Arabic** below (status labels, watermark, badges, headings) is new canonical Arabic composed natively at full capability. The **corpus contracts' Arabic is synthetic-document Arabic** (exempt from canon — it imitates GCC drafting conventions per `corpus/stage3/PROVENANCE.md`, not terminology of record). Label `awaiting-expert-judgment`; your calibration locks it. ✅ accept · ✏️ amend · ❓ flag.
 
 ## A. The not-a-fatwa watermark (top of every page — unchanged canonical text)

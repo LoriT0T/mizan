@@ -1,5 +1,7 @@
 # قائمة المراجعة العربية الموحَّدة — Stage 2 (Ijara + scope)
 
+> **✅ CALIBRATED — 2026-06-10.** The principal accepted this list in full. I1–I7 `arabic_review_status` flipped to `locked`; glossary G-014…G-022 lifecycle `status` flipped to `locked` (grounding_basis unchanged); D4/D5 + out-of-scope + scope-registry Arabic accepted. Glossary versioned to v1.4.0-calibrated.
+
 > **For the principal (qualified native-Arabic scholar).** Per the expert-calibration principle (`RELIABILITY.md` §2): all new canonical Arabic below was composed natively at full capability in MSA fiqh register, glossary-locked, grounded in **Input #3**. It is `awaiting-expert-judgment` / `provisional`; your calibration locks it. One consolidated list; no mid-build blocking. Use ✅ accept · ✏️ amend · ❓ flag.
 
 ## A. Ijara canonical rule texts (I1–I7, all established, grounded Input #3 Part 2)

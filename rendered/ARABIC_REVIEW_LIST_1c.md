@@ -1,5 +1,7 @@
 # قائمة المراجعة العربية الموحَّدة — Stage 1c — Template Arabic
 
+> **✅ CALIBRATED — 2026-06-10.** The principal accepted this list in full. The 1c template Arabic (memo headings, watermark, opinion placeholder, remediation phrasings) is locked. Retained as the record of what was reviewed.
+
 > **For the principal (qualified native-Arabic scholar).** Per the expert-calibration principle (`RELIABILITY.md` §2): the memo/matrix **template Arabic** below is NEW canonical Arabic, composed natively at full capability in MSA fiqh register, glossary-locked. It is **not** self-certified — labelled `awaiting-expert-judgment`. Your calibration locks it. One consolidated list; no mid-build blocking. (Glossary growth: no new terms of art were created in 1c — the corpus uses seeded terms only.)
 >
 > **How to use:** ✅ accept · ✏️ amend · ❓ flag.
