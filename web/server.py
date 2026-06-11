@@ -162,10 +162,33 @@ class Handler(BaseHTTPRequestHandler):
         self._serve(html_str, ui)
 
 
-def serve(host="127.0.0.1", port=8765):
+DEFAULT_PORT = 8877
+
+
+def resolve_port(cli_port=None):
+    """Port precedence: --port flag > MIZAN_PORT env > default (8877)."""
+    if cli_port is not None:
+        return int(cli_port)
+    env = os.environ.get("MIZAN_PORT")
+    return int(env) if env else DEFAULT_PORT
+
+
+def make_server(host, port):
+    """Bind a loopback-only server, failing with a clear message (no traceback)
+    if the host is non-loopback or the port is already in use."""
     if host not in ("127.0.0.1", "localhost", "::1"):
         raise SystemExit(f"refusing to bind non-loopback host {host!r} — Mizan is local-only (no public hosting)")
-    httpd = ThreadingHTTPServer((host, port), Handler)
+    try:
+        return ThreadingHTTPServer((host, port), Handler)
+    except OSError as e:
+        if e.errno in (48, 98) or "address already in use" in str(e).lower():  # EADDRINUSE (macOS 48 / Linux 98)
+            raise SystemExit(f"port {port} in use — set MIZAN_PORT or --port to a free port (default {DEFAULT_PORT})")
+        raise SystemExit(f"could not bind {host}:{port} — {e}")
+
+
+def serve(host="127.0.0.1", port=None):
+    port = resolve_port(port)
+    httpd = make_server(host, port)
     mode = "model available" if _seam().available() else "NO-KEY (deterministic)"
     sys.stderr.write(f"[mizan] local server on http://{host}:{port}  ·  seam: {mode}\n")
     sys.stderr.write("[mizan] local demonstration — not deployed, not certified. Ctrl-C to stop.\n")
@@ -175,7 +198,24 @@ def serve(host="127.0.0.1", port=8765):
         httpd.shutdown()
 
 
+def _parse_args(argv):
+    host, port = "127.0.0.1", None
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a == "--port":
+            port = argv[i + 1]; i += 2
+        elif a.startswith("--port="):
+            port = a.split("=", 1)[1]; i += 1
+        elif a == "--host":
+            host = argv[i + 1]; i += 2
+        elif a.startswith("--host="):
+            host = a.split("=", 1)[1]; i += 1
+        else:
+            i += 1
+    return host, port
+
+
 if __name__ == "__main__":
-    h = sys.argv[1] if len(sys.argv) > 1 else "127.0.0.1"
-    p = int(sys.argv[2]) if len(sys.argv) > 2 else 8765
+    h, p = _parse_args(sys.argv[1:])
     serve(h, p)

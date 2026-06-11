@@ -81,6 +81,49 @@ class TestRoutesAndWall(unittest.TestCase):
         self.assertTrue(any(f["status"] == "out_of_scope" for f in res["findings"]))
 
 
+class TestPortConfig(unittest.TestCase):
+    def setUp(self):
+        self._saved = os.environ.get("MIZAN_PORT")
+
+    def tearDown(self):
+        if self._saved is None:
+            os.environ.pop("MIZAN_PORT", None)
+        else:
+            os.environ["MIZAN_PORT"] = self._saved
+
+    def test_default_port_is_8877(self):
+        os.environ.pop("MIZAN_PORT", None)
+        self.assertEqual(server.resolve_port(), 8877)
+        self.assertEqual(server.DEFAULT_PORT, 8877)
+
+    def test_env_var_overrides_default(self):
+        os.environ["MIZAN_PORT"] = "9123"
+        self.assertEqual(server.resolve_port(), 9123)
+
+    def test_flag_beats_env(self):
+        os.environ["MIZAN_PORT"] = "9123"
+        self.assertEqual(server.resolve_port(9456), 9456)
+
+    def test_arg_parsing(self):
+        self.assertEqual(server._parse_args(["--port", "9001"]), ("127.0.0.1", "9001"))
+        self.assertEqual(server._parse_args(["--port=9002", "--host=127.0.0.1"]), ("127.0.0.1", "9002"))
+
+    def test_non_loopback_refused(self):
+        with self.assertRaises(SystemExit):
+            server.make_server("0.0.0.0", 0)
+
+    def test_port_in_use_clear_message_not_traceback(self):
+        # Occupy a port, then assert make_server raises a clear SystemExit (no OSError traceback).
+        occupied, port = _free_server()
+        try:
+            with self.assertRaises(SystemExit) as cm:
+                server.make_server("127.0.0.1", port)
+            self.assertIn("in use", str(cm.exception))
+            self.assertIn("MIZAN_PORT", str(cm.exception))
+        finally:
+            occupied.shutdown()
+
+
 class TestKeyNeverServed(unittest.TestCase):
     def setUp(self):
         self._saved = os.environ.get("OPENROUTER_API_KEY")

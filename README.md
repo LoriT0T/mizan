@@ -119,8 +119,13 @@ A **local-only** web UI (`web/`, stdlib `http.server` — zero external deps) wr
 
 **Running locally**
 ```bash
-python3 web/server.py                 # binds 127.0.0.1:8765 (loopback only; refuses 0.0.0.0)
-# open http://127.0.0.1:8765  → paste or upload a .txt contract → Run review
+python3 web/server.py                 # binds 127.0.0.1:8877 (loopback only; refuses 0.0.0.0)
+# open http://127.0.0.1:8877  → paste or upload a .txt contract → Run review
+
+# the port is configurable (default 8877): --port flag or MIZAN_PORT env take precedence
+python3 web/server.py --port 9001
+MIZAN_PORT=9001 python3 web/server.py
+# if the port is taken it exits with a clear message ("port N in use — set MIZAN_PORT or --port"), not a traceback
 ```
 - **NO-KEY mode is first-class:** with no `OPENROUTER_API_KEY` the UI runs the full deterministic pipeline and shows a *"NO-KEY mode — deterministic extraction only"* badge. With a key set in the **server env only**, the model seam is used; the key never appears in any served byte (scanned on every response), log, or error.
 - **Untrusted uploads:** size-capped (256 KB), `.txt`/paste only, run through the injection-inert input rail, held in RAM for the session only (never persisted to disk), no telemetry, no external calls except the seam.
