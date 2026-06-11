@@ -1,4 +1,7 @@
-# Mizan (ميزان) — Sharia-Review Copilot · Stage 1a
+# Mizan (ميزان) — Sharia-Review Copilot
+
+_License: [MIT](LICENSE) · a working demonstration — local-only, **not deployed, not certified**, and it **never issues a ruling**._
+
 
 **Mizan is a working demonstration, not a certified product.** It is a Sharia-review **copilot** for Islamic-finance contracts in Kuwait's regulatory context: it researches, drafts, and documents for a qualified human Sharia scholar (the SSB). **It never issues a ruling (fatwa), and it never adjudicates a contested matter.**
 
